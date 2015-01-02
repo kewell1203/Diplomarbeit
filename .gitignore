@@ -1,4 +1,7 @@
 #  tex files
 *.aux
 *.log
-*.symcte.gz
+*.synctex.gz
+
+#swp file
+*.swp
