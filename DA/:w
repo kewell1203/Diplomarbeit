@@ -8,7 +8,7 @@
 
 %------------------------------%
 \synctex=1
-%----------- preamble ---------%
+
 %----------- packages ---------%
 \usepackage[body={15cm, 23cm}, top=4.5cm, left=4cm]{geometry}
 \usepackage{fancyhdr}
@@ -129,29 +129,26 @@ In this section we start off the general concept of probability spaces and stoch
   A \emph{probability space} is defined as a triple \bs of a set $\Omega$, a \sa \AA  of $\Omega$ and a measure $\mathcal{P}$ from $\mathscr{A}$ to $\bsigma$.
 \end{definition}
 
-The $\sigma$- Algebra generated of all open sets on $\mathbb{R}^{n}$ is called the \emph{Borel $\sigma$- Algebra} which we denote as usual by $\mathscr{B}\left(\mathbb{R}^{n}\right)$. Let $\mu$ be a probability measure on $\mathbb{R}^{n}$. Indeed, $\brkt{\mathbb{R}^{n}, \mathscr{B}\brkt{\mathbb{R}^{n}}, \mu}$ is a special case that probability space on $\mathbb{R}^{n}$. A function $f$ mapping from $\brkt{\mathcal{D}, \mathscr{D}, \mu}$ into $\brkt{\mathcal{E}, \mathscr{E}, \nu}$ is \emph{measurable} if its collection of the inverse image of $\mathscr{E}$ is a subset of $\mathscr{D}$. A \emph{random variable} is a $\mathbb{R}^{n}$-valued measurable function on some probability space. Let $\mathcal{P}$ represent a probability measure, recall that in probability theory, for $B \in \bsigma$ we call $\mathcal{P}\sqbr{\left\{X \in B\right\}}$ the \emph{distribution} of $X$. We write also $\mathcal{P}_X \sqbr{\bullet}$ or $\mathcal{P}\sqbr{X}$ for convenience of the notation above.
+The $\sigma$- Algebra generated of all open sets on $\mathbb{R}^{n}$ is called the \emph{Borel $\sigma$- Algebra} which we denote as usual by $\mathscr{B}\left(\mathbb{R}^{n}\right)$. Let $\mu$ be a probability measure on $\mathbb{R}^{n}$. Indeed, $\brkt{\mathbb{R}^{n}, \mathscr{B}\brkt{\mathbb{R}^{n}}, \mu}$ is a special case that probability space on $\mathbb{R}^{n}$. A function $f$ mapping from $\brkt{\mathcal{D}, \mathscr{D}, \mu}$ into $\brkt{\mathcal{E}, \mathscr{E}, \nu}$ is \emph{measurable} if its collection of the inverse image of $\mathscr{E}$ is a subset of $\mathscr{D}$. A \emph{random variable} is a $\mathbb{R}^{n}$-valued measurable function on some probability space. Let $\mathcal{P}$ represent a probability measure, recall that in probability theory, for $B \in \bsigma$ we call $\mathcal{P}\sqbr{\left\{X \in B\right\}}$ the \emph{distribution} of $X$. We write also $\mathcal{P}_X \sqbr{\bullet}$ or $\mathcal{P}\sqbr{X}$ as an abbreviation for the notation above.
 
 \begin{definition}
   Let $\brkt{\Omega, \mathscr{A}, \mathcal{P}}$ be a probability space. A $n$-dimensional \emph{stochastic process} $\brkt{X_t}$ is a family of random variable such that $X_t\brkt{\omega} : \Omega \longrightarrow  \mathbb{R}^{n},  \forall t \in T$, where $T$ denotes the set of Index of Time.    
 \end{definition}
 
 \begin{definition}
-  A stochastic process $\brkt{X_t}_{t \in T}$ is said to be \emph{stationary}, if the joint distribution 
+  A stochastic process $\brkt{X_t}_{t \in T}$ is said to be \emph{stationary}, if  
 \[
-  \mathcal{P}\sqbr{X_{t_1},\dots,X_{t_n}} = \mathcal{P}\sqbr{X_{t_1+\tau},\dots,X_{t_n+\tau}} 
+  \mathcal{P}\sqbr{X_t} = \mathcal{P}\sqbr{X_{t+s}} 
 \]
-for $t_1, \dots, t_n$ and $t_1+\tau,\dots,t_n+\tau \in T$. 
-\label{sec:stn}
+for any $t+s \in T$. 
 \end{definition}
-
-Remark that, definition \ref{sec:stn} means the distribution of a stationary process is independent of a shift of time.
 
 %---------- 2.2. subsection -------%
 \subsection{Definition of Gaussian Process}
 \begin{definition}[1-dimensional normal distribution]
   A $\mathbb{R}$-valued random variable $X$ is said to be \emph{standard normal distributed}, if its distribution can be discribed as
   \[
-	\mathcal{P}\sqbr{X \le x} = \int_{-\infty}^{x} (2\pi)^{-\frac{1}{2}}e^{-\frac{u^2}{2}}\,\mathop{du}  
+	\mathcal{P}\sqbr{X \le x} = \int_{-\infty}^{x} (2\pi)^{-\frac{1}{2}}e^{-\frac{u^2}{2}}\mathop{du}  
   \]
   for $x \in \mathbb{R}$.
 \end{definition}
@@ -164,33 +161,27 @@ Remark that, definition \ref{sec:stn} means the distribution of a stationary pro
 is standard normal distributed.
 \end{definition}
 
-We use a notation $X \sim Y$, which means $X$ and $Y$ have the same distribution. In similar way it is denoted by $X \sim (2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}\mathop{dx} $, if it is standard normal distributed. In order to identifing a normal distributed random variable we recall the characteristic function in probability theory, see\cite{bauer}. 
-
 \begin{proposition}
-  Let $X$ be a $\mathbb{R}$-valued standard normal distributed random variable. The characteristic function of $X$
+  Let $X$ be a $\mathbb{R}$-valued standard normol distributed random variable. The characteristic function of $X$
 \begin{equation}
   \Psi_X(\xi) := \int_\mathbb{R} e^{ix\xi}\mathcal{P}\sqbr{X \in \mathop{dx}} = e^{-\frac{\xi^2}{2}}
   \label{sec:cht}
 \end{equation}
-for $\xi \in \mathbb{R}$.
+for $\xi \in \mathbb{R}$
 \end{proposition}
 \begin{proof}
-  According the definion of characteristic function
+  We get from definion of characteristic function
   \begin{equation*}
-	\Psi_X(\xi) = \int_\mathbb{R} (2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}e^{ix\xi}\,\mathop{dx},
+	\Phi_X(\xi) = \int_\mathbb{R} (2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}e^{ix\xi}\mathop{dx},
   \end{equation*}
 take differentiating both sides of the equation by $\xi$, then
 \begin{eqnarray*}
-\Psi_X'(\xi) &=& \int_\mathbb{R}(2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}e^{ix\xi}ix\,\mathop{dx}\\
-             &=& (-i)\cdot\int_\mathbb{R} (2\pi)^{-\frac{1}{2}}(\frac{d}{dx}e^{-\frac{x^2}{2}})e^{ix\xi}\,\mathop{dx}\\
-			 &\overset{part.int.}{=}& -\int_\mathbb{R}(2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}e^{ix\xi}\xi\,\mathop{dx}\\
-			 &=& -\xi\Phi_X(\xi).
-\end{eqnarray*}
-Obviously, 
-$\Psi(\xi) = \Psi(0)e^{-\frac{\xi^2}{2}}$ is the solution of the partial differential equation above, and $\Psi(0)$ is equal to $1$.
+\Phi_X'(\xi) &=& \int_\mathbb{R}(2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}e^{ix\xi}ix\mathop{dx}\\
+             &=& (-i)\cdot\int_\mathbb{R} (2\pi)^{-\frac{1}{2}}(\frac{d}{dx}e^{-\frac{x^2}{2}})e^{ix\xi}\mathop{dx}\\
+			 &\overset{part.int.}{=}& -\int_\mathbb{R}(2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}e^{ix\xi}\xi\mathop{dx}
+			 &=& -\xi\Phi_X(\xi)
+\end{eqnarray*}<++>
 \end{proof}
-
-In particular, the characteristic function of a normal distributed random variable with a mean $\mu$ and a variance $\sigma^2$, which denoted by $\Psi_{X_{\mu,\sigma^2}}(\xi)$, is $e^{i\mu\xi-\frac{1}{2}(\sigma\xi)^2}$. To achieve this result, we just need to substitute $x$ by $(x-\mu)/\sigma$ in the calculation before. 
 \newpage
 
 %---------- 3. section ------------%
@@ -204,7 +195,7 @@ In particular, the characteristic function of a normal distributed random variab
 \newpage
 
 %---------- 5. Anwendung in die finanzmathe bzw. in der volatility process -------%
-\section{Application in Financial Mathematics}
+\section{Applications in Financial Mathematics}
 
 \newpage
 
@@ -217,7 +208,7 @@ In particular, the characteristic function of a normal distributed random variab
 \addcontentsline{toc}{section}{References}
 \fancyhead[LO, RE]{}
 \begin{thebibliography}{99}
-	\bibitem{bauer} \textsc{Bauer,~H.} (2002). Wahrscheinlichkeitstheorie(durchges. und verb. Aufl.). Berlin: W. de Gruyter
+	\bibitem{Benoit B.M.}
 
 \end{thebibliography}
 \newpage
