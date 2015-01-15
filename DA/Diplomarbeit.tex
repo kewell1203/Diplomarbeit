@@ -176,7 +176,7 @@ We use a notation $X \sim Y$, which means $X$ and $Y$ have the same distribution
 for $\xi \in \mathbb{R}$.
 \end{proposition}
 \begin{proof}
-  According the definion of characteristic function
+  According to the definion of characteristic function
   \begin{equation*}
 	\Psi_X(\xi) = \int_\mathbb{R} (2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}e^{ix\xi}\,\mathop{dx},
   \end{equation*}
@@ -210,7 +210,7 @@ In particular, the characteristic function of a normal distributed random variab
 \end{equation}
 \end{proposition}
 
-Remark, the equation (\ref{sec:mcf}) can also be as definition of characteristic function of a n-dimensional normal distributed random variable.
+Remark, the equation (\ref{sec:mcf}) can also be as definition of characteristic function of a n-dimensional normal distributed random variable. I.e., any normal distributed random variable can be characterized by form of the equation (\ref{sec:mcf}).
 
 \begin{proof}
   Since $X$ normal distributed on $\mathbb{R}^{n}$, then $\xi^T X$ is normal distributed on $\mathbb{R}$. Due to the proposition 2.8 there is
@@ -218,9 +218,8 @@ Remark, the equation (\ref{sec:mcf}) can also be as definition of characteristic
 	\mathrm{E} e^{i\xi^T X} &=& \mathrm{E} e^{i\cdot 1 \cdot \xi^T X}\\
 	                        &=& e^{i\mathrm{E}\sqbr{\xi^T X} -\frac{1}{2}\mathrm{Var}\sqbr{\xi^T X}}\\
 							&=& e^{i\xi^T\mathrm{E}\sqbr{X} - \frac{1}{2}\xi^T \mathrm{Var}\sqbr{X} \xi}.
-	\label{}
   \end{eqnarray*}
-  According the uniqueness theorem of characteristic function (Satz 23.4 in \cite{bauer}), then we can deduce the density function of the equation (\ref{sec:dsy}).
+  According to the uniqueness theorem of characteristic function (Satz 23.4 in \cite{bauer}), then we can deduce the density function of the equation (\ref{sec:dsy}).
 \end{proof}
 
 A normal distributed normal random variable can be characterized by its mean and variance respectively mean vector and covariance vector because of the characteristic function.
@@ -232,7 +231,79 @@ A normal distributed normal random variable can be characterized by its mean and
   \]
   has a normal distribution for any $c_1 \cdots c_n \in \mathbb{R}^{n}$, $t_1 \dots t_n \in T$ and $n \in \mathbb{N}$. 
 \end{definition}
-The definition immediately shows for every $X_t$ in gaussian process has a distribution.
+The definition immediately shows for every $X_t$ in gaussian process has a normal distribution.
+
+\begin{example}[Bivariate Normal Distribution]
+  Suppose $S_1, S_2$ are independent random variable on $\mathbb{R}$ and have standard normal distributions. $\left(
+    \begin{array}{c}
+      S_1 \\
+      S_2
+    \end{array}
+  \right)$  is standard normal distributed since any lineare combination of independent normal distributed random variables has normal distribution. We define
+  \begin{eqnarray*}
+	\left(
+    \begin{array}{c}
+      Y_1 \\
+      Y_2
+    \end{array}
+	\right)
+	&=& 
+	\left(
+    \begin{array}{l}
+	  \sigma_1,\hspace{3em} 0 \\
+	  \sigma_2 \rho, \sigma_2(1-\rho)^{\frac{1}{2}}
+    \end{array}
+  \right) \cdot
+	\left(
+    \begin{array}{c}
+      S_1 \\
+      S_2
+    \end{array}
+  \right)  +
+  \left(
+    \begin{array}{c}
+      \mu_1 \\
+      \mu_2
+    \end{array}
+  \right),
+  \end{eqnarray*}
+  where $\mu_1, \mu_2, \sigma_1, \sigma_2 \in \mathbb{R}, -1 \le \rho \le 1$. Again, $\left(
+    \begin{array}{c}
+      Y_1 \\
+      Y_2
+    \end{array}
+	\right)$ has normal distribution. Because of the equation (\ref{sec:dsy}), the density function
+	\begin{eqnarray*}
+	  f_{Y_1, Y_2}(y_1, y_2) &=& (2\pi)^{-1} \det(\Sigma) \exp\brkt{(y_1 - \mu_1) \Sigma^{-1} (y_2 - \mu_2)},
+	\end{eqnarray*}
+	where $\Sigma =\left(
+    \begin{array}{l}
+	  \sigma_1^2, \hspace{3em}0 \\
+	  \sigma_2^2\rho^2, \sigma_2^2(1-\rho^2)
+    \end{array}
+  \right)
+ $\\
+ Indeed, 
+ $$
+ 	\det(\Sigma) = (1-\rho^2)\sigma_1^2\sigma_2^2
+ $$ and 
+ $$
+ \Sigma^{-1} = \frac{
+   \left(
+    \begin{array}{l}
+	  \sigma_2^2(1-\rho^2), \hspace{1em}0 \\
+	  -\sigma_2^2\rho,\hspace{3em}\sigma_1^2
+    \end{array}
+  \right)}
+  {\displaystyle (1-\rho^2)\sigma_1^2\sigma_2^2}.
+  $$
+ Therefore,
+ \begin{equation}
+   f_{Y_1, Y_2}(y1, y2) = \frac{1}{2\pi(1 - \rho^2)^{\frac{1}{2}}\sigma_1\sigma_2}\exp\brkt{-\frac{1}{2(1-\rho^2)}(z_1^2 - 2\rho z_1 z_2 + z_2^2)}
+   \label{sec:jdt}
+ \end{equation}
+ where $z_1 = \frac{y_1-\mu_1}{\sigma_1}, z_2=\frac{y_2-\mu_2}{\sigma_2}$.
+\end{example}
 
 \newpage
 
