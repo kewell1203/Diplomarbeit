@@ -148,7 +148,7 @@ for $t_1, \dots, t_n$ and $t_1+\tau,\dots,t_n+\tau \in T$.
 Remark that, definition \ref{sec:stn} means the distribution of a stationary process is independent of a shift of time.
 
 %---------- 2.2. subsection -------%
-\subsection{Definition of Gaussian Process}
+\subsection{Normal Distribution and  Gaussian Process}
 \begin{definition}[1-dimensional normal distribution]
   A $\mathbb{R}$-valued random variable $X$ is said to be \emph{standard normal distributed}, if its distribution can be discribed as
   \[
@@ -224,6 +224,20 @@ Remark, the equation (\ref{sec:mcf}) can also be as definition of characteristic
 
 A normal distributed normal random variable can be characterized by its mean and variance respectively mean vector and covariance vector because of the characteristic function.
 
+\begin{corollary}
+  A linear combination of independent normal distributed random variables has normal distribution.
+\end{corollary}
+
+\begin{proof}
+  In general case, we suppose $Y_1, \cdots, Y_m$ are independent random variables on $\mathbb{R}^n$, for $c_1, \cdots, c_m \in \mathbb{R}$. Let have a look at the chracteristic function of it,
+  \begin{eqnarray*}
+	\mathrm{E}e^{i\xi^T\sum_{j=1}^m(c_jX_j)} &\overset{independent}{=}&\prod_{j=1}^{m} \mathrm{E}e^{i\xi^T(c_jX_j)}\\
+	&=& \prod_{j=1}^m \exp\brkt{i\xi^T\mathrm{E}[c_jX_j]-\frac{1}{2}\xi^T\mathrm{Var}[c_jX_j]\xi}\\
+	&=&  \exp\brkt{i\xi^T\mathrm{E}[\sum_{j=1}^{m}c_jX_j]-\frac{1}{2}\xi^T\mathrm\sum_{j=1}^{m}{Var}[c_jX_j]\xi}\\
+	&\overset{independent}{=}&  \exp\brkt{i\xi^T\mathrm{E}[\sum_{j=1}^{m}c_jX_j]-\frac{1}{2}\xi^T\mathrm{Var}[\sum_{j=1}^{m}c_jX_j]\xi},
+  \end{eqnarray*}
+  which is a form of characteristc function of normal distribution. That means $\sum_{j=1}^m c_jX_j$ is normal distributed. 
+\end{proof}
 \begin{definition}
   Let $(X_t)_{t \in T}$ be a $\mathbb{R}^{n}$-valued stochastic process. $(X_t)$ is said to be a \emph{gaussian process} if 
   \[
@@ -234,13 +248,13 @@ A normal distributed normal random variable can be characterized by its mean and
 The definition immediately shows for every $X_t$ in gaussian process has a normal distribution.
 
 \begin{example}[Bivariate Normal Distribution]
-  Suppose $S_1, S_2$ are independent random variable on $\mathbb{R}$ and have standard normal distributions. $\left(
+  Suppose $S_1, S_2$ are independent random variables on $\mathbb{R}$ and have standard normal distributions. $\left(
     \begin{array}{c}
       S_1 \\
       S_2
     \end{array}
   \right)$  is standard normal distributed since any lineare combination of independent normal distributed random variables has normal distribution. We define
-  \begin{eqnarray*}
+  \begin{eqnarray}
 	\left(
     \begin{array}{c}
       Y_1 \\
@@ -251,7 +265,7 @@ The definition immediately shows for every $X_t$ in gaussian process has a norma
 	\left(
     \begin{array}{l}
 	  \sigma_1,\hspace{3em} 0 \\
-	  \sigma_2 \rho, \sigma_2(1-\rho)^{\frac{1}{2}}
+	  \sigma_2 \rho, \sigma_2(1-\rho^2)^{\frac{1}{2}}
     \end{array}
   \right) \cdot
 	\left(
@@ -265,16 +279,33 @@ The definition immediately shows for every $X_t$ in gaussian process has a norma
       \mu_1 \\
       \mu_2
     \end{array}
-  \right),
-  \end{eqnarray*}
-  where $\mu_1, \mu_2, \sigma_1, \sigma_2 \in \mathbb{R}, -1 \le \rho \le 1$. Again, $\left(
+  \right)
+  \label{sec:bi},
+  \end{eqnarray}
+  where $\mu_1, \mu_2, \sigma_1, \sigma_2 \in \mathbb{R}, -1 \le \rho \le 1$. Again, $Y_1, Y_2$ are normal distributed and the joint distribution  $\left(
     \begin{array}{c}
       Y_1 \\
       Y_2
     \end{array}
-	\right)$ has normal distribution. Because of the equation (\ref{sec:dsy}), the density function
+	\right)$ is normal. Note $\mathrm{E}[Y_1] = \mu_1, \mathrm{E}[Y_2] = \mu_2 $. Since $S_1, S_2$ are independent,
 	\begin{eqnarray*}
-	  f_{Y_1, Y_2}(y_1, y_2) &=& (2\pi)^{-1} \det(\Sigma) \exp\brkt{(y_1 - \mu_1) \Sigma^{-1} (y_2 - \mu_2)},
+	  \mathrm{Var}[Y_1] &=& \mathrm{Var}[\sigma_1 S_1]\\
+						 &=& \sigma^2 ,\\
+						 \mathrm{Var}[Y_2] &=& \mathrm{Var}[\sigma_2\rho S_1] + \mathrm{Var}[\sigma_2 (1-\rho^2)^{\frac{1}{2}} S_2]\\
+						 &=& \sigma_2^2 \rho^2 + \sigma_2^2(1 - \rho^2)\\
+						 &=& \sigma_2^2,\\
+						 \mathrm{Cov}[Y_1, Y_2] &=& \mathrm{E}[(Y_1 - \mathrm{E}[Y_1])(Y_2 - \mathrm{E}[Y_2])]\\
+						 &=& \mathrm{E}[Y_1Y_2 - \mu_1Y_2 - \mu_2Y_1 + \mu_1\mu_2]\\
+						 &=& \mathrm{E}[(\sigma_1 S_1 + \mu_1)(\sigma_2\rho S_1 + \sigma_2(1-\rho^2)^{\frac{1}{2}}S_2 + \mu_2)] - \mu_1\mu_2\\
+						 &=& \sigma_1\sigma_2\underbrace{\mathrm{E}[S_1^2]}_{=1}\rho + \mu_1\sigma_2\rho\underbrace{\mathrm{E}[S_1]}_{=0} +
+						 \sigma_1\sigma_2(1-\rho^2)^{\frac{1}{2}}\underbrace{\mathrm{E}[S_1S_2]}_{=\mathrm{E}[S_1]\mathrm{E}[S_2]=0} \\
+						 &+& \mu_1\sigma_2(1-\rho^2)^{\frac{1}{2}}\underbrace{\mathrm{E}[S_2]}_{=0} + \sigma_1\underbrace{\mathrm{E}[S_1]}_{=0}\mu_2 + \mu_1\mu_2 - \mu_1\mu_2\\
+						 &=& \rho\sigma_1\sigma_2,
+	\end{eqnarray*}
+	that means the corrlation of $Y_1, Y_2$ is $\rho$.
+	Because of the equation (\ref{sec:dsy}), joint the density function
+	\begin{eqnarray*}
+	  f_{Y_1, Y_2}(y_1, y_2) &=& (2\pi)^{-1} (\det(\Sigma))^{-\frac{1}{2}} \exp\brkt{(y_1 - \mu_1) \Sigma^{-1} (y_2 - \mu_2)},
 	\end{eqnarray*}
 	where $\Sigma =\left(
     \begin{array}{l}
@@ -297,13 +328,65 @@ The definition immediately shows for every $X_t$ in gaussian process has a norma
   \right)}
   {\displaystyle (1-\rho^2)\sigma_1^2\sigma_2^2}.
   $$
- Therefore,
+ Namely,
  \begin{equation}
-   f_{Y_1, Y_2}(y1, y2) = \frac{1}{2\pi(1 - \rho^2)^{\frac{1}{2}}\sigma_1\sigma_2}\exp\brkt{-\frac{1}{2(1-\rho^2)}(z_1^2 - 2\rho z_1 z_2 + z_2^2)}
+   f_{Y_1, Y_2}(y_1, y_2) = \frac{1}{2\pi(1 - \rho^2)^{\frac{1}{2}}\sigma_1\sigma_2}\exp\brkt{-\frac{1}{2(1-\rho^2)}(z_1^2 - 2\rho z_1 z_2 + z_2^2)}
    \label{sec:jdt}
  \end{equation}
  where $z_1 = \frac{y_1-\mu_1}{\sigma_1}, z_2=\frac{y_2-\mu_2}{\sigma_2}$.
 \end{example}
+
+\begin{corollary}
+  Let $Y_1, Y_2$ be normal distributed random variables the conditional mean of $Y_2$ given $Y_1$
+    $$
+	\mathrm{E}[Y_2| Y_1=y_1] = \mathrm{E}[Y_2] + \rho (y_1 - \mathrm{E}[Y_1])\frac{\sigma_2}{\sigma1},
+	$$
+	and the conditional variance of $Y_2$ given $Y_2$
+	$$
+		\mathrm{Var}[Y_2| Y_1 = y_1] = \sigma_1^2 (1 - \rho^2).
+	$$
+	Where $\sigma_1, \sigma_2$ are standard deviations of $Y_1, Y_2$ and $\rho$ is the correlation of $Y_1, Y_2$.
+\end{corollary}
+
+\begin{proof}
+  Let $S_1, S_2$ be independent standard normal distributed random variables. It is clear from the equation (\ref{sec:bi}) that
+  \begin{eqnarray*}
+	S_1 &\sim& \frac{(Y_1 - \mathrm{E}[Y_1])}{\sigma_1} \\
+	Y_2 &\sim& \sigma_2\rho S_1 + \sigma_2(1-\rho^2)^{\frac{1}{2} S_2} + \mathrm{E}[Y_2],
+  \end{eqnarray*}
+  more precisely,
+  $$
+  	Y_2 \sim \sigma_2\rho \frac{(Y_1 - \mathrm{E}[Y_1])}{\sigma_1}  + \sigma_2(1-\rho^2)^{\frac{1}{2} S_2} + \mathrm{E}[Y_2].
+  $$
+  And 
+  \begin{equation*}
+	\mathrm{E}[Y_2|Y_1=y_1] = \sigma_2\rho \frac{(y_1 - \mathrm{E}[Y_1])}{\sigma_1} + \mathrm{E}[Y_2]
+  \end{equation*}
+  Now consider
+  \begin{eqnarray*}
+	\mathrm{Var}[Y_2|Y_1=y_1] &=&  \mathrm{E}[(Y_2 - \mu_{Y_2|Y_1})^2|Y_1=y_1]\\
+							  &=& \int_{-\infty}^{\infty}(y_2 - \mu_{Y_2|Y_1})^2f_{Y_2|Y_1}(y_2, y_1)\,\mathop{dy_2}\\
+							  &=& \int_{-\infty}^{\infty}\sqbr{y_2 - \mu_2 - \frac{\rho\sigma_2}{\sigma_1}(y_1-\mu_1)}^2f_{Y_2|Y_1}(y_2, y_1)\,\mathop{dy_2}
+  \end{eqnarray*}
+  Multiply both sides by the density function of $Y_1$ and integral it over by $y_1$, we have
+\begin{eqnarray*}
+ &\,&\int_{-\infty}^{\infty} \mathrm{Var}[Y_2|Y_1=y_1] f_{Y_1}(y_1) \mathop{dy_1} \\
+ &=&\int_{-\infty}^{\infty}\,\int_{-\infty}^{\infty} \sqbr{y_2 - \mu_2 
+	- \frac{\rho\sigma_2}{\sigma_1}(y_1-\mu_1)}^2\underbrace{f_{Y_2|Y_1}(y_2, y_1)\,f_{Y_1}(y_1)}_{f_{Y_1, Y_2}(y_1, y_2)} \mathop{dy_2}\,\mathop{dy_1}\\
+	&\iff&\\
+	&\,&\mathrm{Var}[Y_2|Y_1=y_1] \underbrace{\int_{-\infty}^{\infty}  f_{Y_1}(y_1)}_{1} \mathop{dy_1} \\
+	&=& \mathrm{E}\sqbr{(Y_2 - \mu_2) - (\frac{\rho\sigma_2}{\sigma_1})(Y_1 - \mu_1)}^2 
+\end{eqnarray*}
+
+% ausmultipizieren
+\begin{eqnarray*}
+  \mathrm{Var}[Y_2|Y_1=y_1] &=&\underbrace{\mathrm{E}[(Y_2 - \mu_2)^2]}_{\sigma_2^2} - 2\frac{\rho\sigma_2}{\sigma_1}\underbrace{\mathrm{E}[(Y_1 -\mu_1)(Y_2 - \mu_2)]}_{\rho\sigma_1\sigma_2}\\
+  &+& \frac{\rho^2\sigma_2^2}{\sigma_1^2}\underbrace{\mathrm{E}[(Y_1-\mu_1)^2]}_{\sigma_1^2}\\
+  &=& \sigma_2^2 - 2\rho^2\sigma^2 + \rho^2\sigma_2^2\\
+  &=& \sigma_2^2 - \rho^2\sigma_2^2
+\end{eqnarray*}
+ 
+\end{proof}
 
 \newpage
 

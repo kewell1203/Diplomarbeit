@@ -1,9 +1,9 @@
 \contentsline {section}{\numberline {1}Introduction}{1}
 \contentsline {section}{\numberline {2}Gaussian Process and Brownian Motion }{2}
 \contentsline {subsection}{\numberline {2.1}Probability Space and Stochastic Process }{2}
-\contentsline {subsection}{\numberline {2.2}Definition of Gaussian Process}{3}
-\contentsline {section}{\numberline {3}Fractional Brownian Motion}{6}
-\contentsline {section}{\numberline {4}Fractional Ornstein Uhlenbeck Process Model}{7}
-\contentsline {section}{\numberline {5}Application in Financial Mathematics}{8}
-\contentsline {section}{\numberline {6}Conclusion}{9}
-\contentsline {section}{References}{10}
+\contentsline {subsection}{\numberline {2.2}Normal Distribution and Gaussian Process}{3}
+\contentsline {section}{\numberline {3}Fractional Brownian Motion}{9}
+\contentsline {section}{\numberline {4}Fractional Ornstein Uhlenbeck Process Model}{10}
+\contentsline {section}{\numberline {5}Application in Financial Mathematics}{11}
+\contentsline {section}{\numberline {6}Conclusion}{12}
+\contentsline {section}{References}{13}
