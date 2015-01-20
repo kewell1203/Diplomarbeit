@@ -1,6 +1,6 @@
 %        File: Diplomarbeit.tex
 %     Created: Fri Jan 02 04:00 PM 2015 C
-% Last Change: Sun Jan 12 12:00 AM 2015 C
+% Last Change: Mon Jan 19 12:00 AM 2015 C
 %      Author: Eduard Zhu
 %       Email: Kewell1203@gmail.com
 
@@ -20,6 +20,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
+\usepackage{mathtools}
 
 %----------- pagestyle setting ----------%
 \pagestyle{fancy}
@@ -33,12 +34,12 @@
 
 %---------- new commands ---------%
 \theoremstyle{definition}
-\newtheorem{definition}{DEFINITION}[section]
-\newtheorem{theorem}[definition]{\large THEOREM}
-\newtheorem{lemma}[definition]{\large LEMMA}
-\newtheorem{proposition}[definition]{\large PROPOSITION}
-\newtheorem{corollary}[definition]{\large COROLLARY}
-\newtheorem{example}[definition]{\large EXAMPLE}
+\newtheorem{definition}{\scshape Definition}[section]
+\newtheorem{theorem}[definition]{\scshape Theorem}
+\newtheorem{lemma}[definition]{\scshape Lemma}
+\newtheorem{proposition}[definition]{\scshape Proposition}
+\newtheorem{corollary}[definition]{\scshape Corollary}
+\newtheorem{example}[definition]{\scshape Example}
 \renewcommand{\proofname}{\upshape\bfseries Proof.}
 \renewcommand{\theequation}{\thesection.\arabic{equation}}
 
@@ -238,14 +239,6 @@ A normal distributed normal random variable can be characterized by its mean and
   \end{eqnarray*}
   which is a form of characteristc function of normal distribution. That means $\sum_{j=1}^m c_jX_j$ is normal distributed. 
 \end{proof}
-\begin{definition}
-  Let $(X_t)_{t \in T}$ be a $\mathbb{R}^{n}$-valued stochastic process. $(X_t)$ is said to be a \emph{gaussian process} if 
-  \[
-	c_1^TX_{t_1} + \cdots + c_n^TX_{t_n} 
-  \]
-  has a normal distribution for any $c_1 \cdots c_n \in \mathbb{R}^{n}$, $t_1 \dots t_n \in T$ and $n \in \mathbb{N}$. 
-\end{definition}
-The definition immediately shows for every $X_t$ in gaussian process has a normal distribution.
 
 \begin{example}[Bivariate Normal Distribution]
   Suppose $S_1, S_2$ are independent random variables on $\mathbb{R}$ and have standard normal distributions. $\left(
@@ -253,7 +246,7 @@ The definition immediately shows for every $X_t$ in gaussian process has a norma
       S_1 \\
       S_2
     \end{array}
-  \right)$  is standard normal distributed since any lineare combination of independent normal distributed random variables has normal distribution. We define
+  \right)$  has standard normal joint distribution since they are independent. We define
   \begin{eqnarray}
 	\left(
     \begin{array}{c}
@@ -287,10 +280,10 @@ The definition immediately shows for every $X_t$ in gaussian process has a norma
       Y_1 \\
       Y_2
     \end{array}
-	\right)$ is normal. Note $\mathrm{E}[Y_1] = \mu_1, \mathrm{E}[Y_2] = \mu_2 $. Since $S_1, S_2$ are independent,
+	\right)$ is normal. We set $\mathrm{E}[Y_1] = \mu_1, \mathrm{E}[Y_2] = \mu_2 $ for short. Since $S_1, S_2$ are independent,
 	\begin{eqnarray*}
 	  \mathrm{Var}[Y_1] &=& \mathrm{Var}[\sigma_1 S_1]\\
-						 &=& \sigma^2 ,\\
+						 &=& \sigma_1^2 ,\\
 						 \mathrm{Var}[Y_2] &=& \mathrm{Var}[\sigma_2\rho S_1] + \mathrm{Var}[\sigma_2 (1-\rho^2)^{\frac{1}{2}} S_2]\\
 						 &=& \sigma_2^2 \rho^2 + \sigma_2^2(1 - \rho^2)\\
 						 &=& \sigma_2^2,\\
@@ -303,7 +296,7 @@ The definition immediately shows for every $X_t$ in gaussian process has a norma
 						 &=& \rho\sigma_1\sigma_2,
 	\end{eqnarray*}
 	that means the corrlation of $Y_1, Y_2$ is $\rho$.
-	Because of the equation (\ref{sec:dsy}), joint the density function
+	Because of the equation (\ref{sec:dsy}), the joint density function
 	\begin{eqnarray*}
 	  f_{Y_1, Y_2}(y_1, y_2) &=& (2\pi)^{-1} (\det(\Sigma))^{-\frac{1}{2}} \exp\brkt{(y_1 - \mu_1) \Sigma^{-1} (y_2 - \mu_2)},
 	\end{eqnarray*}
@@ -337,7 +330,12 @@ The definition immediately shows for every $X_t$ in gaussian process has a norma
 \end{example}
 
 \begin{corollary}
-  Let $Y_1, Y_2$ be normal distributed random variables the conditional mean of $Y_2$ given $Y_1$
+  Let $Y_1, Y_2$ be $\mathbb{R}$-valued normal distributed random variables and $\left(
+    \begin{array}{c}
+      Y_1 \\
+      Y_2
+    \end{array}
+	\right)$  has a joint normal distribution, then the conditional mean of $Y_2$ given $Y_1$
     $$
 	\mathrm{E}[Y_2| Y_1=y_1] = \mathrm{E}[Y_2] + \rho (y_1 - \mathrm{E}[Y_1])\frac{\sigma_2}{\sigma1},
 	$$
@@ -349,26 +347,33 @@ The definition immediately shows for every $X_t$ in gaussian process has a norma
 \end{corollary}
 
 \begin{proof}
-  Let $S_1, S_2$ be independent standard normal distributed random variables. It is clear from the equation (\ref{sec:bi}) that
+  Recall the equation (\ref{sec:jdt}), we can specify the joint density function if $\sigma_1, \sigma_2, \rho$ are known. As result of this,
+  $\left(
+    \begin{array}{c}
+      Y_1 \\
+      Y_2
+    \end{array}
+	\right)$ has a form of the equation (\ref{sec:bi}).
+  Suppose $S_1, S_2$ are independent standard normal distributed random variables. Now we have
   \begin{eqnarray*}
 	S_1 &\sim& \frac{(Y_1 - \mathrm{E}[Y_1])}{\sigma_1} \\
-	Y_2 &\sim& \sigma_2\rho S_1 + \sigma_2(1-\rho^2)^{\frac{1}{2} S_2} + \mathrm{E}[Y_2],
+	Y_2 &\sim& \sigma_2\rho S_1 + \sigma_2(1-\rho^2)^{\frac{1}{2}} S_2 + \mathrm{E}[Y_2],
   \end{eqnarray*}
   more precisely,
   $$
-  	Y_2 \sim \sigma_2\rho \frac{(Y_1 - \mathrm{E}[Y_1])}{\sigma_1}  + \sigma_2(1-\rho^2)^{\frac{1}{2} S_2} + \mathrm{E}[Y_2].
+  Y_2 \sim \sigma_2\rho \frac{(Y_1 - \mathrm{E}[Y_1])}{\sigma_1}  + \sigma_2(1-\rho^2)^{\frac{1}{2}} S_2 + \mathrm{E}[Y_2].
   $$
-  And 
+  Take expectation of both sides, 
   \begin{equation*}
-	\mathrm{E}[Y_2|Y_1=y_1] = \sigma_2\rho \frac{(y_1 - \mathrm{E}[Y_1])}{\sigma_1} + \mathrm{E}[Y_2]
+	\mathrm{E}[Y_2|Y_1=y_1] = \sigma_2\rho \frac{(y_1 - \mathrm{E}[Y_1])}{\sigma_1} + \mathrm{E}[Y_2].
   \end{equation*}
   Now consider
   \begin{eqnarray*}
 	\mathrm{Var}[Y_2|Y_1=y_1] &=&  \mathrm{E}[(Y_2 - \mu_{Y_2|Y_1})^2|Y_1=y_1]\\
 							  &=& \int_{-\infty}^{\infty}(y_2 - \mu_{Y_2|Y_1})^2f_{Y_2|Y_1}(y_2, y_1)\,\mathop{dy_2}\\
-							  &=& \int_{-\infty}^{\infty}\sqbr{y_2 - \mu_2 - \frac{\rho\sigma_2}{\sigma_1}(y_1-\mu_1)}^2f_{Y_2|Y_1}(y_2, y_1)\,\mathop{dy_2}
+							  &=& \int_{-\infty}^{\infty}\sqbr{y_2 - \mu_2 - \frac{\rho\sigma_2}{\sigma_1}(y_1-\mu_1)}^2f_{Y_2|Y_1}(y_2, y_1)\,\mathop{dy_2},
   \end{eqnarray*}
-  Multiply both sides by the density function of $Y_1$ and integral it over by $y_1$, we have
+  multiply both sides by the density function of $Y_1$ and integral it over by $y_1$, we have
 \begin{eqnarray*}
  &\,&\int_{-\infty}^{\infty} \mathrm{Var}[Y_2|Y_1=y_1] f_{Y_1}(y_1) \mathop{dy_1} \\
  &=&\int_{-\infty}^{\infty}\,\int_{-\infty}^{\infty} \sqbr{y_2 - \mu_2 
@@ -379,17 +384,119 @@ The definition immediately shows for every $X_t$ in gaussian process has a norma
 \end{eqnarray*}
 
 % ausmultipizieren
+Also
 \begin{eqnarray*}
   \mathrm{Var}[Y_2|Y_1=y_1] &=&\underbrace{\mathrm{E}[(Y_2 - \mu_2)^2]}_{\sigma_2^2} - 2\frac{\rho\sigma_2}{\sigma_1}\underbrace{\mathrm{E}[(Y_1 -\mu_1)(Y_2 - \mu_2)]}_{\rho\sigma_1\sigma_2}\\
   &+& \frac{\rho^2\sigma_2^2}{\sigma_1^2}\underbrace{\mathrm{E}[(Y_1-\mu_1)^2]}_{\sigma_1^2}\\
   &=& \sigma_2^2 - 2\rho^2\sigma^2 + \rho^2\sigma_2^2\\
-  &=& \sigma_2^2 - \rho^2\sigma_2^2
-\end{eqnarray*}
- 
+  &=& \sigma_2^2 - \rho^2\sigma_2^2.
+\end{eqnarray*} 
 \end{proof}
+
+\begin{definition}
+  Let $(X_t)_{t \in T}$ be a $\mathbb{R}^{n}$-valued stochastic process. $(X_t)$ is said to be a \emph{gaussian process} if $X_{t_1},\dots, X_{t_n}$ has a joint normal distribution for any  $t_1 \dots t_n \in T$ and $n \in \mathbb{N}$. 
+\end{definition}
+The definition immediately shows for every $X_t$ in gaussian process has a normal distribution. Therefore the prior corollary is applicable to a gaussian process.
+
+
+\subsection{Brownian Motion}
+The brownian motion was first introduced by Bachelier in 1900 in his PhD thesis. We now give the common definition of it.
+\begin{definition}
+Let $(B_t)_{t\ge0}$ be a $\mathbb{R}^{n}$-valued stochastic process. $(B_t)$ is called \emph{brownian motion} if it satisfies the following conditions:
+\begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]
+  \item $B_0 = 0 $ a.s. .
+  \item $(B_{t_1} - B_{t_0}),\dots,(B_{t_n} - B_{t_{n_1}})$ are independet for $0=t_0<t_1<\dots<t_n$ and $n \in \mathbb{N}$.
+  \item $B_t - B_s \sim B_{t-s}$, for $0 \le s \le t < \infty$.
+  \item $B_t - B_s \sim \mathcal{N}(0, t-s)^{\otimes n}$.
+  \item $B_t$ is continuous in $t$ a.s. .
+\end{enumerate}
+\end{definition}
+A usual saying for $(ii)$ and $(iii)$ is the brownian motion has independent, stationary increments. In (iv), $\mathrm{N}$ represent a random variable which has a normal distribution. $B_t$ is normal distributed due to (ii). It is clear that the increments of brownian motion is stationary.
+
+\begin{proposition}
+  Let $(B_t)$ be a one-dimensional brownian motion. Then the covarice of $B_m, B_n$ for $m, n \ge 0$ is $m \wedge n $.
+\end{proposition}
+
+\begin{proof}
+  WLOG, we assume that $m \ge n$, then
+  \begin{eqnarray*}
+	\mathrm{E}[B_mB_n] &=& \mathrm{E}[(B_m - B_n)B_n] + \mathrm{E}[B_n^2]\\
+	&=& \mathrm{E}[B_m - B_n]\mathrm{E}[B_n] + n\\
+	&=& n .
+  \end{eqnarray*}
+  \label{sec:cor}
+\end{proof}
+
+\begin{proposition}
+  Let $(B_t)$ be a one-dimensional brownian motion. Then $B_{cm} \sim c^{\frac{1}{2}}B_m$.
+\end{proposition}
+
+\begin{proof}
+  Because $B_m$ is normal distributed for any $m > 0$, we then get
+  \begin{eqnarray*}
+	\mathrm{E} [e^{i\xi B_{cm}}] &=& e^{-\frac{1}{2}cm\xi^2}\\
+	&=& e^{-\frac{1}{2}(c(m)^{\frac{1}{2}}\xi)^2}\\
+	&=& \mathrm{E} [e^{i\xi c^{\frac{1}{2}}B_m}] .
+  \end{eqnarray*}
+\end{proof}
+
+\begin{theorem}
+  A one-dimensional brownian motion is a gaussian process.
+\end{theorem}
+
+\begin{proof}
+  The following idea using the independence of increments to prove the claim come from \cite{shilling}.
+  We choose $0=t_0<t_1<\dots<t_n$, for $n \in \mathbb{N}$. Define
+  $V = (B_{t_1},\dots,B_{t_n})^T$,  $K = (B_{t_1}-B_{t_0},\dots, B_{t_n}-B_{t_{n-1}})^T$ and 
+  $A = 
+  \begin{pmatrix}
+	1      & 0      & \cdots & 0\\
+	1      & 1      & \cdots & 0\\
+	\vdots & \vdots & \ddots & \vdots \\
+	1      & 1      & \cdots & 1
+  \end{pmatrix}
+	$.
+  Let us see the characteristic function of $V$,
+  \begin{eqnarray*}
+	\mathrm{E} [e^{i\xi^T V}] &=& \mathrm{E} [e^{i\xi^T AK}]\\ 
+	&=& \mathrm{E} [e^{iA^T\xi K}]\\
+	&=& \mathrm{E} [\exp(i (\xi^{(1)}+\dots+\xi^{(n)}, \xi^{(2)}+\dots+\xi^{(n)}, \cdots,\xi^{(n)})] \\
+	&\cdot& (B_{t_1}-B_{t_0}, B_{t_2}-B_{t_1},\dots,B_{t_n}-B_{t_{n-1}})^T)\\
+	&\overset{ind.increments}{=}& \prod_{j=1}^n \mathrm{E} [\exp(i(\xi^{(j)+\dots+\xi^{(n)}})(B_{t_j}-B_{t_{t-1}}))]\\
+	&\overset{stat.increments}{=}& \prod_{j=1}^n \exp(-\frac{1}{2}(t_j - t_{j-1})(\xi^{(j)}+\dots+\xi^{(n)})^2) \\
+	&=& \exp\left(-\frac{1}{2}\sum_{j=1}^n (t_j - t_{j-1})(\xi^{(j)}+\dots+\xi^{(n)})^2\right)\\
+    &=& \exp\left(-\frac{1}{2}\left(\sum_{j=1}^n t_j(\xi^{(j)}+\dots+\xi^{(n)})^2 - \sum_{j=1}^n t_{j-1}(\xi^{(j)}+\dots+\xi^{(n)})^2\right)\right)\\
+	&=& \exp\left(-\frac{1}{2}\left(\sum_{j=1}^{n-1} t_j((\xi^{(j)}+\dots+\xi^{(n)})^2 - (\xi^{(j+1)}+\dots+\xi^{(n)})^2) + t_n(\xi^{(n)})^2\right)\right)\\
+	&=& \exp\left(-\frac{1}{2}\left(\sum_{j=1}^{n-1} t_j\xi^{(j)}(\xi^{(j)}+2\xi^{(j+1)}+\dots+2\xi^{(n)}) + t_n(\xi^{(n)})^2\right)\right)\\
+	&=& \exp\left(-\frac{1}{2}\left(\sum_{j,h=1}^n(t_j\wedge t_h)\xi^{(j)}\xi^{(h)}\right)\right).
+  \end{eqnarray*}
+  Recall with proposition \ref{sec:cor}, $(t_j\wedge t_h)_{t,h=1,\dots,n}$ is the covariance matrix of $V$. The mean vector of it is zero, then we have been proved that the characteristic function is a form of some normal distributed random vector, i.e., $V$ is normal distributed.
+\end{proof}
+
+Shilling gave in his lecture \cite{shilling} the relationship between a one-dimensional brownian motion and a n-dimensional brownian motion.
+$(B_t^{(l)})_{l=1,\dots,n}$ is brownian motion if and only if $B_t^{(l)}$ is brownian motion and all of the component are independent. Using this independence and te theorem of fubini in the characteristic function for high-dimensional brownian motion we can say a n-dimensional brownian motion is also a gaussian process.
 
 \newpage
 
+%-------- 3. section
+\section{Regularity for Brownian Motion and It\'o Integral}
+\subsection{L\'evy Modulus of Continuity}
+We consider now the one-dimensional brownian motion. In this section we need some notations, which are defined as followings
+\begin{equation*}
+\Delta^{[0,T]} = \left\{t_1,\dots,t_n|0=t_0<\dots<t_n=T\right\} 
+\end{equation*}
+$$
+|\Delta^{[0,T]}| = \max_{t_j \in \Delta^{[0,T]}}|t_j - t_{j-1}|
+$$.
+
+\begin{lemma}
+  Let $B_t$ be a brownian motion. Then
+  $$
+  \sum_{t_j \in \Delta^{[0,T]}} |B_{t_j} - B_{t_{j-1}}|^2 \xmapsto[L^2(\mathcal{P})]{|\Delta^{[0,T]}|\rightarrow 0} T  
+  $$
+\end{lemma}
+
+\newpage
 %---------- 3. section ------------%
 \section{Fractional Brownian Motion}
 
@@ -415,6 +522,7 @@ The definition immediately shows for every $X_t$ in gaussian process has a norma
 \fancyhead[LO, RE]{}
 \begin{thebibliography}{99}
 	\bibitem{bauer} \textsc{Bauer,~H.} (2002). Wahrscheinlichkeitstheorie(5th. durchges. und verb. Aufl.). Berlin: W. de Gruyter
+	\bibitem{shilling} (2012, October 1). Stochastic Processes. Lecture conducted from \textsc{Shilling, R.}, Dresden.
 
 \end{thebibliography}
 \newpage
