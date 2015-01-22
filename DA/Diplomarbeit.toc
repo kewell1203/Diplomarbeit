@@ -4,8 +4,9 @@
 \contentsline {subsection}{\numberline {2.2}Normal Distribution and Gaussian Process}{3}
 \contentsline {subsection}{\numberline {2.3}Brownian Motion}{8}
 \contentsline {section}{\numberline {3}Regularity for Brownian Motion and It\'o Integral}{10}
-\contentsline {subsection}{\numberline {3.1}L\'evy Modulus of Continuity}{10}
+\contentsline {subsection}{\numberline {3.1}Theorem of Kolmogorov Chentsov and L\'evy Modulus of Continuity}{10}
 \contentsline {section}{\numberline {4}Fractional Brownian Motion}{11}
+\contentsline {subsection}{\numberline {4.1}Definition of fractional Brownian motion}{11}
 \contentsline {section}{\numberline {5}Fractional Ornstein Uhlenbeck Process Model}{12}
 \contentsline {section}{\numberline {6}Application in Financial Mathematics}{13}
 \contentsline {section}{\numberline {7}Conclusion}{14}

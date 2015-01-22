@@ -1,0 +1,78 @@
+%        File: Diplomarbeit.tex
+%     Created: Fri Jan 02 04:00 PM 2015 C
+% Last Change: Mon Jan 19 12:00 AM 2015 C
+%      Author: Eduard Zhu
+%       Email: Kewell1203@gmail.com
+
+\documentclass[a4paper, twoside, 11pt]{article}
+
+%------------------------------%
+\synctex=1
+%----------- preamble ---------%
+%----------- packages ---------%
+\usepackage[body={15cm, 23cm}, top=4.5cm, left=4cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage[perpage, symbol]{footmisc}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{bbm}
+
+%----------- pagestyle setting ----------%
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{.4pt}
+\renewcommand{\footrulewidth}{.4pt}
+\fancyhead[RO]{\leftmark}
+\fancyhead[LE]{\rightmark}
+\fancyfoot[LE, RO]{\large \thepage}
+
+%---------- new commands ---------%
+\theoremstyle{definition}
+\newtheorem{definition}{\scshape Definition}[section]
+\newtheorem{theorem}[definition]{\scshape Theorem}
+\newtheorem{lemma}[definition]{\scshape Lemma}
+\newtheorem{proposition}[definition]{\scshape Proposition}
+\newtheorem{corollary}[definition]{\scshape Corollary}
+\newtheorem{example}[definition]{\scshape Example}
+\renewcommand{\proofname}{\upshape\bfseries Proof.}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+
+%---------- definitions of math -----------%
+% R, N
+\def\RR{$\mathcal{R}$}
+\def\NN{$\mathcal{N}$}
+\def\AA{$\mathscr{A}$\ }
+% complement
+\newcommand{\compl}[1]{{#1}^{c}}
+% sigma algebra
+\def\sa{$\sigma$- Algebra\ } 
+% prob. space
+\def\bs{$(\Omega, \mathscr{A}, \mathcal{P})$\ } 
+\def\bsigma{\mathscr{B}\brkt{\mathbb{R}^{n}}}
+\newcommand{\sqbr}[1]{\left[ {#1} \right]}
+\newcommand{\brkt}[1]{\left({#1} \right)}
+
+  %---------- global variables setting -----%
+  \setlength{\parindent}{0em}
+  \setlength{\parskip}{1.5ex plus .5ex minus .5ex}
+  \renewcommand{\baselinestretch}{1.3}
+  \setfnsymbol{wiley}
+  \renewenvironment{abstract}{
+	\begin{center}
+		  \Large
+		  \textbf{Abstract}
+		  \hspace{2em}
+	\end{center}				
+  }{}
+
+  %---------- beginning of document --------%
+  \begin{document}
+%---------- 2.2. subsection -------%
