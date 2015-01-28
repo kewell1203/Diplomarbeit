@@ -111,7 +111,7 @@
 
 %---------- 2. section ------------%
 \section{Gaussian Process and Brownian Motion }
-In this section we start off by looking at some general concepts of probability spaces and stochastic processes. Of this, a most important case we then discribe, is Gaussian process. It bring us to introduce the Brownian Motion as a fine example.
+In this section we start off by looking at some general concepts of probability spaces and stochastic processes. Of this, a most important case we then discribe, is Gaussian process. It bring us to introduce the Brownian motion as a fine example.
 
 %---------- 2.1. subsection -------%
 \subsection{Probability Space and Stochastic Process }
@@ -147,7 +147,7 @@ for $t_1, \dots, t_n$ and $t_1+\tau,\dots,t_n+\tau \in T$.
 \label{sec:stn}
 \end{definition}
 
-Remark that, definition \ref{sec:stn} means the distribution of a stationary process is independent of a shift of time.
+Remark that, Definition \ref{sec:stn} means the distribution of a stationary process is independent of a shift of time.
 
 %---------- 2.2. subsection -------%
 \subsection{Normal Distribution and  Gaussian Process}
@@ -160,7 +160,7 @@ Remark that, definition \ref{sec:stn} means the distribution of a stationary pro
 \end{definition}
 
 \begin{definition}
-  A $\mathbb{R}$-valued random variable $X$ is said to be \emph{normal distributed} with a \emph{mean} $\mu$ and a \emph{variance} $\sigma^2$, if
+  A $\mathbb{R}$-valued random variable $X$ is said to be \emph{normal distributed} with a \emph{expected value} $\mu$ and a \emph{variance} $\sigma^2$, if
 \[
   (X-\mu) / \sigma
 \]
@@ -193,7 +193,7 @@ Obviously,
 $\Psi(\xi) = \Psi(0)e^{-\frac{\xi^2}{2}}$ is the solution of the partial differential equation above, and $\Psi(0)$ is equal to $1$.
 \end{proof}
 
-In particular, the characteristic function of a normal distributed random variable with a mean $\mu$ and a variance $\sigma^2$, which denoted by $\Psi_{X_{\mu,\sigma^2}}(\xi)$, is $e^{i\mu\xi-\frac{1}{2}(\sigma\xi)^2}$. To achieve this result, we just need to substitute $x$ by $(x-\mu)/\sigma$ in the calculation before. 
+In particular, the characteristic function of a normal distributed random variable with a expected value $\mu$ and a variance $\sigma^2$, which denoted by $\Psi_{X_{\mu,\sigma^2}}(\xi)$, is $e^{i\mu\xi-\frac{1}{2}(\sigma\xi)^2}$. To achieve this result, we just need to substitute $x$ by $(x-\mu)/\sigma$ in the calculation before. 
 
 \begin{definition}
   Let $X$ be a $\mathbb{R}^{n}$-valued random variable. $X$ is said to be \emph{normal distributed}, if for any $d \in \mathbb{R}^{n}$ such that $d^TX$ is normal distributed on $\mathbb{R}$.
@@ -215,7 +215,7 @@ In particular, the characteristic function of a normal distributed random variab
 Remark, the equation (\ref{sec:mcf}) can also be as definition of characteristic function of a n-dimensional normal distributed random variable. I.e., any normal distributed random variable can be characterized by form of the equation (\ref{sec:mcf}).
 
 \begin{proof}
-  Since $X$ normal distributed on $\mathbb{R}^{n}$, then $\xi^T X$ is normal distributed on $\mathbb{R}$. Due to the proposition 2.8 there is
+  Since $X$ normal distributed on $\mathbb{R}^{n}$, then $\xi^T X$ is normal distributed on $\mathbb{R}$. Due to the Proposition 2.8 there is
   \begin{eqnarray*}
 	\mathrm{E} e^{i\xi^T X} &=& \mathrm{E} e^{i\cdot 1 \cdot \xi^T X}\\
 	                        &=& e^{i\mathrm{E}\sqbr{\xi^T X} -\frac{1}{2}\mathrm{Var}\sqbr{\xi^T X}}\\
@@ -224,7 +224,7 @@ Remark, the equation (\ref{sec:mcf}) can also be as definition of characteristic
   According to the uniqueness theorem of characteristic function (Satz 23.4 in \cite{bauer}), then we can deduce the density function of the equation (\ref{sec:dsy}).
 \end{proof}
 
-A normal distributed normal random variable can be characterized by its mean and variance respectively mean vector and covariance vector because of the characteristic function.
+A normal distributed normal random variable can be characterized by its expected value and variance respectively mean vector and covariance vector because of the characteristic function.
 
 \begin{corollary}
   A linear combination of independent normal distributed random variables has normal distribution.
@@ -336,7 +336,7 @@ A normal distributed normal random variable can be characterized by its mean and
       Y_1 \\
       Y_2
     \end{array}
-	\right)$  has a joint normal distribution, then the conditional mean of $Y_2$ given $Y_1$
+	\right)$  has a joint normal distribution, then the conditional expected value of $Y_2$ given $Y_1$
     $$
 	\mathrm{E}[Y_2| Y_1=y_1] = \mathrm{E}[Y_2] + \rho (y_1 - \mathrm{E}[Y_1])\frac{\sigma_2}{\sigma1},
 	$$
@@ -397,7 +397,7 @@ Also
 \begin{definition}
   Let $(X_t)_{t \in T}$ be a $\mathbb{R}^{n}$-valued stochastic process. $(X_t)$ is said to be a \emph{Gaussian process} if $X_{t_1},\dots, X_{t_n}$ has a joint normal distribution for any  $t_1 \dots t_n \in T$ and $n \in \mathbb{N}$. 
 \end{definition}
-The definition immediately shows for every $X_t$ in Gaussian process has a normal distribution. Therefore the prior corollary is applicable to a Gaussian process.
+The definition immediately shows for every $X_t$ in Gaussian process has a normal distribution. Therefore the previous Corollary is applicable to a Gaussian process.
 
 
 \subsection{Brownian Motion}
@@ -475,7 +475,7 @@ A usual saying for $(ii)$ and $(iii)$ is the Brownian motion has independent, st
 \end{proof}
 
 Shilling gave in his lecture \cite{shilling} the relationship between a one-dimensional Brownian motion and a n-dimensional Brownian motion.
-$(B_t^{(l)})_{l=1,\dots,n}$ is Brownian motion if and only if $B_t^{(l)}$ is Brownian motion and all of the component are independent. Using this independence and te theorem of fubini in the characteristic function for high-dimensional Brownian motion we can say a n-dimensional Brownian motion is also a Gaussian process.
+$(B_t^{(l)})_{l=1,\dots,n}$ is Brownian motion if and only if $B_t^{(l)}$ is Brownian motion and all of the component are independent. Using this independence and the theorem of fubini in the characteristic function for high-dimensional Brownian motion we can say a n-dimensional Brownian motion is also a Gaussian process.
 
 \newpage
 
@@ -501,21 +501,146 @@ $$.
 %---------- 3. section ------------%
 \section{Fractional Brownian Motion}
 \setcounter{equation}{0}
-The fractional Brownian motion(FBM) was defined by Kolmogorov primitively. After that Mandelbrot and Van Ness has present the work in detail. This section is concerned with the xxxxx of it.
+The fractional Brownian motion(FBM) was defined by Kolmogorov primitively. After that Mandelbrot and Van Ness has present the work in detail. This section is concerned with the definition and some properties of it.
 
-\subsection{Definition of fractional Brownian motion}
-Mandelbrot and Van Ness gave a integration presentation of the definion of FBM.
+\subsection{Definition of Fractional Brownian Motion}
+Mandelbrot and Van Ness \cite{mandelbrot} gave a integration presentation of the definion of FBM.
 \begin{definition}
-  Let $(U_t)_t$ be a $\mathbb{R}$-valued stochatstic process an $H$ be such that $1<H<0$. $(U_t)$ is said to be \emph{fractional Brownian motion} if 
+  Let $(U_H(t))_{t\ge 0}$ be a $\mathbb{R}$-valued stochatstic process an $H$ be such that $1<H<0$. $(U_H(t))$ is said to be \emph{fractional Brownian motion} if 
   \begin{eqnarray}
-	U_t - U_s &=& \int_{\mathbb{R}} \mathbbm{1}_{\{t>u\}}\, (t-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u<0\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}\nonumber\\
-			&-& \int_{\mathbb{R}} \mathbbm{1}_{\{s>u\}}\, (s-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u<0\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}
-	\label{<++>}
-  \end{eqnarray}<++>
-\end{definition}<++>
+	U_H(t) - U_H(s) &=& \frac{1}{\Gamma(H+\frac{1}{2})}\brkt{\int_{\mathbb{R}} \mathbbm{1}_{\{t\ge u\}}\cdot (t-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u\le s\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}}
+	\label{sec:frtbm}
+  \end{eqnarray}
+  for $t\ge s \ge 0$. Where $(B_u)$ is defined in sense of two-sides Brownian motion. The equation (\ref{sec:frtbm}) is well-defined. Sending $u$ to the limit  we will check the integrand is in $\mathcal{L}^2(\mathop{du})$ (cf.\cite{samorodnitsky}, page 321, Proposition 7.2.6).
+\end{definition}
 
+Indeed, setting $U_H(0) = 0$, the equation (\ref{sec:frtbm}) is equivalent to
+	 \begin{eqnarray}
+	   U_H(t) &=& \frac{1}{\Gamma(H+\frac{1}{2})}\brkt{\int_{\mathbb{R}} \mathbbm{1}_{\{t\ge u\}}\cdot (t-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u\le 0\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}}.
+	\label{sec:fbm}
+  \end{eqnarray}
+
+%  We take (\ref{sec:fbm}) as definion of FBM now.
+	
+\begin{lemma}
+  Let $(U_H(t))_{t\ge 0}$ be a FBM. Then $U_H(t)$ has a expected value $0$ and variance $t^{2H}\, \mathrm{E} U^2_H(1)$ for any $t \ge 0$.
+  \label{sec:fbmp1}
+\end{lemma}
+
+\begin{proof}
+  Firstly, we notice the integrand of FBM is deterministic function, hence it is $\sigma(U_H(u))$-measurable for all $u\ge 0$. Since $(B_u)$ is a martingal, FBM is then a martingal transformation with zero mean. \\
+  Secondly we suppose that $t \ge s \ge 0,  c(H)=\frac{1}{(\Gamma(H+\frac{1}{2}))^2}$.
+  \begin{eqnarray}
+	\mathrm{E}[(U_H(t) - U_H(s))^2] &=& c(H)\mathrm{E}[\int_{\mathbb{R}} \brkt{[\mathbbm{1}_{\{t\ge u\}}\cdot(t-u)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{s\ge u\}}\cdot(s-u)^{H-\frac{1}{2}}}^2 \,\mathop{du}]\nonumber\\
+	&=& c(H)\mathrm{E}[\int_{\mathbb{R}} \brkt{\mathbbm{1}_{\{t-s \ge u\}}\cdot(t-s-u)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{0\ge u\}}\cdot(-u)^{H-\frac{1}{2}}}^2 \,\mathop{du}]\nonumber\\
+	&\overset{m=t-s}{=}& c(H)\mathrm{E}[\int_{\mathbb{R}} \brkt{\mathbbm{1}_{\{m \ge u\}}\cdot(m-u)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{0\ge u\}}\cdot(-u)^{H-\frac{1}{2}}}^2 \,\mathop{du}]\nonumber\\
+	&\overset{u=ml}{=}& c(H)\mathrm{E}[\int_{\mathbb{R}} \brkt{\mathbbm{1}_{\{m \ge ml\}}\cdot(m-ml)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{0\ge ml\}}\cdot(-ml)^{H-\frac{1}{2}}}^2 m\cdot\,\mathop{dl}]\nonumber\\
+	&=& c(H)\mathrm{E}[\int_{\mathbb{R}} \brkt{\mathbbm{1}_{\{1 \ge l \}}\cdot(1-l)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{0\ge l\}}\cdot(-l)^{H-\frac{1}{2}}}^2 \cdot m^{2H-1}\cdot m\,\mathop{dl}]\nonumber\\
+	&=& c(H)m^{2H}\mathrm{E}[U_H(1)^2]\nonumber\\
+	&=& c(H)(t-s)^{2H}\mathrm{E}[U_H(1)^2]
+	\label{sec:eqn1}
+  \end{eqnarray}
+  Using the same calculation, we get
+  \begin{equation}
+	\mathrm{E}[(U_H(t)^2] = c(H)t^{2H}\mathrm{E}[U_H(1)^2].
+	\label{sec:eqn2}
+  \end{equation}
+%  $c(H), t^{2H}, \mathrm{E}[U_H(1)^2]$ are nonegative, then
+%  $$\mathrm{E}[(U_H(t)] = c(H)^{\frac{1}{2}}t^{H}\mathrm{E}[U_H(1)].$$
+
+%  Because of (\ref{sec:eqn1}),
+%  $$
+%	\mathrm{E}[(U_H(2) - U_H(1))^2] = c(H)\mathrm{E}[U_H(1)^2].
+%  $$
+%  And again
+%  $$
+%  \mathrm{E}[(U_H(2) - U_H(1))] = c(H)^{\frac{1}{2}}\mathrm{E}[U_H(1)]
+%  $$
+%Conserquently,
+%\begin{eqnarray}
+%	0 &=& \mathrm{E}[(U_H(2)(U_H(2)-2U_H(1)))]\nonumber\\
+%	&\overset{Cauchy-Schwartz}{\le}& (\mathrm{E}[U_H(2)^2]\cdot\mathrm{E}[(U_H(2)-2U_H(1))^2])^{\frac{1}{2}}\nonumber
+% \end{eqnarray}
+% WLOG, let $\mathrm{E}[U_H(2)^2] \neq 0$, otherwise $\mathrm{E}[U_H(1)] = 0$ due to . Then we get 
+%  $$
+%  \mathrm{E}[(U_H(2)] = 2\mathrm{E}[(U_H(1)]
+%  $$
+%  \begin{eqnarray}
+%	(1+c(H)^{\frac{1}{2}})\mathrm{E}[((U_H(1))] &=& \mathrm{E}[((U_H(2))] \nonumber\\
+%	&=&  2\mathrm{E}[((U_H(1))]\nonumber
+%  \end{eqnarray}
+%  that means $\mathrm{E}[((U_H(1))] = 0$. Due to (\ref{sec:eqn2}), $\mathrm{E}[(U_H(t)] = 0$ for $t\ge 0$.
+%  Therefore, (\ref{sec:eqn2}) is variance of $U_H(t)$.
+  (\ref{sec:eqn2}) is vairance of $U_H(t)$ due to $\mathrm{E}[(U_H(t)] = 0$.
+\end{proof}
+To normalize the variance, a definition of standard FBM is given.
+
+\begin{definition}
+  A stochastic process $(U_H(t))_{t\ge 0}$ is said to be a \emph{standrad fractional Brownian motion}(sFBM) if
+  \begin{equation}
+U_H(t) = \hat{c}(H) \int_{\mathbb{R}} \mathbbm{1}_{\{t\ge u\}}\cdot (t-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u\le 0\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}.
+\label{sec:eqn3}
+\end{equation}
+Where $\hat{c}(H) = \frac{1}{\mathrm{E}[U_H(1)^2]} $.
+\end{definition}
+We consider from now on sFBM as FBM.
+
+\begin{theorem}
+ Let  $(U_H(t))_{t\ge 0}$ be a FBM. The Covariance function of $U_H(t), U_H(s)$ is $ \frac{1}{2}(t^{2H} + s^{2H} - |t-s|^{2H})$ for $t, s \ge 0$.
+\end{theorem}
+
+\begin{proof}
+  \begin{eqnarray}
+	\mathrm{Cov}[U_H(t), U_H(s)] &=& \mathrm{E}[U_H(t)U_H(s)] \nonumber\\
+	&=& \frac{1}{2}\brkt{\mathrm{E}[U_H(t)^2] + \mathrm{E}[U_H(s)^2] - \mathrm{E}[(U_H(t) - U_H(s))^2]} \nonumber\\
+	&\overset{(\ref{sec:eqn2})}{=}& \frac{1}{2}(t^{2H} + s^{2H} - |t-s|^{2H})
+	\label{sec:eqn4}
+  \end{eqnarray}
+\end{proof}
+
+\begin{corollary}
+  The FBM is a Gaussian process.
+\end{corollary}
+
+\begin{proof}
+The covariance matrix is positive-defined due to the previous Theorem. The claim follows directly from Theorem ().
+\end{proof}
+
+\begin{corollary}
+  Let $(U_H(t))_{t\ge 0}$ be a FBM, then $(U_H(t))_{t\ge 0}$ has stationary and H-self similar increments . 
+\end{corollary}
+\begin{proof}
+
+ Assume that $s \ge u \ge 0 $. Because the joint distribution of $(U_H(s), U_H(u))^T$ is Gaussian, $(1, -1) \cdot (U_H(s), U_H(u))^T $ is Gaussian. In another word,  $U_H(s) - U_H(u) \sim \mathcal{N}(0, (s-u)^{2H})$ which is only dependent on $(s-u)$ and $(U_H(t))$ has therefore stationary increments.\\
+   $(U_H(t))$ has zero mean and $\mathrm{Var[U_H(s)]} = s^{2H}\mathrm{Var}[U_H(1)]$ we get $U_H(s) \sim s^HU_H(1)$ due to it is Gaussian.
+   To show FBM has H-similar sincrements, we have to prove\\ $(U_H(zt_1), U_H(zt_2),\dots, U_H(zt_n))) \sim (z^HU_H(t_1), z^HU_H(t_2),\dots, z^HU_(t_n))$ for any $z > 0$. Obviously, the former and the latter of the term are Gaussian and $\mathrm{Var}[U_H(zt_i), U_H(zt_j)] = \mathrm{Var}[z^HU_H(t_i), z^HU_H(t_j)] = \frac{1}{2}z^{2H}(t_i^{2H} + t_j^{2H} - |t_i-t_j|^{2H})$. Therefore they have the same covariance matrix and zero mean. The claim is then proved.
+\end{proof}
+
+\subsection{Regularity}
+\begin{theorem}[Kolmogorov Chentsov]
+  A FBM $(U_H(t))_{t\ge 0}$ has almost surely continuous sample path.  
+\end{theorem}
+
+\begin{proof}
+  Cf.\cite{mandelbrot}. Fix $\alpha$ such that $1 < \alpha H$. Let look at the expected value of $(U_H(t) - U_H(s))^\alpha$ using same calculation in (\ref{sec:eqn1})
+  \begin{eqnarray}
+	\mathrm{E} [(U_H(t) - U_H(s))^\alpha] &=& |t-s|^{\alpha H} \cdot \underbrace{\mathrm{E}\brkt{\int_{\mathbb{R}} \mathbbm{1}_{\{1\ge u\}}\cdot (1-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u\le 0\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}}^\alpha}_{c(\alpha,H)}\nonumber\\
+	&=& c(\alpha,H) \cdot |t-s|^{\alpha H}.
+	\label{sec:eqn5}
+  \end{eqnarray}
+  We choose $\beta = \alpha -1$ and $\gamma \in (0, H-\frac{1}{\alpha})$ then the claim follows from Theorem .
+\end{proof}
+
+\begin{theorem}
+  A FBM is almost surely not differentiable.
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+\subsection{Fractional Gaussian Noise}
 \newpage
-
 %---------- 4. section ------------%
 \section{Fractional Ornstein Uhlenbeck Process Model}
 \setcounter{equation}{0}
@@ -537,8 +662,9 @@ Mandelbrot and Van Ness gave a integration presentation of the definion of FBM.
 \fancyhead[LO, RE]{}
 \begin{thebibliography}{99}
 	\bibitem{bauer} \textsc{Bauer,~H.} (2002). Wahrscheinlichkeitstheorie(5th. durchges. und verb. Aufl.). Berlin: W. de Gruyter
+	\bibitem{samorodnitsky} \textsc{Samorodnitsky, G., \& Taqqu, M.} (1994). Stable non-Gaussian random processes: Stochastic models with infinite variance. New York: Chapman \& Hall.
+	\bibitem{mandelbrot} \textsc{Mandelbrot, B.B., \& van Ness, J.W.} (1968). Fractional Brownian motions, fractional noises and applications. SIAM Review 10 (4), 422–437.
 	\bibitem{shilling} (2012, October 1). Stochastic Processes. Lecture conducted from \textsc{Shilling, R.}, Dresden.
-
 \end{thebibliography}
 \newpage
 \end{document}
