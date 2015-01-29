@@ -1,6 +1,6 @@
 %        File: Diplomarbeit.tex
 %     Created: Fri Jan 02 04:00 PM 2015 C
-% Last Change: Mon Jan 19 12:00 AM 2015 C
+% Last Change: Thu Jan 29 12:00 AM 2015 C
 %      Author: Eduard Zhu
 %       Email: Kewell1203@gmail.com
 
@@ -110,13 +110,13 @@
 \newpage
 
 %---------- 2. section ------------%
-\section{Gaussian Process and Brownian Motion }
-In this section we start off by looking at some general concepts of probability spaces and stochastic processes. Of this, a most important case we then discribe, is Gaussian process. It bring us to introduce the Brownian motion as a fine example.
+\section{Gaussian Process and Brownian Motion}
+In this section we start off by looking at some general concepts of probability spaces and stochastic processes. Of this, a most important case we then discribe is Gaussian process. Within the framework of Gaussian process, one could spcefic, respectively, a stationary or independent behaviour of increments of it. This lead us to introduce the Brownian motion as a fine example.
 
 %---------- 2.1. subsection -------%
 \subsection{Probability Space and Stochastic Process }
 \begin{definition}
-  Let \AA be a collection of subsets of a set $\Omega$. \AA is then a \emph{$\sigma$- Algebra} on $\Omega$ if it satisfies the following conditions:
+  Let \AA be a collection of subsets of a set $\Omega$. \AA is said to be a \emph{$\sigma$- Algebra} on $\Omega$, if it satisfies the following conditions:
   \begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]
 	\item $\Omega \in $ \AA.
 	\item For any set $F \in \mathscr{A}$, its complement $\compl{F} \in$ \AA.
@@ -132,10 +132,10 @@ In this section we start off by looking at some general concepts of probability 
   A \emph{probability space} is defined as a triple \bs of a set $\Omega$, a \sa \AA  of $\Omega$ and a measure $\mathcal{P}$ from $\mathscr{A}$ to $\bsigma$.
 \end{definition}
 
-The $\sigma$- Algebra generated of all open sets on $\mathbb{R}^{n}$ is called the \emph{Borel $\sigma$- Algebra} which we denote as usual by $\mathscr{B}\left(\mathbb{R}^{n}\right)$. Let $\mu$ be a probability measure on $\mathbb{R}^{n}$. Indeed, $\brkt{\mathbb{R}^{n}, \mathscr{B}\brkt{\mathbb{R}^{n}}, \mu}$ is a special case that probability space on $\mathbb{R}^{n}$. A function $f$ mapping from $\brkt{\mathcal{D}, \mathscr{D}, \mu}$ into $\brkt{\mathcal{E}, \mathscr{E}, \nu}$ is \emph{measurable} if its collection of the inverse image of $\mathscr{E}$ is a subset of $\mathscr{D}$. A \emph{random variable} is a $\mathbb{R}^{n}$-valued measurable function on some probability space. Let $\mathcal{P}$ represent a probability measure, recall that in probability theory, for $B \in \bsigma$ we call $\mathcal{P}\sqbr{\left\{X \in B\right\}}$ the \emph{distribution} of $X$. We write also $\mathcal{P}_X \sqbr{\cdot}$ or $\mathcal{P}\sqbr{X}$ for convenience of the notation above.
+The $\sigma$- Algebra generated of all open sets on $\mathbb{R}^{n}$ is called the \emph{Borel $\sigma$- Algebra} which we denote as usual by $\mathscr{B}\left(\mathbb{R}^{n}\right)$. Let $\mu$ be a probability measure on $\mathbb{R}^{n}$. Indeed, $\brkt{\mathbb{R}^{n}, \mathscr{B}\brkt{\mathbb{R}^{n}}, \mu}$ is a special case that probability space on $\mathbb{R}^{n}$. A function $f$ mapping from $\brkt{\mathcal{D}, \mathscr{D}, \mu}$ into $\brkt{\mathcal{E}, \mathscr{E}, \nu}$ is \emph{measurable}, if its collection of the inverse image of $\mathscr{E}$ is a subset of $\mathscr{D}$. A \emph{random variable} is a $\mathbb{R}^{n}$-valued measurable function on some probability space. Let $\mathcal{P}$ represent a probability measure, recall that in probability theory, for $B \in \bsigma$ we call $\mathcal{P}\sqbr{\left\{X \in B\right\}}$ the \emph{distribution} of $X$. We write also $\mathcal{P}_X \sqbr{\cdot}$ or $\mathcal{P}\sqbr{X}$ for convenience for those notations .
 
 \begin{definition}
-  Let $\brkt{\Omega, \mathscr{A}, \mathcal{P}}$ be a probability space. A $n$-dimensional \emph{stochastic process} $\brkt{X_t}$ is a family of random variable such that $X_t\brkt{\omega} : \Omega \longrightarrow  \mathbb{R}^{n},  \forall t \in T$, where $T$ denotes the set of Index of Time.    
+  Let $\brkt{\Omega, \mathscr{A}, \mathcal{P}}$ be a probability space. A $n$-dimensional \emph{stochastic process} $\brkt{X_t}_{t\in T}$ is a family of random variable such that $X_t\brkt{\omega} : \Omega \longrightarrow  \mathbb{R}^{n},  \forall t \in T$, where $T$ denotes the set of Index of Time.    
 \end{definition}
 
 \begin{definition}
@@ -152,22 +152,24 @@ Remark that, Definition \ref{sec:stn} means the distribution of a stationary pro
 %---------- 2.2. subsection -------%
 \subsection{Normal Distribution and  Gaussian Process}
 \begin{definition}[1-dimensional normal distribution]
-  A $\mathbb{R}$-valued random variable $X$ is said to be \emph{standard normal distributed}, if its distribution can be discribed as
-  \[
+  A $\mathbb{R}$-valued random variable $X$ is said to be \emph{standard normal distributed} or \emph{standard Gaussian}, if its distribution can be discribed as
+  \begin{equation}
 	\mathcal{P}\sqbr{X \le x} = \int_{-\infty}^{x} (2\pi)^{-\frac{1}{2}}e^{-\frac{u^2}{2}}\,\mathop{du}  
-  \]
+	\label{sec:21}
+  \end{equation}
   for $x \in \mathbb{R}$.
 \end{definition}
+The integrand of (\ref{sec:21}) is also called \emph{density function} of a Gaussian random variable.
 
 \begin{definition}
-  A $\mathbb{R}$-valued random variable $X$ is said to be \emph{normal distributed} with a \emph{expected value} $\mu$ and a \emph{variance} $\sigma^2$, if
+  A $\mathbb{R}$-valued random variable $X$ is said to be \emph{normal distributed} or \emph{Gaussian} with a \emph{expected value} $\mu$ and a \emph{variance} $\sigma^2$, if
 \[
   (X-\mu) / \sigma
 \]
-is standard normal distributed.
+is standard Gaussian.
 \end{definition}
 
-We use a notation $X \sim Y$, which means $X$ and $Y$ have the same distribution. In similar way it is denoted by $X \sim (2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}\mathop{dx} $, if it is standard normal distributed. In order to identifing the behaviour of a normal distributed random variable we recall the characteristic function in probability theory, see\cite{bauer}. 
+We use a notation $X \sim Y$ represents $X$ equals $Y$ \emph{in distribution}. In similar way it is denoted by $X \sim (2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}\mathop{dx} $, if $X$ is standard Gaussian. In order to veifying the behaviour of a normal distributed random variable we recall the characteristic function in probability theory, see\cite{bauer}. 
 
 \begin{proposition}
   Let $X$ be a $\mathbb{R}$-valued standard normal distributed random variable. The characteristic function of $X$
@@ -178,7 +180,7 @@ We use a notation $X \sim Y$, which means $X$ and $Y$ have the same distribution
 for $\xi \in \mathbb{R}$.
 \end{proposition}
 \begin{proof}
-  According to the definion of characteristic function
+  According to the definion of characteristic function we replace probability measure by (\ref{sec:21})
   \begin{equation*}
 	\Psi_X(\xi) = \int_\mathbb{R} (2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}e^{ix\xi}\,\mathop{dx},
   \end{equation*}
@@ -190,17 +192,17 @@ take differentiating both sides of the equation by $\xi$, then
 			 &=& -\xi\Psi_X(\xi).
 \end{eqnarray*}
 Obviously, 
-$\Psi(\xi) = \Psi(0)e^{-\frac{\xi^2}{2}}$ is the solution of the partial differential equation above, and $\Psi(0)$ is equal to $1$.
+$\Psi(\xi) = \Psi(0)e^{-\frac{\xi^2}{2}}$ is the solution of the partial differential equation, and $\Psi(0)$ equals $1$.
 \end{proof}
 
-In particular, the characteristic function of a normal distributed random variable with a expected value $\mu$ and a variance $\sigma^2$, which denoted by $\Psi_{X_{\mu,\sigma^2}}(\xi)$, is $e^{i\mu\xi-\frac{1}{2}(\sigma\xi)^2}$. To achieve this result, we just need to substitute $x$ by $(x-\mu)/\sigma$ in the calculation before. 
+In particular, the characteristic function of a normal distributed random variable with a expected value $\mu$ and a variance $\sigma^2$, which denoted by $\Psi_{X_{\mu,\sigma^2}}(\xi)$, is $e^{i\mu\xi-\frac{1}{2}(\sigma\xi)^2}$. To achieve this result, we just need to substitute $x$ by $(x-\mu)/\sigma$ in the previous calculation. 
 
 \begin{definition}
-  Let $X$ be a $\mathbb{R}^{n}$-valued random variable. $X$ is said to be \emph{normal distributed}, if for any $d \in \mathbb{R}^{n}$ such that $d^TX$ is normal distributed on $\mathbb{R}$.
+  Let $X$ be a $\mathbb{R}^{n}$-valued random vector. $X$ is said to be \emph{normal distributed} or \emph{Gaussian}, if for any $d \in \mathbb{R}^{n}$ such that $d^TX$ is Gaussian on $\mathbb{R}$.
 \end{definition}
 %Note that, $<d,X>$ is defined as scalar product on $\mathbb{R}^{n}$ that means $\sum_{j=1}^{n}\,d_j\cdot X_i$. 
 \begin{proposition}
-  Let $X$ be a $\mathbb{R}^{n}$-valued normal distributed. Then there exist $m \in \mathbb{R}^{n}$ and a positive definite symmetric matrix $\Sigma \in \mathbb{R}^{n\times n}$ such that,
+  Let $X$ be a $\mathbb{R}^{n}$-valued normal distributed ramdon vector. Then there exist $m \in \mathbb{R}^{n}$ and a positive definite symmetric matrix $\Sigma \in \mathbb{R}^{n\times n}$ such that,
   \begin{equation}
 	\mathrm{E}\,e^{i\xi^TX} = e^{i\xi^Tm - \frac{1}{2}\xi^T \Sigma \xi}
 	\label{sec:mcf}
@@ -225,6 +227,19 @@ Remark, the equation (\ref{sec:mcf}) can also be as definition of characteristic
 \end{proof}
 
 A normal distributed normal random variable can be characterized by its expected value and variance respectively mean vector and covariance vector because of the characteristic function.
+
+\begin{theorem}
+  Let $X$ be a $\mathbb{R}^{n}$-valued normal distributed ramdon vector with independent, normal distributed components. Then $X$ has a joint normal distribution.
+\end{theorem}
+
+\begin{proof}
+  
+\end{proof}
+
+\begin{corollary}
+  Let $X$ be a $\mathbb{R}^{n}$-valued normal distributed ramdon vector with normal distributed components. If the covariance matrix of $X$ is positive definit and symmtric, then $X$ has a joint normal distribution.
+  \label{sec:mulnor}
+\end{corollary}
 
 \begin{corollary}
   A linear combination of independent normal distributed random variables has normal distribution.
@@ -613,7 +628,7 @@ The covariance matrix is positive-defined due to the previous Theorem. The claim
 
  Assume that $s \ge u \ge 0 $. Because the joint distribution of $(U_H(s), U_H(u))^T$ is Gaussian, $(1, -1) \cdot (U_H(s), U_H(u))^T $ is Gaussian. In another word,  $U_H(s) - U_H(u) \sim \mathcal{N}(0, (s-u)^{2H})$ which is only dependent on $(s-u)$ and $(U_H(t))$ has therefore stationary increments.\\
    $(U_H(t))$ has zero mean and $\mathrm{Var[U_H(s)]} = s^{2H}\mathrm{Var}[U_H(1)]$ we get $U_H(s) \sim s^HU_H(1)$ due to it is Gaussian.
-   To show FBM has H-similar sincrements, we have to prove\\ $(U_H(zt_1), U_H(zt_2),\dots, U_H(zt_n))) \sim (z^HU_H(t_1), z^HU_H(t_2),\dots, z^HU_(t_n))$ for any $z > 0$. Obviously, the former and the latter of the term are Gaussian and $\mathrm{Var}[U_H(zt_i), U_H(zt_j)] = \mathrm{Var}[z^HU_H(t_i), z^HU_H(t_j)] = \frac{1}{2}z^{2H}(t_i^{2H} + t_j^{2H} - |t_i-t_j|^{2H})$. Therefore they have the same covariance matrix and zero mean. The claim is then proved.
+   To show FBM has H-similar increments, we have to prove\\ $(U_H(zt_1), U_H(zt_2),\dots, U_H(zt_n))) \sim (z^HU_H(t_1), z^HU_H(t_2),\dots, z^HU_(t_n))$ for any $z > 0$. Obviously, the former and the latter of the term are Gaussian and $\mathrm{Var}[U_H(zt_i), U_H(zt_j)] = \mathrm{Var}[z^HU_H(t_i), z^HU_H(t_j)] = \frac{1}{2}z^{2H}(t_i^{2H} + t_j^{2H} - |t_i-t_j|^{2H})$. Thus they have the same covariance matrix and zero mean. The claim is then proved.
 \end{proof}
 
 \subsection{Regularity}

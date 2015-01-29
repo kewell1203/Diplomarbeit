@@ -1,15 +1,15 @@
 \contentsline {section}{\numberline {1}Introduction}{1}
-\contentsline {section}{\numberline {2}Gaussian Process and Brownian Motion }{2}
+\contentsline {section}{\numberline {2}Gaussian Process and Brownian Motion}{2}
 \contentsline {subsection}{\numberline {2.1}Probability Space and Stochastic Process }{2}
 \contentsline {subsection}{\numberline {2.2}Normal Distribution and Gaussian Process}{3}
 \contentsline {subsection}{\numberline {2.3}Brownian Motion}{8}
-\contentsline {section}{\numberline {3}Regularity for Brownian Motion and It\'o Integral}{10}
-\contentsline {subsection}{\numberline {3.1}Theorem of Kolmogorov Chentsov and L\'evy Modulus of Continuity}{10}
-\contentsline {section}{\numberline {4}Fractional Brownian Motion}{11}
-\contentsline {subsection}{\numberline {4.1}Definition of Fractional Brownian Motion}{11}
-\contentsline {subsection}{\numberline {4.2}Regularity}{13}
-\contentsline {subsection}{\numberline {4.3}Fractional Gaussian Noise}{13}
-\contentsline {section}{\numberline {5}Fractional Ornstein Uhlenbeck Process Model}{14}
-\contentsline {section}{\numberline {6}Application in Financial Mathematics}{15}
-\contentsline {section}{\numberline {7}Conclusion}{16}
-\contentsline {section}{References}{17}
+\contentsline {section}{\numberline {3}Regularity for Brownian Motion and It\'o Integral}{11}
+\contentsline {subsection}{\numberline {3.1}Theorem of Kolmogorov Chentsov and L\'evy Modulus of Continuity}{11}
+\contentsline {section}{\numberline {4}Fractional Brownian Motion}{12}
+\contentsline {subsection}{\numberline {4.1}Definition of Fractional Brownian Motion}{12}
+\contentsline {subsection}{\numberline {4.2}Regularity}{14}
+\contentsline {subsection}{\numberline {4.3}Fractional Gaussian Noise}{14}
+\contentsline {section}{\numberline {5}Fractional Ornstein Uhlenbeck Process Model}{15}
+\contentsline {section}{\numberline {6}Application in Financial Mathematics}{16}
+\contentsline {section}{\numberline {7}Conclusion}{17}
+\contentsline {section}{References}{18}
