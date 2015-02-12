@@ -151,7 +151,7 @@ for $t_1, \dots, t_n$ and $t_1+\tau,\dots,t_n+\tau \in T$.
 Remark that, Definition \ref{sec:stn} means the distribution of a stationary process is independent of a shift of time.
 
 \begin{definition}
-  Let $(X_t)_t$ be stochastic process. 
+  Let $(X_t)_t$ be a stochastic process. 
   \begin{equation*}
 	\varsigma_X(t,s) := \mathrm{Cov}(X_t, X_s) 
   \end{equation*} is called covariance function between $s, t$ and 
@@ -160,7 +160,7 @@ Remark that, Definition \ref{sec:stn} means the distribution of a stationary pro
   \end{equation*}
   is called correlation function betwenn $s, t$.
 \end{definition}
-If $(X_t)_t$ is a stationary process, we write $\varsigma_X(\tau)$ for $\varsigma_X(t, t+\tau)$ for any $t$. $\eta_X(\tau)$ is used in the same way.
+If $(X_t)_t$ is stationary process, we write $\varsigma_X(\tau)$ for $\varsigma_X(t, t+\tau)$ for any $t$. $\eta_X(\tau)$ is used in the same way.
 
 \begin{definition}
   A stochastic process $(X_t)_t$ is said to be \emph{ergodic} if the moving average of $X_t$ over $T$ tend to infinity, in fact,
@@ -168,6 +168,11 @@ If $(X_t)_t$ is a stationary process, we write $\varsigma_X(\tau)$ for $\varsigm
 	\frac{1}{T}\int_0^T\,X_t\,\mathop{dt} \longrightarrow \infty\nonumber\\.
   \end{equation}
 	\label{sec:erg}
+\end{definition}
+
+We use a notation $X \sim Y$ represents $X$ equals $Y$ \emph{in distribution}. 
+\begin{definition}
+  A stochastic process $(X_t)_{t\in T}$ is said to be \emph{$\alpha$-similar} if $(X_{ct_1},\dots,X_{ct_k}) \sim (c^\alpha X_{t_1},\dots, c^\alpha X_{t_k})$ for any $t_1,\dots, t_k, ct_1, \dots, ct_k \in T$ and $c>0$.
 \end{definition}
 
 \begin{definition}
@@ -182,11 +187,10 @@ If $(X_t)_t$ is a stationary process, we write $\varsigma_X(\tau)$ for $\varsigm
 	\label{sec:lm2}
   \end{equation}
   for $\lambda \in \mathbb{R}$. Where $\varsigma_X(\cdot)$ and $g_X(\cdot)$ are, respectively, covariance function and spectral density function of $(X_t)$.
- 
 \end{definition}
 
 %---------- 2.2. subsection -------%
-\subsection{Normal Distribution and  Gaussian Process}
+\subsection{Normal Distribution and Gaussian Process}
 \begin{definition}[1-dimensional normal distribution]
   A $\mathbb{R}$-valued random variable $X$ is said to be \emph{standard normal distributed} or \emph{standard Gaussian}, if its distribution can be discribed as
   \begin{equation}
@@ -217,16 +221,16 @@ is standard Gaussian.
   \begin{eqnarray*}
 	\int_\Omega \mathcal{P}[X \in dx] &=& \int_\Omega \mathcal{P}[Y \circ g \in dy] \\
 	&=& \int_{\mathbb{R}\circ g} f_X \circ g^{-1}(y) \mathop{dy}\\
-	&=& \int_{\mathbb{R}} \sigma \frac{1}{\sqrt{2\pi}} \frac{(\frac{(y-\mu)}{\sigma})^2}{2} \mathop{dy}\\
-	&=&  (2\pi\sigma^2)^{-\frac{1}{2}}\int_{\mathbb{R}} e^{-\frac{(y-\mu)^2}{2\sigma^2}}\mathop{dy} ,
+	&=& \int_{\mathbb{R}} \sigma \frac{1}{\sqrt{2\pi}} \exp\{\frac{(\frac{(y-\mu)}{\sigma})^2}{2}\} \mathop{dy}\\
+	&=&  (2\pi\sigma^2)^{-\frac{1}{2}}\int_{\mathbb{R}} \exp\{-\frac{(y-\mu)^2}{2\sigma^2}\}\mathop{dy} ,
   \end{eqnarray*}
  where $f_X$ is density function of $X$.
 \end{proof}
 
-We use a notation $X \sim Y$ represents $X$ equals $Y$ \emph{in distribution}. In similar way it is denoted by $X \sim (2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}\mathop{dx} $, if $X$ is standard Gaussian. In order to veifying the behaviour of a normal distributed random variable we recall the characteristic function in probability theory, see\cite{bauer}. 
+It is denoted by $X \sim (2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}\mathop{dx} $, if $X$ is standard Gaussian. In order to veifying the behaviour of a normal distributed random variable we recall the characteristic function in probability theory, see\cite{bauer}. 
 
 \begin{theorem}
-  Let $X$ be a $\mathbb{R}$-valued standard normal distributed random variable. The characteristic function of $X$
+  Let $X$ be a $\mathbb{R}$-valued standard Gaussian random variable. The characteristic function of $X$
 \begin{equation}
   \Psi_X(\xi) := \int_\mathbb{R} e^{ix\xi}\mathcal{P}\sqbr{X \in \mathop{dx}} = e^{i\mu\xi-\frac{1}{2}(\sigma\xi)^2}
   \label{sec:cht}
@@ -235,7 +239,7 @@ for $\xi \in \mathbb{R}$.
 \label{sec:char}
 \end{theorem}
 \begin{proof}
-  In terms of the definion of characteristic function of a standard Gaussian $X$, integrating its density function over $\mathbb{R}$ we get
+  We assume firstly $X$ is standard Gaussian. In terms of the Definion of characteristic function of a standard Gaussian $X$, integrating its density function over $\mathbb{R}$ we get
   \begin{equation*}
 	\Psi_X(\xi) = \int_\mathbb{R} (2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}e^{ix\xi}\,\mathop{dx},
   \end{equation*}
@@ -286,7 +290,7 @@ The definition immediately shows every instance $X_t$ in Gaussian process is Gau
   \end{equation}
  For $\xi \in \mathbb{R}^{n}$. Where $m \in \mathbb{R}^{n}, \Sigma \in \mathbb{R}^{n\times n}$ are \emph{mean vector} , \emph{covariance matrix} of $X$ respectively. Furthermore, the density function of $X$ is
 \begin{equation}
-  (2\pi)^{-\frac{d}{2}}\, (\det\Sigma) ^{-\frac{1}{2}}\,e^{-\frac{1}{2}(x-m)^T\Sigma^{-1}(x-m)}.
+  (2\pi)^{-\frac{n}{2}}\, (\det\Sigma) ^{-\frac{1}{2}}\,e^{-\frac{1}{2}(x-m)^T\Sigma^{-1}(x-m)}.
   \label{sec:dsy}
 \end{equation}
 \end{lemma}
@@ -294,7 +298,7 @@ The definition immediately shows every instance $X_t$ in Gaussian process is Gau
 Remark, the equation (\ref{sec:mcf}) can also be as definition of characteristic function of a n-dimensional normal distributed random variable. I.e., any normal distributed random variable can be characterized by form of the equation (\ref{sec:mcf}).
 
 \begin{proof}
-  Since $X$ normal distributed on $\mathbb{R}^{n}$, then $\xi^T X$ is normal distributed on $\mathbb{R}$. Due to the Theorem \ref{sec:char} there is
+  Since $X$ normal distributed on $\mathbb{R}^{n}$, then $\xi^T X$ is normal distributed on $\mathbb{R}$. Due to the Theorem \ref{sec:char}, there is
   \begin{eqnarray*}
 	\mathrm{E} e^{i\xi^T X} &=& \mathrm{E} e^{i\cdot 1 \cdot \xi^T X}\\
 	                        &=& e^{i\mathrm{E}\sqbr{\xi^T X} -\frac{1}{2}\mathrm{Var}\sqbr{\xi^T X}}\\
@@ -303,14 +307,14 @@ Remark, the equation (\ref{sec:mcf}) can also be as definition of characteristic
   \end{eqnarray*}
   Moreover, since $\Sigma$ symmetirc and positive definit, there exist $\Sigma^{-1}, \Sigma^{\frac{1}{2}}$ and $\Sigma^{-\frac{1}{2}}$.
   \begin{eqnarray*}
-	&&(2\pi)^{-\frac{d}{2}} (\det\Sigma) ^{-\frac{1}{2}}\int_{\mathbb{R}^{n}} e^{i x^T \xi}e^{-\frac{1}{2}(x-m)^T\Sigma^{-1}(x-m)}\, \mathop{dx}\\
-	&=& (2\pi)^{-\frac{d}{2}} (\det\Sigma) ^{-\frac{1}{2}}\int_{\mathbb{R}^{n}} e^{ix^T\xi} e^{i (x-m)^T \xi}e^{-\frac{1}{2}(x-m)^T\Sigma^{-1}(x-m)}\, \mathop{dx} \\
-	&=& (2\pi)^{-\frac{d}{2}} (\det\Sigma) ^{-\frac{1}{2}}  e^{im^T\xi} \int_{\mathbb{R}^{n}} e^{i(x-m)^T\xi} e^{i (x-m)^T \xi}e^{-\frac{1}{2}(x-m)^T\Sigma^{-1}(x-m)}\, \mathop{dx} \\
-	&\overset{y=\Sigma^{-\frac{1}{2}}x}{=}& (2\pi)^{-\frac{d}{2}} e^{im^T\xi} \int_{\mathbb{R}^{n}}e^{i (\Sigma^{\frac{1}{2}}y) \xi}\,e^{-\frac{1}{2}|y|^2}\, \mathop{dy}\\
-	&=& (2\pi)^{-\frac{d}{2}} e^{im^T\xi}  \int_{\mathbb{R}^{n}}e^{i y^T (\Sigma^{\frac{1}{2}}\xi)}\,e^{-\frac{1}{2}|y|^2}\, \mathop{dy}\\
-    %&=& (2\pi)^{-\frac{d}{2}} e^{i\xi m} \int_{\mathbb{R}^{n}}e^{i y- (\Sigma^{\frac{1}{2}}\xi)}\,e^{-\frac{1}{2}|y|^2}\, \mathop{dy}\\
-	&\overset{\text{Fourier transformation}}{=}& e^{im^T\xi}  e^{-\frac{1}{2}|\Sigma^{\frac{1}{2}\xi}|^2}\\
-	&=& e^{im^T\xi}  e^{-\frac{1}{2}\xi^T\Sigma^\xi}
+	&&(2\pi)^{-\frac{n}{2}} (\det\Sigma) ^{-\frac{1}{2}}\int_{\mathbb{R}^{n}} e^{i x^T \xi}e^{-\frac{1}{2}(x-m)^T\Sigma^{-1}(x-m)}\, \mathop{dx}\\
+	&=& (2\pi)^{-\frac{n}{2}} (\det\Sigma) ^{-\frac{1}{2}}\int_{\mathbb{R}^{n}} e^{ix^T\xi} e^{i (x-m)^T \xi}e^{-\frac{1}{2}(x-m)^T\Sigma^{-1}(x-m)}\, \mathop{dx} \\
+	&=& (2\pi)^{-\frac{n}{2}} (\det\Sigma) ^{-\frac{1}{2}}  e^{im^T\xi} \int_{\mathbb{R}^{n}} e^{i(x-m)^T\xi} e^{i (x-m)^T \xi}e^{-\frac{1}{2}(x-m)^T\Sigma^{-1}(x-m)}\, \mathop{dx} \\
+	&\overset{y=\Sigma^{-\frac{1}{2}}x}{=}& (2\pi)^{-\frac{n}{2}} e^{im^T\xi} \int_{\mathbb{R}^{n}}e^{i (\Sigma^{\frac{1}{2}}y) \xi}\,e^{-\frac{1}{2}|y|^2}\, \mathop{dy}\\
+	&=& (2\pi)^{-\frac{n}{2}} e^{im^T\xi}  \int_{\mathbb{R}^{n}}e^{i y^T (\Sigma^{\frac{1}{2}}\xi)}\,e^{-\frac{1}{2}|y|^2}\, \mathop{dy}\\
+    %&=& (2\pi)^{-\frac{n}{2}} e^{i\xi m} \int_{\mathbb{R}^{n}}e^{i y- (\Sigma^{\frac{1}{2}}\xi)}\,e^{-\frac{1}{2}|y|^2}\, \mathop{dy}\\
+	&\overset{\text{Fourier transformation}}{=}& e^{im^T\xi}  e^{-\frac{1}{2}|\Sigma^{\frac{1}{2}}\xi|^2}\\
+	&=& e^{im^T\xi}  e^{-\frac{1}{2}\xi^T\Sigma\xi}
   \end{eqnarray*}
   In terms of the uniqueness theorem of characteristic function (Satz 23.4 in \cite{bauer}), then we can deduce (\ref{sec:dsy}) is density function of $X$.
 \end{proof}
@@ -532,7 +536,7 @@ Let $(B_t)_{t\ge0}$ be a $\mathbb{R}^{n}$-valued stochastic process. $(B_t)$ is 
 A usual saying for $(ii)$ and $(iii)$ is the Brownian motion has independent, stationary increments. In (iv), $\mathrm{N}$ represent a random variable which has a normal distribution. $B_t$ is normal distributed due to (ii). It is clear that the increments of Brownian motion is stationary.
 
 \begin{proposition}
-  Let $(B_t)$ be a one-dimensional Brownian motion. Then the covarice of $B_m, B_n$ for $m, n \ge 0$ is $m \wedge n $.
+  Let $(B_t)$ be $\mathbb{R}$-valued Brownian motion. Then the covarice of $B_m, B_n$ for $m, n \ge 0$ is $m \wedge n $.
 \end{proposition}
 \begin{proof}
   Without loss of generality, we assume that $m \ge n$, then
@@ -545,7 +549,7 @@ A usual saying for $(ii)$ and $(iii)$ is the Brownian motion has independent, st
 \end{proof}
 
 \begin{proposition}
-  Let $(B_t)$ be a one-dimensional Brownian motion. Then $B_{cm} \sim c^{\frac{1}{2}}B_m$.
+  Let $(B_t)$ be  $\mathbb{R}$-valued Brownian motion. Then $B_{cm} \sim c^{\frac{1}{2}}B_m$.
 \end{proposition}
 \begin{proof}
   Because $B_m$ is normal distributed for any $m > 0$, we then get
@@ -557,7 +561,7 @@ A usual saying for $(ii)$ and $(iii)$ is the Brownian motion has independent, st
 \end{proof}
 
 \begin{theorem}
-  An one-dimensional Brownian motion is a Gaussian process.
+  A $\mathbb{R}$-valued Brownian motion is a Gaussian process.
 \end{theorem}
 \begin{proof}
   The following idea using the independence of increments to prove the claim come from \cite{shilling}.
@@ -585,20 +589,75 @@ A usual saying for $(ii)$ and $(iii)$ is the Brownian motion has independent, st
 	&=& \exp\left(-\frac{1}{2}\left(\sum_{j=1}^{n-1} t_j\xi^{(j)}(\xi^{(j)}+2\xi^{(j+1)}+\dots+2\xi^{(n)}) + t_n(\xi^{(n)})^2\right)\right)\\
 	&=& \exp\left(-\frac{1}{2}\left(\sum_{j,h=1}^n(t_j\wedge t_h)\xi^{(j)}\xi^{(h)}\right)\right).
   \end{eqnarray*}
-  Recall with proposition \ref{sec:cor}, $(t_j\wedge t_h)_{t,h=1,\dots,n}$ is the covariance matrix of $V$. The mean vector of it is zero, then we have been proved that the characteristic function is a form of some normal distributed random vector, i.e., $V$ is normal distributed.
+  Recall with Proposition \ref{sec:cor}, $(t_j\wedge t_h)_{t,h=1,\dots,n}$ is the covariance matrix of $V$ and therefore it is symmetric and positive definit. The mean vector of it is zero, then we have been proved that the characteristic function is a form of some normal distributed random vector, i.e., $V$ is Gaussian.
 \end{proof}
 
 Schilling gave in his lecture \cite{shilling} the relationship between a one-dimensional Brownian motion and a n-dimensional Brownian motion.
 In fact, $(B_t^{(l)})_{l=1,\dots,n}$ is Brownian motion if and only if $B_t^{(l)}$ is Brownian motion and all of the component are independent. Using this independence and the theorem of fubini in the characteristic function for high dimensional Brownian motion we can say a n-dimensional Brownian motion is also a Gaussian process.
 
+\begin{definition}
+  Let $(X_t)_{t\in T}$  be a stochastic process. $(Y_t)_{t\in T}$ is defined on the same probability space as $(X_t)_{t\in T}$ and said to be \emph{modification} of $(X_t)_{t\in T}$, if
+  \begin{equation*}
+	\mathcal{P}[X_t = Y_t] = 1 \hspace{1em} \forall \hspace{1em} t\in T.
+  \end{equation*}
+\end{definition}
+
+\begin{theorem}[Kolmogorov Chentsov]
+  Let $(X_t)_{t \ge 0}$ be a stochastic process on $\mathbb{R}^{n}$ such that
+  \begin{equation*}
+	\mathrm[|X_j - X_k|^\alpha] \le c |j - k|^{1+\beta} \hspace{1em}\forall \hspace{1em} j ,k \ge 0 \hspace{1em} \text{and} \hspace{1em} j\neq k,
+  \end{equation*}
+  for $\alpha, \beta > 0, c < \infty$. Then $(X_t)_t$ has a modification $(Y_t)_t$ with continuous sample path such that 
+  \begin{equation*}
+	\mathrm{E}[(\frac{|Y_j - Y_k|}{|j - k|^\gamma})^\alpha] < \infty
+  \end{equation*}
+  for all $\gamma \in (0, \frac{\beta}{\alpha})$.
+  \label{sec:kolch}
+\end{theorem}
+
+\begin{lemma}
+   Let $(B_t)_{t\ge 0}$ be Brownian motion. Then
+   \begin{equation*}
+	 \mathrm{E}[B_t^{2k}] = (2k - 1)!! t^{2k}
+   \end{equation*}
+   for $k \in \mathbb{N}_0$.
+   \label{sec:le1}
+\end{lemma}
+
+\begin{proof}
+  Take expectation of $B_t^{2k}$, we get
+  \begin{eqnarray*}
+	\mathrm{E}[B_t^{2k}] &=& \frac{1}{\sqrt{2\pi t}}\int_{-\infty}^{\infty} x^{2k} e^{-\frac{x^2}{2t}}\,\mathop{dx}\\
+	&\overset{x=\sqrt{2ty}}{=}& \frac{2^kt^k}{\sqrt{\pi}} \int_0^{\infty} y^{k-\frac{1}{2}} e^{-y}\,\mathop{dy}\\
+	&=& \frac{2^kt^k}{\sqrt{\pi}} \int_0^{\infty} y^{k+\frac{1}{2}-1} e^{-y}\,\mathop{dy}\\
+	&=& \frac{2^kt^k}{\sqrt{\pi}} \Gamma(k + \frac{1}{2})\\
+	&=& \frac{2^kt^k}{\sqrt{\pi}} \prod_{j=1}^k(j-\frac{1}{2}) \Gamma(\frac{1}{2})\\
+	&=& 2^k \prod_{j=1}^k(\frac{2j-1}{2}) t^k\\
+	&=& (2k - 1)!!\cdot t^k
+  \end{eqnarray*}
+\end{proof}
+
+\begin{corollary}
+  Let $(B_t)_{t\ge 0}$ be Brownian motion. Then $B_t$ is $\gamma$-H\"older continuous almost surely for all $\gamma < \frac{1}{2}$.
+\end{corollary}
+
+\begin{proof}
+  Because of Lemma \ref{sec:le1}, we have
+  \begin{eqnarray*}
+	\mathrm{E}[(B_t-B_s)^{2k}] &=& \mathrm{E}[B_{t-s}^{2k}]\\
+	&=& (2k - 1)!! \cdot |t-s|^{k}.
+  \end{eqnarray*}
+  In terms of the Theorem of Kolmogorov Chenstov, $B_t$ is $\gamma$-H\"older continuous a.s. for $\gamma \in (0, \frac{k}{2k})$.
+\end{proof}
+
 \newpage
 
 %-------- 3. section -----------%
-\section{Stable Measure and Stable Integra}
+\section{Stable Measures and Stable Integrals}
 In order to represent a integration form of fractional Brownian motion, we deal with the stable integral in this section. In fact, fractional Brownian motion is not a semi-martingal, although we need it to have some properties as we known as by Ito integral. For this propose, we define it by a 
 stable integral which can imaged as stochastic process of stable variables on time.
 
-\subsection{Stable Variable}
+\subsection{Stable Variables}
 %%We consider now the one-dimensional Brownian motion. In this section we need some notations, which are defined as followings
 %\begin{equation*}
 %\Delta^{[0,T]} = \left\{t_1,\dots,t_n|0=t_0<\dots<t_n=T\right\} 
@@ -617,8 +676,8 @@ stable integral which can imaged as stochastic process of stable variables on ti
 \begin{definition}
   Let $X$ be a random variable. $X$ is said to have a stable distribution, if there exist $0 < \gamma \le 2, \delta \ge 0, -1 \ge \kappa \ge 1, \theta \in \mathbb{R}$ such that its characteristic function can describe as following
   \begin{equation}
-	\mathrm{E} [\exp i\xi X] =  \begin{cases} \exp\{i \xi \theta - |\delta\xi|^\gamma(1-i\kappa(sgn(\xi)\tan \frac{\gamma\pi}{2}))\},\hspace{1em}  \text{if}\hspace{1em} \gamma \in (0, 1) \cup (1, 2], \\
-	    \exp\{i \xi \theta - |\delta\xi|(1+i\frac{2}{\pi}\kappa(sgn(\xi)\ln |\xi|))\},\hspace{1em} \text{if}\hspace{1em} \gamma = 1.
+	\mathrm{E} [\exp i\xi X] =  \begin{cases} \exp\{i \xi \theta - |\delta\xi|^\gamma(1-i\kappa\cdot sgn(\xi)\tan \frac{\gamma\pi}{2})\},\hspace{1em}  \text{if}\hspace{1em} \gamma \in (0, 1) \cup (1, 2], \\
+	    \exp\{i \xi \theta - |\delta\xi|(1+i\frac{2}{\pi}\kappa\cdot sgn(\xi)\ln |\xi|)\},\hspace{1em} \text{if}\hspace{1em} \gamma = 1.
 	  \end{cases}
 	\label{sec:stbl}
   \end{equation}
@@ -634,10 +693,10 @@ $$
 Notice, we write $\Lambda(\gamma, \kappa, \theta, \delta)$ as one random variable whose characteristic function equals (\ref{sec:stbl}).
 
 \begin{theorem}
-  Let $X \sim \Lambda(\gamma, \kappa, \theta, \delta)$, $X$ is Gaussian if and only if $\gamma = 2$.
+  $X$ is Gaussian if and only $X \sim \Lambda(\gamma, \kappa, \theta, \delta)$ with $\gamma = 2$.
 \end{theorem}
 \begin{proof}
-  In one hand, if $X$ is Gaussian, indeed, $\gamma$ must equal $2$. On the other hand, if $\gamma = 2$, then $i\kappa(sgn(\xi)\tan \frac{\gamma\pi}{2})$ vanishes since $\tan \frac{\gamma\pi}{2} = 0$.
+  In one hand, if $X$ is Gaussian, indeed, $\gamma$ must equal $2$. On the other hand, if $\gamma = 2$, then $i\kappa\cdot sgn(\xi)\tan \frac{\gamma\pi}{2}$ vanishes since $\tan(pi) = 0$. Therefore, $X$ is Gaussian because $\mathrm{E} [\exp i\xi X]=\exp\{i \xi \theta - |\delta\xi|^2\}$.
 \end{proof}
 Remark, if $\gamma=2$, then $\kappa$ is irrelevant in Definition. We specific $\kappa = 0$ without loss of generality. For instance, $B_t \sim \Lambda(2, 0, 0, \sqrt{t})$ when $(B_t)_t$ is Brownian motion.
 
@@ -646,13 +705,21 @@ Remark, if $\gamma=2$, then $\kappa$ is irrelevant in Definition. We specific $\
 \end{definition}
 
 \begin{proposition}
-  Let $X$ be have stable distribution. $X$ is  \emph{symmetric} if and only if $X \sim \Lambda(\gamma, 0, 0, \delta)$. I.e. its characteristic function has the form
+  Let $X$ be have a stable distribution. $X$ is  \emph{symmetric} if and only if $X \sim \Lambda(\gamma, 0, 0, \delta)$. I.e. its characteristic function has the form
   \begin{equation}
 	\mathrm{E}[\exp\{i \xi X\}] = \exp\{-|\delta\xi|^\gamma\}
   \end{equation}
 \end{proposition}
 \begin{proof}
-  
+  The Definition of symmetricity implies
+  \begin{eqnarray*}
+	&&\exp\{i \xi \theta - |\delta\xi|^\gamma(1-i\kappa\cdot sgn(\xi)\tan \frac{\gamma\pi}{2})\}\\
+	&=& \mathrm{E}[i\xi X]\\
+	&=& \mathrm{E}[i\xi (-X)]\\
+	&=& \mathrm{E}[i (-\xi) X]\\
+	&=& \exp\{i (-\xi) \theta - |\delta\xi|^\gamma(1-i\kappa\cdot sgn(-\xi)\tan \frac{\gamma\pi}{2})\},
+  \end{eqnarray*}
+  this requires $\theta=\kappa=0$.
 \end{proof}
 
 \begin{corollary}
@@ -663,19 +730,19 @@ Remark, if $\gamma=2$, then $\kappa$ is irrelevant in Definition. We specific $\
 \end{proof}
 
 
-\subsection{Stable Random Measure}
-In this section we suppose $(\mathrm{D}, \mathscr{D}, \mu)$ is a probability space, $\kappa : \Omega \rightarrow [-1, 1]$ is a measurable function.
+\subsection{Stable Random Measures}
+In this section we suppose $(\mathrm{D}, \mathscr{D})$ and $(\mathrm{E}, \mathscr{E})$ are probability spaces, $\kappa(\cdot) : \Omega \rightarrow [-1, 1]$ is a measurable function.
 \begin{definition}
 	Let $\nu$ be a measure such that
 	\begin{equation}
 	  \nu : \mathscr{D} \rightarrow \mathscr{E}.\nonumber
 	\end{equation}
-	$\nu$ is said to be \emph{independently scattered}, if for any $D_1,\dots, D_n$ disjoint $\in \mathscr{D}$ that $\nu[D_1], \dots, \nu[D_n]$ are independent.
+	$\nu$ is said to be \emph{independently scattered}, if $\nu[D_1], \dots, \nu[D_n]$ are independent for any $D_1,\dots, D_n$ \emph{disjoint} $\in \mathscr{D}$ .
 \end{definition}
 
-For the next definition we need notations
+For the next definition we need a notation
 \begin{equation}
-  \mathscr{G} = \{D \in \mathscr{D} : \mu[D] < \infty \}.
+  \mathscr{G} = \{D \in \mathscr{D} : \mu[D] < \infty,\, \mu : \mathscr{D} \rightarrow \mathscr{E}\}.
 \end{equation}
 \begin{definition}
   Let $\nu$ be an independent cattered and $\sigma$-additive set function such that
@@ -688,9 +755,28 @@ $\nu$ is said to be \emph{stable random measure} on $(D, \mathscr{D})$ with cont
 \end{equation}
 for $F \in \mathscr{D}$.
 \end{definition}
+Samorodnitsky and Taqqu show the existence of stable measures, see \cite{samorodnitsky}, pp.119$\sim$120.
 
-\subsection{Stable Integral}
-Samorodnitsky and Taqqu define a Integral with respect to stable measure as stochastic process in \cite{samorodnitsky}. The stable Integral is given as 
+\begin{example}
+  Suppose $[0, T]$ is a index set and $0=t_0, t_1,\dots, t_k \in [0, T]$ for $k\in \mathbb{N}$. We show the mapping $\nu : \mathscr{B}([0, T]) \rightarrow \mathscr{B}(\mathbb{R})$, where $\nu[A_j](\omega):= B_{t_{j+1}}(\omega) - B_{t_{j}}(\omega), A_j=[t_{j}, t_{j+1})$.\\
+	Firstly, we show $\nu$ is independently scattered and $\sigma$-additive. We take $\{A_j\}$ such that $\cup_{j=1}^{\infty}A_j = [0, T]$. $\{\nu[A_k]\}_{k=1}^{\infty}$ has independent elements since $B_{t_1} - B_{t_0}, \dots,  B_{t_{j+1}}- B_{t_{j}} $ are independent.\\
+	Secondly, 
+	\begin{eqnarray*}
+	  \nu[\brkt{\cup_{j=1}^{\infty}A_j}] &=& B_T - B_1\\
+	  &=& \sum_{j=1}^{\infty} (B_{t_{j+1}} - B_{t_j})\\
+	  &=& \sum_{j=1}^{\infty} \nu[A_j].
+	\end{eqnarray*}
+	Finally, 
+	\begin{eqnarray*}
+	  \mathrm{E}[\exp(i\xi\nu[A_j])] &=& \mathrm{E}[\exp(i\xi(B_{t_{j+1}} - B_{t_{j}})]\\
+	  &=& \exp(-\frac{(t_{j+1}-t_j)\xi^2}{2})
+	\end{eqnarray*}
+	Comparing with (\ref{sec:stbl}), we deduce the control measure must be $\frac{|\cdot|}{2}$. In fact, $\nu[A_j] \sim \Lambda(2, 0, 0, \frac{|t_{j+1} - t_j|}{2})$.
+  \label{sec:ex2}
+\end{example}
+
+\subsection{Stable Integrals}
+Samorodnitsky and Taqqu defined an Integral with respect to stable measure as stochastic process in \cite{samorodnitsky}. The stable Integral is given as 
 \begin{equation}
   \int_F f(x)\, \nu(\mathop{dx}).
   \label{sec:stbint}
@@ -746,7 +832,8 @@ Mandelbrot and Van Ness \cite{mandelbrot} gave a integration presentation of the
 	U_H(t) - U_H(s) &=& \frac{1}{\Gamma(H+\frac{1}{2})}\brkt{\int_{\mathbb{R}} \mathbbm{1}_{\{t\ge u\}}\cdot (t-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u\le s\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}}
 	\label{sec:frtbm}
   \end{eqnarray}
-  for $t\ge s \ge 0$. Where $(B_u)$ is defined as two-sides Brownian motion, the integral is in sense of stable integral as in previous section.\end{definition}
+  for $t\ge s \ge 0$. Where $(B_u)$ is defined as two-sides Brownian motion, the integral is in sense of stable integral as in previous section.$H$ is called Hurst exponent of FBM.
+\end{definition}
 
 Indeed, setting $U_H(0) = 0$, the equation (\ref{sec:frtbm}) is equivalent to
 	 \begin{eqnarray}
@@ -758,25 +845,34 @@ Indeed, setting $U_H(0) = 0$, the equation (\ref{sec:frtbm}) is equivalent to
 \begin{lemma}
   The equation (\ref{sec:fbm}) is well-defined, $U_H(t)$ has stable distribution and 
   \begin{equation*}
-	U_H(t) \sim \Lambda(2, 0, 0, \frac{1}{\Gamma(H+\frac{1}{2})}(\int_{\mathbb{R}} |f(u)^2|\, \mathop{du})^\frac{1}{2}),
+	U_H(t) \sim \Lambda(2, 0, 0, \frac{1}{\Gamma(H+\frac{1}{2})}(\int_{\mathbb{R}} |f(u)^2|\, \mathop{\frac{du}{2}})^\frac{1}{2}),
   \end{equation*}
   Where $f(x)$ is the integrand of integral in (\ref{sec:fbm}).
   \label{sec:l2}
 \end{lemma}
 \begin{proof}
-  Firstly, $B_t$ is symmetric stable measure and zero mean Gaussian with lebeque measure as the control measure of it. \\
-  Secondly, the well-definition  not only for $H= \frac{1}{2}$, but also $H\neq \frac{1}{2}$ was refered to by Samorodnitksy and Taqqu in \cite{samorodnitsky}, p.321, Proposition 7.2.6. . Which satisfies, in other words, the condition $\int_{-\infty}^{\infty}f^2(u)\,\mathop{du} < \infty$.\\
-  Finally, in term of Proposition \ref{sec:stbint2}, we get the claim.
+  Firstly, $B_t$ is Gaussian and symmetric stable measure with zero mean and $\frac{|\cdot|}{2}$ as the control measure of it shown in \ref{sec:ex2}. \\
+  Secondly, the well-definition not only for $H= \frac{1}{2}$, but also $H\neq \frac{1}{2}$ was refered to by Samorodnitksy and Taqqu in \cite{samorodnitsky}, p.321, Proposition 7.2.6. Which satisfies, in other words, the condition $\int_{-\infty}^{\infty}f^2(u)\,\mathop{\frac{du}{2}} < \infty$.\\
+  Finally, in terms of Proposition \ref{sec:stbint2}, we get the claim.
 \end{proof}
 	
+\begin{theorem}
+  Let $(U_H(t))_t$ be FBM. Then $U_H(t) \sim \mathcal{N}(0, \frac{1}{\Gamma(H+\frac{1}{2})^2}(\int_{\mathbb{R}} |f(u)^2|\, \mathop{du}))$.
+  \label{sec:the1}
+\end{theorem}
+\begin{proof}
+  In terms of Lemma \ref{sec:l2}, $\mathrm{E}[i\xi U_H(t)] = \exp\{-\xi^2 \frac{1}{2\Gamma(H+\frac{1}{2})^2}(\int_{\mathbb{R}} |f(u)^2|\, \mathop{du})\}$. The rest is clear thanks the form of characteristic function of a Gaussian random variable.
+\end{proof}
 \begin{lemma}
-  Let $(U_H(t))_{t\ge 0}$ be a FBM. Then $U_H(t)$ has a expected value $0$ and variance $t^{2H}\, \mathrm{E} U^2_H(1)$ for any $t \ge 0$.
+  Let $(U_H(t))_{t\ge 0}$ be FBM. Then $U_H(t)$ has a expected value $0$ and variance $t^{2H}\, \mathrm{E} U^2_H(1)$ for any $t \ge 0$.
   \label{sec:fbmp1}
 \end{lemma}
 \begin{proof}
   It is clear that $U_H$ is Gaussian with zero mean due to Lemma \ref{sec:l2}. We suppose that $t \ge s \ge 0,  c(H)=\frac{1}{(\Gamma(H+\frac{1}{2}))^2}$.
   \begin{eqnarray}
-	\mathrm{E}[(U_H(t) - U_H(s))^2] &=& c(H)\mathrm{E}[\int_{\mathbb{R}} \brkt{[\mathbbm{1}_{\{t\ge u\}}\cdot(t-u)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{s\ge u\}}\cdot(s-u)^{H-\frac{1}{2}}}^2 \,\mathop{du}]\nonumber\\
+	&&\mathrm{E}[(U_H(t) - U_H(s))^2]\\
+	&=& c(H)\mathrm{E}[\brkt{\int_{\mathbb{R}} [\mathbbm{1}_{\{t\ge u\}}\cdot(t-u)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{s\ge u\}}\cdot(s-u)^{H-\frac{1}{2}} \,\mathop{U_H(u)}}^2]\nonumber\\
+	&\overset{\text{Theorem \ref{sec:the1}}}{=}& c(H)\mathrm{E}[\int_{\mathbb{R}} \brkt{[\mathbbm{1}_{\{t\ge u\}}\cdot(t-u)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{s\ge u\}}\cdot(s-u)^{H-\frac{1}{2}}}^2 \,\mathop{du}]\nonumber\\
 	&=& c(H)\mathrm{E}[\int_{\mathbb{R}} \brkt{\mathbbm{1}_{\{t-s \ge u\}}\cdot(t-s-u)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{0\ge u\}}\cdot(-u)^{H-\frac{1}{2}}}^2 \,\mathop{du}]\nonumber\\
 	&\overset{m=t-s}{=}& c(H)\mathrm{E}[\int_{\mathbb{R}} \brkt{\mathbbm{1}_{\{m \ge u\}}\cdot(m-u)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{0\ge u\}}\cdot(-u)^{H-\frac{1}{2}}}^2 \,\mathop{du}]\nonumber\\
 	&\overset{u=ml}{=}& c(H)\mathrm{E}[\int_{\mathbb{R}} \brkt{\mathbbm{1}_{\{m \ge ml\}}\cdot(m-ml)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{0\ge ml\}}\cdot(-ml)^{H-\frac{1}{2}}}^2 m\cdot\,\mathop{dl}]\nonumber\\
@@ -831,7 +927,7 @@ Where $\hat{c}(H) = \frac{1}{\mathrm{E}[U_H(1)^2]} $.
 We consider from now on sFBM as FBM.
 
 \begin{theorem}
- Let  $(U_H(t))_{t\ge 0}$ be a FBM. The Covariance function of $U_H(t), U_H(s)$ is $ \frac{1}{2}(t^{2H} + s^{2H} - |t-s|^{2H})$ for $t, s \ge 0$.
+ Let  $(U_H(t))_{t\ge 0}$ be FBM. The Covariance function of $U_H(t), U_H(s)$ is $ \frac{1}{2}(t^{2H} + s^{2H} - |t-s|^{2H})$ for $t, s \ge 0$.
 \end{theorem}
 
 \begin{proof}
@@ -848,23 +944,28 @@ We consider from now on sFBM as FBM.
 \end{theorem}
 
 \begin{proof}
-  We just need to prove that for an arbitrary finite linear combination of values of time is Gaussian. We take $t_1, \dots, t_k \in T, c_1, \dots, c_k \in \mathbb{R}$, and the stable integral $J(f) $ is a linear functional with $\gamma=2, \kappa=0, \theta=0, \delta= (\int_{-\infty}^{\infty}f^2(u)\,\mathop{du})^{\frac{1}{2}}$ due to Corollary \ref{sec:stblin}. Suppose $f_1,\dots, f_k$ are integrands of the form of stable integral of $U_H(t_1), \dots, U_H(t_k)$. Then 
+  We just need to prove that for an arbitrary finite linear combination of values of time is Gaussian. We take $t_1, \dots, t_k \in T, c_1, \dots, c_k \in \mathbb{R}$, and the stable integral $J(f) $ is a linear functional with $\gamma=2, \kappa=0, \theta=0, \delta= (\frac{1}{2}\int_{-\infty}^{\infty}f^2(u)\,\mathop{du})^{\frac{1}{2}}$ due to Corollary \ref{sec:stblin}. Suppose $f_1,\dots, f_k$ are integrands of the form of stable integral of $U_H(t_1), \dots, U_H(t_k)$. \\
+  Consider now, according to the Minkowski inequality,
+  \begin{eqnarray*}
+	\int_{-\infty}^{\infty}(\sum_{j=1}^k c_jf_j)^2\,\mathop{du} &\le& \sum_{j=1}^k \underbrace{\int_{-\infty}^{\infty}(c_jf_j)^2\,\mathop{du}}_{<\infty}\\
+	&<& \infty.
+  \end{eqnarray*}
+Moreover,
   \begin{eqnarray*}
 	\sum_{j=1}^k c_jU_H(t_j) &=& \sum_{j=1}^k c_jJ(f_j)\\
 	&=& J(\sum_{j=1}^k c_jf_j)\\
-	&\sim& \Delta(2, 0, 0, (\int_{-\infty}^{\infty}(\sum_{j=1}^k c_jf_j)^2(u)\,\mathop{du})^{\frac{1}{2}})
+	&\sim& \Lambda(2, 0, 0, (\frac{1}{2}\int_{-\infty}^{\infty}(\sum_{j=1}^k c_jf_j)^2\,\mathop{du})^{\frac{1}{2}})
   \end{eqnarray*}
   is Gaussian and the rest is clear.
 \end{proof}
 
 \begin{corollary}
-  Let $(U_H(t))_{t\ge 0}$ be a FBM, then $(U_H(t))_{t\ge 0}$ has stationary and H-self similar increments . 
+  Let $(U_H(t))_{t\ge 0}$ be FBM, then $(U_H(t))_{t\ge 0}$ has stationary and H-self similar increments . 
 \end{corollary}
 \begin{proof}
-
- Assume that $s \ge u \ge 0 $. Because the joint distribution of $(U_H(s), U_H(u))^T$ is Gaussian, $(1, -1) \cdot (U_H(s), U_H(u))^T $ is Gaussian. In another word,  $U_H(s) - U_H(u) \sim \mathcal{N}(0, (s-u)^{2H})$ which is only dependent on $(s-u)$ and $(U_H(t))$ has therefore stationary increments.\\
+ Assume that $s \ge u \ge 0 $. Because the joint distribution of $(U_H(s), U_H(u))^T$ is Gaussian, $(1, -1) \cdot (U_H(s), U_H(u))^T $ is Gaussian. In other words,  $U_H(s) - U_H(u) \sim \mathcal{N}(0, (s-u)^{2H})$ which is only dependent on $(s-u)$ and $(U_H(t))$ has therefore stationary increments.\\
    $(U_H(t))$ has zero mean and $\mathrm{Var[U_H(s)]} = s^{2H}\mathrm{Var}[U_H(1)]$ we get $U_H(s) \sim s^HU_H(1)$ due to it is Gaussian.
-   To show FBM has H-similar increments, we have to prove\\ $(U_H(zt_1), U_H(zt_2),\dots, U_H(zt_n))) \sim (z^HU_H(t_1), z^HU_H(t_2),\dots, z^HU_(t_n))$ for any $z > 0$. Obviously, the former and the latter of the term are Gaussian and $\mathrm{Var}[U_H(zt_i), U_H(zt_j)] = \mathrm{Var}[z^HU_H(t_i), z^HU_H(t_j)] = \frac{1}{2}z^{2H}(t_i^{2H} + t_j^{2H} - |t_i-t_j|^{2H})$. Thus they have the same covariance matrix and zero mean. The claim is then proved.
+   To show FBM has H-similar increments, we have to prove\\ $(U_H(zt_1), U_H(zt_2),\dots, U_H(zt_n))) \sim (z^HU_H(t_1), z^HU_H(t_2),\dots, z^HU_H(t_n))$ for any $z > 0$. Obviously, the former and the latter of the term are Gaussian and $\mathrm{Var}[U_H(zt_i), U_H(zt_j)] = \mathrm{Var}[z^HU_H(t_i), z^HU_H(t_j)] = \frac{1}{2}z^{2H}(t_i^{2H} + t_j^{2H} - |t_i-t_j|^{2H})$. Thus they have the same covariance matrix and zero mean. The claim is then proved.
 \end{proof}
 
 \subsection{Regularity}
@@ -873,13 +974,13 @@ We consider from now on sFBM as FBM.
 \end{theorem}
 
 \begin{proof}
-  Cf.\cite{mandelbrot}. Fix $\alpha$ such that $1 < \alpha H$. Let look at the expected value of $(U_H(t) - U_H(s))^\alpha$ using same calculation in (\ref{sec:eqn1})
+  Cf.\cite{mandelbrot}. Let $(U_H(t))_{t\ge 0}$ be FBM with Hurst index $H$. Fix $\alpha$ such that $1 < \alpha H$. Let look at the expected value of $(U_H(t) - U_H(s))^\alpha$ using the same calculation in (\ref{sec:eqn1})
   \begin{eqnarray}
 	\mathrm{E} [(U_H(t) - U_H(s))^\alpha] &=& |t-s|^{\alpha H} \cdot \underbrace{\mathrm{E}\brkt{\int_{\mathbb{R}} \mathbbm{1}_{\{1\ge u\}}\cdot (1-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u\le 0\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}}^\alpha}_{c(\alpha,H)}\nonumber\\
 	&=& c(\alpha,H) \cdot |t-s|^{\alpha H}.
 	\label{sec:eqn5}
   \end{eqnarray}
-  We choose $\beta = \alpha -1$ and $\gamma \in (0, H-\frac{1}{\alpha})$ then the claim follows from Theorem .
+  We choose $\beta = \alpha H -1$ and $\gamma \in (0, H-\frac{1}{\alpha})$ then the rest follows from Theorem \ref{sec:kolch} .
 \end{proof}
 
 \begin{theorem}
