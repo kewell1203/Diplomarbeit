@@ -213,10 +213,10 @@ is standard Gaussian.
  where $f_X$ is density function of $X$.
 \end{proof}
 
-It is denoted by $X \sim (2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}\mathop{dx} $, if $X$ is standard Gaussian. In order to veifying the behaviour of a normal distributed random variable we recall the characteristic function in probability theory, see\cite{bauer}. 
+It is denoted by $X \sim (2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}\mathop{dx} $, if $X$ is standard Gaussian. In order to verifying the behaviour of a normal distributed random variable we use the characteristic function in probability theory, Cf.\cite{bauer}. 
 
 \begin{theorem}
-  Let $X$ be a $\mathbb{R}$-valued standard Gaussian random variable. The characteristic function of $X$
+  Let $X$ be a $\mathbb{R}$-valued Gaussian random variable. The characteristic function of $X$
 \begin{equation}
   \Psi_X(\xi) := \int_\mathbb{R} e^{ix\xi}\mathcal{P}\sqbr{X \in \mathop{dx}} = e^{i\mu\xi-\frac{1}{2}(\sigma\xi)^2}
   \label{sec:cht}
@@ -225,7 +225,7 @@ for $\xi \in \mathbb{R}$.
 \label{sec:char}
 \end{theorem}
 \begin{proof}
-  We assume firstly $X$ is standard Gaussian. In terms of the Definion of characteristic function of a standard Gaussian $X$, integrating its density function over $\mathbb{R}$ we get
+  Cf.\cite{shilling}. We assume firstly $X$ is standard Gaussian. In terms of the Definion of characteristic function of a standard Gaussian $X$, integrating its density function over $\mathbb{R}$ we get
   \begin{equation*}
 	\Psi_X(\xi) = \int_\mathbb{R} (2\pi)^{-\frac{1}{2}}e^{-\frac{x^2}{2}}e^{ix\xi}\,\mathop{dx},
   \end{equation*}
@@ -335,7 +335,7 @@ Remark, the equation (\ref{sec:mcf}) can also be as definition of characteristic
 \end{proof}
 
 \begin{example}[Bivariate Normal Distribution]
-  Suppose $S_1, S_2$ are independent random variables and have standard normal distributions. $\left(
+  Cf.\cite{severini}, p.241, Example 8.6. Suppose $S_1, S_2$ are independent random variables and have standard normal distributions. $\left(
     \begin{array}{c}
       S_1 \\
       S_2
@@ -493,7 +493,7 @@ multiplying right side out, we see
 	\mathrm{E}[\exp(\beta X)] = \exp(\beta\mu + \frac{1}{2}\beta^2\sigma^2).
 	\label{sec:expgau}
   \end{equation}
-  Where $\mu$ and $\sigma$ are $\mathrm{E}[X]$ and $\mathrm{Var}[X]$.
+  Where $\mu$ and $\sigma$ are $\mathrm{E}[X]$ and $\mathrm{Var}[X]$ respectively.
 \end{theorem}
 \begin{proof}
 \begin{eqnarray*}
@@ -616,7 +616,7 @@ In fact, $(B_t^{(l)})_{l=1,\dots,n}$ is Brownian motion if and only if $B_t^{(l)
 \end{lemma}
 
 \begin{proof}
-  Taking expectation of $B_t^{2k}$, we get
+  Cf.\cite{shilling}. Taking expectation of $B_t^{2k}$, we get
   \begin{eqnarray*}
 	\mathrm{E}[B_t^{2k}] &=& \frac{1}{\sqrt{2\pi t}}\int_{-\infty}^{\infty} x^{2k} e^{-\frac{x^2}{2t}}\,\mathop{dx}\\
 	&\overset{x=\sqrt{2ty}}{=}& \frac{2^kt^k}{\sqrt{\pi}} \int_0^{\infty} y^{k-\frac{1}{2}} e^{-y}\,\mathop{dy}\\
@@ -629,7 +629,7 @@ In fact, $(B_t^{(l)})_{l=1,\dots,n}$ is Brownian motion if and only if $B_t^{(l)
 \end{proof}
 
 \begin{corollary}
-  Let $(B_t)_{t\ge 0}$ be Brownian motion. Then $B_t$ is $\gamma$-H\"older continuous almost surely for all $\gamma < \frac{1}{2}$.
+  Let $(B_t)_{t\ge 0}$ be Brownian motion. Then $B_t$ is $\gamma$-H\"older continuous on a compact set of time almost surely for all $\gamma < \frac{1}{2}$.
 \end{corollary}
 
 \begin{proof}
@@ -645,7 +645,7 @@ In fact, $(B_t^{(l)})_{l=1,\dots,n}$ is Brownian motion if and only if $B_t^{(l)
 
 %-------- 3. section -----------%
 \section{Stable Measures and Stable Integrals}
-In order to represent a integration form of fractional Brownian motion, we deal with the stable integral in this section. In fact, fractional Brownian motion is not a semi-martingal, although we need it to have some properties as we known as by Ito integral. For this propose, we define it by a 
+In order to represent a integration form of fractional Brownian motion, we deal with the stable integral in this section. In fact, fractional Brownian motion is a Gaussian process with zero mean. To show Gaussian properties of it, we define it by a 
 stable integral which can imaged as stochastic process of stable variables on time.
 
 \subsection{Stable Variables}
@@ -689,7 +689,7 @@ Notice, we write $\Lambda(\gamma, \kappa, \theta, \delta)$ as one random variabl
 \begin{proof}
   In one hand, if $X$ is Gaussian, indeed, $\gamma$ must equal $2$. On the other hand, if $\gamma = 2$, then $i\kappa\cdot sgn(\xi)\tan \frac{\gamma\pi}{2}$ vanishes since $\tan(pi) = 0$. Therefore, $X$ is Gaussian because $\mathrm{E} [\exp i\xi X]=\exp\{i \xi \theta - |\delta\xi|^2\}$.
 \end{proof}
-Remark, if $\gamma=2$, then $\kappa$ is irrelevant in Definition. We specific $\kappa = 0$ without loss of generality. For instance, $B_t \sim \Lambda(2, 0, 0, \sqrt{t})$ when $(B_t)_t$ is Brownian motion.
+Remark, if $\gamma=2$, then $\kappa$ is irrelevant in Definition. We specific $\kappa = 0$ without loss of generality. For instance, $B_t \sim \Lambda(2, 0, 0, \frac{\sqrt{t}}{2})$ when $(B_t)_t$ is Brownian motion.
 
 \begin{definition}
   A random variable $X$ is said to be \emph{symmetric} if $X$ and $-X$ have the same distribution.
@@ -722,7 +722,7 @@ Remark, if $\gamma=2$, then $\kappa$ is irrelevant in Definition. We specific $\
 
 
 \subsection{Stable Random Measures}
-In this section we suppose $(\mathrm{D}, \mathscr{D})$ and $(\mathrm{E}, \mathscr{E})$ are probability spaces, $\kappa(\cdot) : \Omega \rightarrow [-1, 1]$ is a measurable function.
+In this subsection we suppose $(\mathrm{D}, \mathscr{D})$ and $(\mathrm{E}, \mathscr{E})$ are probability spaces, $\kappa(\cdot) : \Omega \rightarrow [-1, 1]$ is a measurable function.
 \begin{definition}
 	Let $\nu$ be a measure such that
 	\begin{equation}
@@ -824,15 +824,15 @@ The fractional Brownian motion(FBM) was defined by Kolmogorov primitively. After
 \subsection{Definition of Fractional Brownian Motion}
 Mandelbrot and Van Ness \cite{mandelbrot} gave a integration presentation of the definion of FBM.
 \begin{definition}
-  Let $(U_H(t))_{t\ge 0}$ be a $\mathbb{R}$-valued stochatstic process an $H$ be such that $1<H<0$. $(U_H(t))$ is said to be \emph{fractional Brownian motion} if 
+  Let $(U_H(t))_{t\in \mathbb{R}}$ be a $\mathbb{R}$-valued stochatstic process and $H$ be such that $0<H<1$. $(U_H(t))$ is said to be \emph{fractional Brownian motion} if 
   \begin{eqnarray}
 	U_H(t) - U_H(s) &=& \frac{1}{\Gamma(H+\frac{1}{2})}\brkt{\int_{\mathbb{R}} \mathbbm{1}_{\{t\ge u\}}\cdot (t-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u\le s\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}}
 	\label{sec:frtbm}
   \end{eqnarray}
-  for $t\ge s, t, s \in \mathbb{R}$. Where $(B_u)$ is defined as two-sides Brownian motion, the integral is in sense of stable integral as in previous section.$H$ is called Hurst exponent of FBM.
+  for $t\ge s, t, s \in \mathbb{R}$. Where $(B_u)$ is defined as two-sides Brownian motion, the integral is in sense of stable integral as in previous section. $H$ is called Hurst exponent or Hurst index of FBM.
 \end{definition}
 
-Indeed, setting $U_H(0) = 0$, the equation (\ref{sec:frtbm}) is equivalent to
+As usual, we set $U_H(0) = 0$, then equation (\ref{sec:frtbm}) is equivalent to
 	 \begin{eqnarray}
 	   U_H(t) &=& \frac{1}{(\Gamma(H+\frac{1}{2}))^2}\brkt{\int_{\mathbb{R}} \mathbbm{1}_{\{t\ge u\}}\cdot (t-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u\le 0\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}}.
 	\label{sec:fbm}
@@ -848,11 +848,11 @@ Indeed, setting $U_H(0) = 0$, the equation (\ref{sec:frtbm}) is equivalent to
   \label{sec:l2}
 \end{lemma}
 \begin{proof}
-  Firstly, $B_t$ is Gaussian and symmetric stable measure with zero mean and $\frac{|\cdot|}{2}$ as the control measure of it shown in \ref{sec:ex2}. \\
-  Secondly, the well-definition not only for $H= \frac{1}{2}$, but also $H\neq \frac{1}{2}$ was refered to by Samorodnitksy and Taqqu in \cite{samorodnitsky}, p.321, Proposition 7.2.6. Which satisfies, in other words, the condition $\int_{-\infty}^{\infty}f^2(u)\,\mathop{\frac{du}{2}} < \infty$.\\
+  Firstly, $B_t$ is Gaussian and symmetric stable measure with zero mean and $\frac{|\cdot|}{2}$ as the control measure of it shown in Example \ref{sec:ex2}. \\
+  Secondly, the well-definition was refered to by Samorodnitksy and Taqqu in \cite{samorodnitsky}, p.321, Proposition 7.2.6 for not only $H= \frac{1}{2}$, but also $H\neq \frac{1}{2}$. Which satisfies, in other words, the condition $\int_{-\infty}^{\infty}f^2(u)\,\mathop{\frac{du}{2}} < \infty$.\\
   Finally, in terms of Proposition \ref{sec:stbint2}, we get the claim.
 \end{proof}
-	
+Remark that, if we take $H=\frac{1}{2}$ choosing a restriction of the integrand on $\mathbb{R}_+$, $(U_2(t))_{t\ge 0}$ is a Brownian motion. 	
 \begin{theorem}
   Let $(U_H(t))_t$ be a FBM. Then $U_H(t) \sim \mathcal{N}(0, \frac{1}{\Gamma(H+\frac{1}{2})^2}(\int_{\mathbb{R}} |f(u)^2|\, \mathop{du}))$.
   \label{sec:the1}
@@ -867,7 +867,7 @@ Indeed, setting $U_H(0) = 0$, the equation (\ref{sec:frtbm}) is equivalent to
 \begin{proof}
   It is clear that $U_H$ is Gaussian with zero mean due to Lemma \ref{sec:l2}. We suppose that $t \ge s \ge 0,  c(H)=\frac{1}{(\Gamma(H+\frac{1}{2}))^2}$.
   \begin{eqnarray}
-	&&\mathrm{E}[(U_H(t) - U_H(s))^2]\\
+	&&\mathrm{E}[(U_H(t) - U_H(s))^2]\nonumber\\
 	&=& c(H)\mathrm{E}[\brkt{\int_{\mathbb{R}} [\mathbbm{1}_{\{t\ge u\}}\cdot(t-u)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{s\ge u\}}\cdot(s-u)^{H-\frac{1}{2}} \,\mathop{U_H(u)}}^2]\nonumber\\
 	&\overset{\text{Theorem \ref{sec:the1}}}{=}& c(H)\mathrm{E}[\int_{\mathbb{R}} \brkt{[\mathbbm{1}_{\{t\ge u\}}\cdot(t-u)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{s\ge u\}}\cdot(s-u)^{H-\frac{1}{2}}}^2 \,\mathop{du}]\nonumber\\
 	&=& c(H)\mathrm{E}[\int_{\mathbb{R}} \brkt{\mathbbm{1}_{\{t-s \ge u\}}\cdot(t-s-u)^{H-\frac{1}{2}}  - \mathbbm{1}_{\{0\ge u\}}\cdot(-u)^{H-\frac{1}{2}}}^2 \,\mathop{du}]\nonumber\\
@@ -928,6 +928,7 @@ We consider from now on sFBM as FBM.
 \end{theorem}
 
 \begin{proof}
+  Cf.\cite{mandelbrot}, Theorem 5.3 .
   \begin{eqnarray}
 	\mathrm{Cov}[U_H(t), U_H(s)] &=& \mathrm{E}[U_H(t)U_H(s)] \nonumber\\
 	&=& \frac{1}{2}\brkt{\mathrm{E}[U_H(t)^2] + \mathrm{E}[U_H(s)^2] - \mathrm{E}[(U_H(t) - U_H(s))^2]} \nonumber\\
@@ -960,9 +961,9 @@ Moreover,
   Let $(U_H(t))_{t}$ be a FBM, then $(U_H(t))_{t}$ has stationary and H-self similar increments . 
 \end{corollary}
 \begin{proof}
- Assume that $s \ge u \ge 0 $. Because the joint distribution of $(U_H(s), U_H(u))^T$ is Gaussian, $(1, -1) \cdot (U_H(s), U_H(u))^T $ is Gaussian. In other words,  $U_H(s) - U_H(u) \sim \mathcal{N}(0, (s-u)^{2H})$ which is only dependent on $(s-u)$ and $(U_H(t))$ has therefore stationary increments.\\
+ Assume that $s \ge u $. Because the joint distribution of $(U_H(s), U_H(u))^T$ is Gaussian, $(1, -1) \cdot (U_H(s), U_H(u))^T $ is Gaussian. In other words,  $U_H(s) - U_H(u) \sim \mathcal{N}(0, (s-u)^{2H})$ which is only dependent on $(s-u)$ and $(U_H(t))$ has therefore stationary increments.\\
    $(U_H(t))$ has zero mean and $\mathrm{Var[U_H(s)]} = s^{2H}\mathrm{Var}[U_H(1)]$ we get $U_H(s) \sim s^HU_H(1)$ due to it is Gaussian.
-   To show FBM has H-similar increments, we have to prove\\ $(U_H(zt_1), U_H(zt_2),\dots, U_H(zt_n))) \sim (z^HU_H(t_1), z^HU_H(t_2),\dots, z^HU_H(t_n))$ for any $z > 0$. Obviously, the former and the latter of the term are Gaussian and $\mathrm{Var}[U_H(zt_i), U_H(zt_j)] = \mathrm{Var}[z^HU_H(t_i), z^HU_H(t_j)] = \frac{1}{2}z^{2H}(t_i^{2H} + t_j^{2H} - |t_i-t_j|^{2H})$. Thus they have the same covariance matrix and zero mean. The claim is then proved.
+   To show FBM has H-self similar increments, we have to prove\\ $(U_H(zt_1), U_H(zt_2),\dots, U_H(zt_n))) \sim (z^HU_H(t_1), z^HU_H(t_2),\dots, z^HU_H(t_n))$ for any $z > 0$. Obviously, the former and the latter of the term are Gaussian and $\mathrm{Var}[U_H(zt_i), U_H(zt_j)] = \mathrm{Var}[z^HU_H(t_i), z^HU_H(t_j)] = \frac{1}{2}z^{2H}(t_i^{2H} + t_j^{2H} - |t_i-t_j|^{2H})$. Thus they have the same covariance matrix and zero mean in their characteristic function. Using uniqueness theorem we can prove the claim. 
 \end{proof}
 
 \subsection{Regularity}
@@ -987,7 +988,7 @@ Remark, $U_H(t)$ is, in fact, $\gamma$-H\"older continuous with $\gamma < H$ alm
 \end{theorem}
 
 \begin{proof}
-  C.f. \cite{mandelbrot} Proposition 4.2 .Fix $\omega \in \Omega$, we assume $c > 0, t_j \rightarrow s$.
+  Cf. \cite{mandelbrot} Proposition 4.2 . Fix $\omega \in \Omega$, we assume $c > 0, t_j \rightarrow s$.
 \begin{eqnarray}
  && \mathcal{P}[\limsup\limits_{t\rightarrow s} |\frac{U_H(t) - U_H(s)}{t-s}| > c]\nonumber\\
  &=& \mathcal{P}[\lim\limits_{j\rightarrow\infty}\sup\limits_{t_j\neq s} |\frac{U_H(t_j) - U_H(s)}{t_j-s}| > c]\nonumber\\
@@ -1005,14 +1006,14 @@ Remark, $U_H(t)$ is, in fact, $\gamma$-H\"older continuous with $\gamma < H$ alm
 \end{proof}
 
 \begin{theorem}
-  (C.f. \cite{mandelbrot} Theorem 5.3).Let $(U_H(k))_{k}$ be FBM. The conditional expectation of $U_H(s)$  given $U_H(t)=x$ is
+  Let $(U_H(k))_{k}$ be FBM. The conditional expectation of $U_H(s)$  given $U_H(t)=x$ is
 \begin{equation*}
   \frac{|\frac{s}{t}|^{2H} + 1 - |\frac{s}{t} - 1|^{2H}}{2} \cdot x
 \end{equation*}
 for all $ s < t$.
 \end{theorem}
 \begin{proof}
-  Taking conditional expectation of $U_H(s)$ given $U_H(t)$,
+  Cf. \cite{mandelbrot} Theorem 5.3. Taking conditional expectation of $U_H(s)$ given $U_H(t)$,
   \begin{eqnarray*}
   &&\mathrm{E}[U_H(s)|U_H(t)]\\
   &\overset{\text{Corollary \ref{sec:condi}}}{=}& \mu_s + \rho_{s,t} (\frac{\sigma_s}{\sigma_t}U_H(t) - \mu_t)\\
@@ -1044,7 +1045,7 @@ for $k \in \mathbb{R}$.
 \end{proposition}
 
 \begin{proof}
-  The first part of the claim is clear due to FBM has stationary increments.\\
+  Cf. \cite{nourdin}, p.333, Proposition 7.2.9 . The first part of the claim is clear due to FBM has stationary increments.\\
   In terms of definition of fractional Brownian noise we have
   \begin{eqnarray*}
 	\varsigma_{S_H}(\tau) &=& \mathrm{E}[S_H(0)S_H(\tau)] \\
@@ -1059,15 +1060,10 @@ for $k \in \mathbb{R}$.
   for $\tau \in \mathbb{R}$.
 \end{proof}
 
-\begin{corollary}
-  Let $S_H$ be fractional Brownian noise , $\tau\in\mathbb{Z}$ and $\varsigma_{S_H}(\cdot)$ its autocovariance. Then $\sum_{\tau\in\mathbb{Z}}\varsigma^2_{S_H}(\tau)<\infty$ if and only if $H < \frac{3}{4}$.
-\end{corollary}
-\begin{proof}
-  TODO
-\end{proof}
+
 \begin{definition}
   A stationary stochastic process $(X_t)_t$ is said to have \emph{long memory} if its autocovariance $\varsigma_X(\tau)$ tend to $0$  with so slowly such that
-  $ \sum_{\tau = -\infty} ^{\infty} \varsigma_X(\tau)$ diverges.
+  $ \sum_{\tau = -\infty} ^{\infty} \varsigma_X(\tau)$ diverges for $\tau \in \mathbb{Z}$.
 \end{definition}
 
 \begin{theorem}
@@ -1075,7 +1071,8 @@ for $k \in \mathbb{R}$.
   \label{sec:lmemory}
 \end{theorem}
 \begin{proof}
-  Following (\ref{sec:auto}), we have
+  Cf. \cite{nourdin}, p.335, Proposition 7.2.10 .\\
+  Without loss of generality, we suppose $\tau \in \mathbb{Z}^+_0$. For $\tau\in\mathbb{Z}^-$, we deal with it in a similar way and $\tau=0$ is clear. Following (\ref{sec:auto}), we have
   \begin{eqnarray*}
   &&\varsigma(\tau) \\
   &=& \frac{1}{2} \tau^{2H-2}\{ \tau^2[(1+\frac{1}{\tau})^{2H} - 2 + (1-\frac{1}{\tau})^{2H}] \} \\
@@ -1100,26 +1097,35 @@ We calculate the Latter of the content in $\{\,\}$ in a similar way. Then
 \end{eqnarray*}
 
 
-In fact, for $\tau$ is large,
-\begin{eqnarray*}
-  \frac{\varsigma(\tau+1)}{\varsigma(\tau)} &=& (\frac{\tau+1}{\tau})^{2H-2}
-\end{eqnarray*}
+%In fact, for $\tau$ is large,
+%\begin{eqnarray*}
+%  \frac{\varsigma(\tau+1)}{\varsigma(\tau)} &=& (\frac{\tau+1}{\tau})^{2H-2}
+%\end{eqnarray*}
 
-Therefore, thanks to Cauchy criterion for $\frac{1}{2} < H < 1, \sum\limits_{\tau=-\infty}^{\infty} \varsigma(\tau) $ divergent. With $\lim\limits_{\tau\rightarrow \infty}\varsigma(\tau)=0$, we achieve the claim. 
+Convergence of $\sum\limits_{\tau=-n}^{n} \varsigma(\tau)$ as $n \rightarrow \infty$ requires $2H-2 < -1$, namely, $H < \frac{1}{2}$.
+Otherwise, if $\frac{1}{2} < H < 1, \sum\limits_{\tau=-\infty}^{\infty} \varsigma(\tau) $ diverges. With $\lim\limits_{\tau\rightarrow \infty}\varsigma(\tau)=0$, we achieve the claim. 
 \end{proof}
 
+\begin{corollary}
+  Let $S_H$ be fractional Brownian noise , $\tau\in\mathbb{Z}$ and $\varsigma_{S_H}(\cdot)$ its autocovariance. Then $\sum_{\tau\in\mathbb{Z}}\varsigma^2_{S_H}(\tau)<\infty$ if and only if $H < \frac{3}{4}$.
+\end{corollary}
+\begin{proof}
+  Cf. \cite{nourdin}, p.72, Lemma 6.3. In Theorem \ref{sec:lmemory}, we have $\varsigma_{S_H}^2(\tau) \propto H^2(2H-1)^2\tau^{4H-4} $. The sum of it is finite if and only if, according to the same reason as in Theorem \ref{sec:lmemory}, $\tau^{4H-4}<-1$. That means $H < \frac{3}{4}$.
+\end{proof}
 \subsection{FBM is not Semimartingale for $H\neq \frac{1}{2}$}
+Let look at our Integration representation for FBM, in the case of FBM with Hurst index $\frac{1}{2}$, it must be an ordinary Brownian motion. Except for this, we will show FBM is not a seimimartingal.
 \begin{definition}
   The \emph{Hermite polynomials} form as following
   \begin{equation}
-	\eta_n(u) = (-1)^n e^{\frac{u^2}{2}} (\frac{\partial^n }{\partial u^n}e^{-\frac{u^2}{2}})
+	\eta_n(u) = (-1)^n e^{\frac{u^2}{2}} (\frac{\partial^n }{\partial u^n}e^{-\frac{u^2}{2}}),
 	\label{sec:hermite}
   \end{equation}
+  for $u\in \mathbb{R}, n\in \mathbb{N}_0$. 
 \end{definition}
 \begin{proposition}
   Let $(\eta_n)_{n\in \mathbb{N}}$ be a family of Hermite polynomials, $W$ a standard Gaussian variable, $f, g: \mathbb{R}\rightarrow \mathbb{R}$ continuously differentiable. It has then following properties 
   \begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]
-  \item $\eta_{n+1}(u)=(n+1)\eta_n(u)$ and $\eta_{n+2}(u)=u\cdot\eta_{n+1}(u) - (n+1)\eta_n(u)$ for all $n\in\mathbb{N}$.
+	\item $\eta_{n+1}(u)=(n+1)\eta_n(u)$ and $\eta_{n+2}(u)=u\cdot\eta_{n+1}(u) - (n+1)\eta_n(u)$ for all $n\in\mathbb{N}_0, u\in\mathbb{R}$.
 %	\item The family $\{\frac{1}{\sqrt{n!}}\eta_n\}_{n\in \mathbb{N}}$ is an orthonormal basis of $\mathcal{L}^2(\mathbb{R}, \frac{1}{\sqrt{2\pi}}e^{-\frac{u^2}{2}}\, du)$
 	\item Let $W, V$ be standard Gaussian distributed such that $(W, V)$ have a disjoint Gaussian distribution. Then
 	  \begin{equation*}
@@ -1142,9 +1148,9 @@ Remark that, $(iii)$ means, in fact, $\{\frac{1}{\sqrt{j!}}\cdot\eta_j\}_{j=0}^{
 \end{proof}
 
 \begin{lemma}
-  Let $(U_H(t))_{t}$ be a FBM, $W$ standrad Gaussian variable, and $f$ Borel-measurable function such that $\mathrm{E}[f^2(G)] < \infty$. Then, 
+  Let $(U_H(t))_{t}$ be a FBM, $W$ standrad Gaussian variable, and $f: \mathbb{R}\rightarrow \mathbb{R}$, Borel-measurable function such that $\mathrm{E}[f^2(G)] < \infty$. Then, 
   \begin{equation*}
-	\frac{1}{n}\sum\limits_{j=1}^n f(U_H(j)-U_H(j-1)) \overset{\text{in }\mathcal{L}^2(\mathcal{P})}{\rightarrow} \mathrm{E}[f(G)],
+	\frac{1}{n}\sum\limits_{j=1}^n f(U_H(j)-U_H(j-1)) \overset{\text{in }\mathcal{L}^2(\mathcal{P})}{\rightarrow} \mathrm{E}[f(W)],
   \end{equation*}
   as $n$ tend to $\infty$. In particular,
   \begin{equation}
@@ -1187,7 +1193,7 @@ Remark that, $(iii)$ means, in fact, $\{\frac{1}{\sqrt{j!}}\cdot\eta_j\}_{j=0}^{
 	\begin{eqnarray*}
 	  |\varsigma_{S_H}(k)| &=& |\varsigma_{S_H}(|k|)|\\
 	  &=& \mathrm{E}[(U_H(1) - U_H(0))(U_H(|x|+1)-U_H(|x|))]\\
-	  &\le& \underbrace{\sqrt{\mathrm{E}[U_H(1)^2]}}_{\le 1}\cdot \underbrace{\sqrt{\mathrm{E}[U_H(|x|+1) - U_H(|x|)]^2}}_{\le 1}\\
+	  &\overset{\text{Cauchy Schwartz}}{\le}& \underbrace{\sqrt{\mathrm{E}[U_H(1)^2]}}_{= 1}\cdot \underbrace{\sqrt{\mathrm{E}[U_H(|x|+1) - U_H(|x|)]^2}}_{= 1}\\
 	  &=& 1
 	\end{eqnarray*}
 	Consequently, $(\varsigma_{S_H}(j-m))^k \le |\varsigma_{S_H}(j-m)|$. In fact,
@@ -1213,41 +1219,123 @@ Remark that, $(iii)$ means, in fact, $\{\frac{1}{\sqrt{j!}}\cdot\eta_j\}_{j=0}^{
   FBM is not a semimartingale for $H\neq \frac{1}{2}$.
 \end{theorem}
 \begin{proof}
-  Without loss of generality, we set the Time index $T=[0, 1]$. Choose $\beta=2$ in (\ref{sec:semilemma}), we suppose $U_H(t)$ were a semimartingale.\\
+  Without loss of generality, we set the Time index $T=[0, 1]$. Choosing $\beta=2$ in (\ref{sec:semilemma}), we suppose $U_H(t)$ were a semimartingale.\\
   Case $H < \frac{1}{2}$. Then $\sum_{j=1}^n |U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|^2=\infty$ contradicts that semimartingale has finite quadratic variation.\\
-  Case $H > \frac{1}{2}$. $\sum_{j=1}^n |U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|^2=0$. On the one hand, according to Doob-Meyer decomposition, $U_H(t) = M(t) + A(t)$, where $M(t)$ is a local martingal and $A(t)$ is finite variation process. Then we have $[U_H, U_H] = [M, M] = 0$ by assumption. Consequently, $M(t)$ is zero process due to Cauchy Schwarz inequality. In other words, $U_H(t)=A(t)$ which has finite variation. On the ohter Hand, choosing $1<\gamma<\frac{1}{H}$, then $\sum_{j=1}^n |U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|^\gamma \rightarrow \infty$. Precisily, 
+  Case $H > \frac{1}{2}$. $\sum_{j=1}^n |U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|^2=0$. On the one hand, according to Doob-Meyer decomposition, $U_H(t) = M(t) + A(t)$, where $M(t)$ is a local martingal and $A(t)$ is local finite variation process. Due to $A(t)$ is local finite, we have $0=<U_H, U_H> = <M, M> $, where $<\cdot,\cdot>$ is denoted for quadratic variation. Consequently, $M(t)$ is zero process due to Cauchy Schwarz inequality. In other words, $U_H(t)=A(t)$ which has finite variation. On the ohter Hand, choosing $1<\gamma<\frac{1}{H}$, then $\sum_{j=1}^n |U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|^\gamma \rightarrow \infty$. Precisily, 
   \begin{eqnarray*}
 	 &&\infty \leftarrow \sum_{j=1}^n |U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|^\gamma\\
 	 &\hspace{2em}&\le \underbrace{\sup\limits_{1\le j\le n}|U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|^{\gamma-1}}_{\overset{(\gamma-1)-\text{H\"older}}{\rightarrow}0} \cdot \sum_{j=1}^n|U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|,
   \end{eqnarray*}
-  this leads to $\sum_{j=1}^n|U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|\rightarrow \infty$ contradicts mentioned above.\\
+  this leads to $\sum_{j=1}^n|U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|\rightarrow \infty$ contradicts mentioned above that $U_H(t)$ has finite variation.\\
   Given all that, FBM is not a semimartingal for $H\neq \frac{1}{2}$.
 \end{proof}
 
-\subsection{Integration with respect to FBM}
-\begin{theorem}
-  Let $U_H$ be a FBM. If the Hurst index $H>\frac{1}{6}$ and $f\in \mathcal{C}^{\infty}(\mathbb{R})$ with polynomial growth for all its derivatives, then $(\textbf{Young})\int_0^T f'(U_H(u))\,\mathop{dU_H(u)}$ exist. Moreover ons has
-  \begin{equation}
-	f(U_H(T)) - f(U_H(0)) = (\textbf{Young})\int_0^T f'(U_H(u)) \mathop{dU_H(u)}
-	\label{sec:intfbm}
-  \end{equation}
-  for $T \ge 0$.
-\end{theorem}
+%\subsection{Integration with respect to FBM}
+%\begin{definition}
+%  Let $(F(t))_{t \in T}$ and $(G(t))_{t \in T}$ be two stochastic processes with continuous path. The \emph{symmetric integral} of $F$ with respecct to $G$ is defined as following
+%  \begin{equation*}
+%	(\textbf{symmetric})\int_0^T F(u) \mathop{dG(u)} = \frac{1}{2}\lim\limits_{n\rightarrow\infty}\sum_{j=0}^{n-1} (F_{\frac{(j+1)T}{n}} + F_{\frac{jT}{n}}) (G_{\frac{(j+1)T}{n}} - G_{\frac{jT}{n}}).
+%  \end{equation*}
+%\end{definition}
+%\begin{theorem}
+%  (Cf.\cite{chenu} and \cite{gradin})Let $U_H$ be a FBM. If the Hurst index $H>\frac{1}{6}$ and $f\in \mathcal{C}^{\infty}(\mathbb{R})$ with polynomial growth for all its derivatives, then $(\textbf{symmetric})\int_0^T f'(U_H(u))\,\mathop{dU_H(u)}$ exist. Moreover ons has
+%  \begin{equation}
+%	f(U_H(T)) - f(U_H(0)) = (\textbf{symmetric})\int_0^T f'(U_H(u)) \mathop{dU_H(u)}
+%	\label{sec:intfbm}
+%  \end{equation}
+%  for $T \ge 0$.
+%\end{theorem}
 
-\begin{proof}
- \end{proof}
+%\begin{proof}
+%  See \cite{nourdin}, p.32, Theorem 3.5 .
+% \end{proof}
+
+
 \newpage
-
-
 %---------- 4. section ------------%
 \section{Fractional Ornstein Uhlenbeck Process Model}
 \setcounter{equation}{0}
-
 \newpage
 
 %---------- 5. Anwendung in die finanzmathe bzw. in der volatility process -------%
 \section{Application in Financial Mathematics}
+\setcounter{equation}{0}
+\subsection{Fractional Black-Scholes Model}
+\begin{lemma}
+  
+\end{lemma}
 
+\begin{theorem}
+  Let $(S_t)_{t\in[0, T]}$ be a stochastic process such that
+  \begin{eqnarray}
+	S_t = \exp\brkt{a(t) + \sigma U_H(t)},
+	\label{sec:fbs}
+  \end{eqnarray}
+  where $U_H(t)$ is FBM and $a: [0, T]\rightarrow \mathbb{R}$ a measurable and bounded on its domain. If there exist
+  \begin{eqnarray*}
+  \xi^1 = f_0\mathbbm{1}_{\{0\}}+\sum_{k=1}^{n-1} f_k \mathbbm{1}_{(\tau_k, \tau_{k+1}]}
+  \end{eqnarray*}
+  where $\{f_k\}_0^n$ is family of real $\mathcal{F}^{U_H}_k $-measurable function with $\mathcal{F}^{U_H}_k $ Filtration generated of $\{U_H(k)\}$ , $0 < \tau_1 < \cdots <\tau_n \le T$ are stopping times respect to $\mathcal{F}^{U_H}_t $ respectively,  with $\tau_{k+1} - \tau_k\ge m$ and $\mathcal{P}[f_k\neq 0]>0$, then
+  \begin{eqnarray*}
+	\mathcal{P}[(\xi^1 \cdot S)_T < 0] > 0.
+	\label{sec:claim}
+  \end{eqnarray*}
+\end{theorem}
+
+\begin{proof}
+ % We prove the $\mahtcal{\mu^w} [(\xi^1 \codt S)_T < 0] > 0$ to obtain the claim. \\
+  Cf.\cite{chridito}, p.18, Theorem 4.3 . We have
+    \begin{eqnarray*}	
+	  (\xi^1 \cdot S)_T = \sum_{k=1}^{n-1} f_k(e^{U_H(\tau_{k+1})} - e^{U_H(\tau_k)}).
+	\end{eqnarray*}
+  Assume ${\mathcal{P}}[(\xi^1 \cdot S)_T < 0] = 0$, then there exist 
+  $$
+  l = \min \{ j: \mathcal{P}[f_j \neq 0] > 0,\hspace{1em} \mathcal{P}[\sum_{k=1}^{j} f_k (e^{U_H(\tau_{k+1})} - e^{U_H(\tau_k)})\ge 0]=1 \}
+  $$
+  This leads to
+  \begin{eqnarray*}
+	\mathcal{P} \left[\brkt{\sum_{k=1}^{l-1} f_k (e^{U_H(\tau_{k+1})} - e^{U_H(\tau_k)}} \le 0\right] = 1 
+  \end{eqnarray*}
+  Ignoring constant term, we define 
+  $$
+  U_H(t)(\omega) = \int_{\mathbb{R}} \mathbbm{1}_{\{t\ge u\}}\cdot (t-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u\le 0\}} (-u)^{H-\frac{1}{2}} \, \mathop{d\omega(u)} .
+  $$
+  where $\omega(u) := B_u(\omega)$ for all $\omega \in \Omega^w$.
+  We give the filtration $(\mathcal{F}_t^{\Omega^w})$ denoting by 
+  $$
+  \mathcal{F}_t^{\Omega^w} := \sigma(\{\{w \in \Omega^w : \omega(u) \in \mathbb{R}\} : -\infty < u \le t, c\in\mathbb{R}\}).
+  $$
+  Then $\tau_k$ is also stopping time of $\mathcal{F}_t^{\Omega^w}$ due to
+  $$
+  \mathcal{F}^{U_H}_t \subset \mathcal{F}_t^{\Omega^w}.	t \in \mathbb{R}
+  $$
+ For $\omega \in \Omega^w$, we split it into two parts as follows
+ \begin{eqnarray*}
+   \psi_{\omega}(u) := \omega(u)\mathbbm{1}_{(-\infty, \tau_l(\omega)}, s\in \mathbb{R} \\
+   \phi_{\omega}(u) := \omega(\tau_l(\omega) + u) - \omega(\tau_l(\omega)), s\ge 0.
+ \end{eqnarray*}
+Corresponding to each, we define
+\begin{eqnarray*}
+  \Omega^1 := \{\psi_{\omega} \in \mathcal{C}(\mathbb{R}) : \omega \in \Omega^w\}\\
+  \Omega^2 := \{\phi_{\omega} \in \mathcal{C}([0, \infty)) : \omega \in \Omega^w\}
+\end{eqnarray*}
+And for the smallst $\sigma$-algebra of all subsets, respectively, of $\Omega^1, \Omega^2$ denoted by $\mathscr{B}^1, \mathscr{B}^2$.
+Notice that
+\begin{eqnarray*}
+  \{\tau_l \le t\} \cap \{\psi_{\omega} \in \Omega^w\} &=& \{{\omega \in \Omega^w : \omega(u) \in \mathbb{R}\} : -\infty < u \le t\}\\&\in& \mathcal{F}^{\Omega^w}_t,
+\end{eqnarray*}
+therefore is $\psi_{\omega}$ a $\mathcal{F}^{\Omega^w}_{\tau_l}$- measurable mapping. We replace the $\omega$ by $\psi_{\omega}, \phi_{\omega}$ calculating the value process
+\begin{eqnarray*}
+  \sum_{k=1}^{l-1} f_k (e^{U_H(\tau_{k+1})} - e^{U_H(\tau_{k})}) + f_l(e^{U_H(\tau_l+h)}) (\omega) = J_h(\psi_{\omega}, \phi_{\omega})
+\end{eqnarray*}
+where $J_h$ defined as
+\begin{eqnarray*}
+  &&J_h(\psi, \phi) : = \brkt{\sum_{k=1}^{l-1} f_k\brkt{e^{U_H(\tau_{k+1})} - e^{U_H(\tau_{k})}}} (\psi) \\
+  &+& f_l\brkt{\exp\{\int_{-\infty}^{\tau_l(\psi)}(\tau_l(\psi)+h+u)^{H-\frac{1}{2}}-(\tau_l(\psi)-u)^{H-\frac{1}{2}}\mathop{d\psi(s)}\}}\\
+  &\cdot& f_l \brkt{\exp\{\int_0^{h}(h-u)^{H-\frac{1}{2}}\mathop{d \phi(u)}\} - 1}
+\end{eqnarray*}
+for $\psi\in\Omega^1, \phi\in\Omega^2$.
+\end{proof}
 \newpage
 
 %---------- x. conclusion ---------%
@@ -1260,8 +1348,12 @@ Remark that, $(iii)$ means, in fact, $\{\frac{1}{\sqrt{j!}}\cdot\eta_j\}_{j=0}^{
 \fancyhead[LO, RE]{}
 \begin{thebibliography}{99}
 	\bibitem{bauer} \textsc{Bauer,~H.} (2002). Wahrscheinlichkeitstheorie(5th. durchges. und verb. Aufl.). Berlin: W. de Gruyter
+	\bibitem{chenu} \textsc{Cheridito,~P., \& Nualart,~D.} (2005). Stochastic Integral of Divergence Type with Respect to Fractional Brownian Motion with Hurst Parameter $H \in(0, \frac{1}{2})$. Ann. Inst. H. Poincar\'e Probab. Statist. 41(6), pp.1049-1081 
+	\bibitem{chridito} \textsc{Cheridito,~P.} (2003). Arbitrage in Fractional Brownian Motion Models. Finance Stoch. 7. no. 4, 533-553
+	\bibitem{gradin} \textsc{Gradinaru~M., Nourdin~I., Russo~F., Vallois~P.} (2005). m-Order Integrals and Generalized Ito's Formula; The Case of a Fractional Brownian Motion with Any Hurst Index. Ann. Inst. H. Poincar\'e Probab. Statist. 41(4), pp.781-806 
 	\bibitem{loeve} \textsc{L\`oeve,~M.} (1960). Probability Theory (2nd ed.). N.J.: D. Van Nostrand Princeton.
 	\bibitem{samorodnitsky} \textsc{Samorodnitsky,~G., \& Taqqu, ~M.} (1994). Stable Non-Gaussian Random Processes: Stochastic Models with Infinite Variance. New York: Chapman \& Hall.
+	\bibitem{severini}\textsc{Severini,~T.} (2005). Elements of Distribution Theory. New York, NY: Cambridge University Press.
 	\bibitem{mandelbrot} \textsc{Mandelbrot, ~B.B., \& Van Ness, ~J.W.} (1968). Fractional Brownian Motions, Fractional Noises and Applications. SIAM Review 10 (4), 422–437.
 	\bibitem{nourdin} \textsc{Nourdin, I.} (2012). Selected Aspects of Fractional Brownian Motion. Milano: Springer Milan.
 	\bibitem{shilling} (2012, October 1). Stochastic Processes. Lecture conducted from \textsc{Schilling, R.}, Dresden.
