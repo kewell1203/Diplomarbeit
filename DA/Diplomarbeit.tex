@@ -106,6 +106,11 @@
 \setcounter{section}{0}
 \setcounter{page}{1}
 \section{Introduction}
+blah
+\newpage
+blah
+\newpage
+blah
 
 \newpage
 
@@ -120,7 +125,7 @@ In this section we start off by looking at some general concepts of probability 
   \begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]
 	\item $\Omega \in $ \AA.
 	\item For any set $F \in \mathscr{A}$, its complement $\compl{F} \in$ \AA.
-	\item If a serie $\{F_n\}_{n \in \mathbb{N}} \subseteq \mathscr{A}$, then $\cup_{n \in \mathbb{N}}F_n \in $ \AA.
+	\item If there is a sequence such that $\{F_n\}_{n \in \mathbb{N}} \subseteq \mathscr{A}$, then $\cup_{n \in \mathbb{N}}F_n \in $ \AA.
   \end{enumerate}
 \end{definition}
 
@@ -1261,9 +1266,77 @@ Remark that, $(iii)$ means, in fact, $\{\frac{1}{\sqrt{j!}}\cdot\eta_j\}_{j=0}^{
 \section{Application in Financial Mathematics}
 \setcounter{equation}{0}
 \subsection{Fractional Black-Scholes Model}
+blah\dots blah
+A finace market is modeled with two stochastic processes that a process of a riskless asset $(A_t)_t$ and a process of price of a stock $(S_t)_t$.  The stock is assumed that it pays no dividends. We give our fractional Black-Scholes model as follows
+\begin{eqnarray}
+  \mathop{dA_t} &=& rA_t\mathop{dt}\nonumber\\
+  \mathop{dS_t} &=& \mu_t S_t \mathop{dt} + \sigma U_H(t)
+  \label{sec:fbs1}
+\end{eqnarray}
+for $t\in [0, T]$.
+
+Setting initial values $A_0=1, S_0=1$, 
+\begin{eqnarray}
+  A_t &=& \exp(rt)\nonumber\\
+  S_t &=& \exp(\mu_tt +\sigma U_H(t)), t\in [0, T]
+  \label{sec:fbs2}
+\end{eqnarray}
+is the solution of (\ref{sec:fbs1}). \\
+First we give some basic concepts in following. Through this section we denote $\mathcal{F}^X_t$ the filtration of a stochatic process $(X_t)$. Our finance market consist of $\hat{X}:=(X_t^0,\dots, X_t^n)$.
+
+\begin{definition}
+  A $\mathbb{R}^{n+1}$-valued stochastic process $(\hat{\xi}_t)_t:=(\xi_t^0, \xi_t^1,\dots, \xi_t^n)_{t\in [0, T]}$ is said to be a \emph{strategy} , if $\hat{\xi}_t \in \mathcal{F}^X_{j}$ for $0\le j \le t$.
+\end{definition}
+
+\begin{definition}
+  A stochastic process $(V_t)_{t\in[0, T]}$ is said to be \emph{value process} respect to strategy $\hat{\xi}_{t\in [0, T]}$, if 
+  \begin{eqnarray*}
+	V_t = \sum_{k=0}^n \xi^k_t X^k_t =: \hat{\xi}_t\cdot\hat{X}_t.
+  \end{eqnarray*}
+  for $t \in [0, T]$.
+\end{definition}
+
+\begin{definition}
+  A strategy $(\hat{\xi}_t)_{t\in [0, T]}$ is said to be \emph{self-financing}, if 
+  \begin{eqnarray*}
+	\hat{\xi}_t \cdot \hat{X}_t = \hat{\xi}_{t+\Delta} \cdot \hat{X}_t
+  \end{eqnarray*}
+  for $t \in [0, T]$.
+\end{definition}
+
+\begin{definition}
+  A stochastic process $(\tilde{V}_{t\in[0,T]})$ is said to be \emph{discounted value process} of a value process $(V_t)_t{t\in [0, T]}$ respect to $\hat{\xi}_{t\in [0, T]}$, if 
+  \begin{eqnarray*}
+	\tilde{V}_t = \frac{V_t}{\xi_t^0}
+  \end{eqnarray*}
+  for $t \in [0, T]$.
+\end{definition}
+
+\begin{definition}
+  A self-financing strategy $\hat{\xi}$ is said to be \emph{arbitrage}, if its discounted process satisfies following conditions
+  \begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]
+	\item $\mathcal{P}[\tilde{V}_T - \tilde{V}_0]=1$.
+	\item $\mathcal{P}[\tilde{V}_T > 0] > 0$.
+	\end{enumerate}
+  \end{definition}
+
 \begin{lemma}
-  
+  Let $(X_t)_{t\ge 0}$ be a stochastic process continueous in $t$. If $(X_t)$ is a modification of the process 
+  $$
+  \brkt{\int_0^t (t-u)^{H-\frac{1}{2}}\mathop{dB_u}}_{t\ge 0}
+  $$
+  for $(B_t)_{t\ge 0}$ a Brownian motion and $H\in (0, \frac{1}{2})\cup(\frac{1}{2}, 1)$,
+  then 
+  $$
+  \mathcal{P}[\sup\limits_{t\in[a,b]} X_t \le -c] > 0
+  $$
+  for $c \ge 0$ and $0< a\le b$.
+  \label{sec:lll} 
 \end{lemma}
+
+\begin{proof}
+  See \cite{chridito}, p.15, Lemma 4.2 .
+\end{proof}
 
 \begin{theorem}
   Let $(S_t)_{t\in[0, T]}$ be a stochastic process such that
@@ -1311,8 +1384,8 @@ Remark that, $(iii)$ means, in fact, $\{\frac{1}{\sqrt{j!}}\cdot\eta_j\}_{j=0}^{
   $$
  For $\omega \in \Omega^w$, we split it into two parts as follows
  \begin{eqnarray*}
-   \psi_{\omega}(u) := \omega(u)\mathbbm{1}_{(-\infty, \tau_l(\omega)}, s\in \mathbb{R} \\
-   \phi_{\omega}(u) := \omega(\tau_l(\omega) + u) - \omega(\tau_l(\omega)), s\ge 0.
+ \psi_{\omega}(u) := \omega(u)\mathbbm{1}_{(-\infty, \tau_l(\omega)]}, u\in \mathbb{R} \\
+   \phi_{\omega}(u) := \omega(\tau_l(\omega) + m) - \omega(\tau_l(\omega)), u\ge 0.
  \end{eqnarray*}
 Corresponding to each, we define
 \begin{eqnarray*}
@@ -1322,25 +1395,62 @@ Corresponding to each, we define
 And for the smallst $\sigma$-algebra of all subsets, respectively, of $\Omega^1, \Omega^2$ denoted by $\mathscr{B}^1, \mathscr{B}^2$.
 Notice that
 \begin{eqnarray*}
-  \{\tau_l \le t\} \cap \{\psi_{\omega} \in \Omega^w\} &=& \{{\omega \in \Omega^w : \omega(u) \in \mathbb{R}\} : -\infty < u \le t\}\\&\in& \mathcal{F}^{\Omega^w}_t,
+  \{\tau_l \le t\} \cap \{\psi_{\omega} \in \Omega^w\} &=& \{\{\omega \in \Omega^w : \omega(u) \in \mathbb{R}\} : -\infty < u \le t\}\\
+  &\in& \mathcal{F}^{\Omega^w}_t,
 \end{eqnarray*}
-therefore is $\psi_{\omega}$ a $\mathcal{F}^{\Omega^w}_{\tau_l}$- measurable mapping. We replace the $\omega$ by $\psi_{\omega}, \phi_{\omega}$ calculating the value process
+therefore is $\psi_{\omega}$ a $\mathcal{F}^{\Omega^w}_{\tau_l}$- measurable mapping. Moreover, since the strong Markovian property of Brownian motion, $\phi_{\omega}$ is independent of $\mathcal{F}^{\Omega^w}_{\tau_l}$ and it must be a Brownian motion.  We replace the $\omega$ by $\psi_{\omega}, \phi_{\omega}$ calculating the value process
 \begin{eqnarray*}
-  \sum_{k=1}^{l-1} f_k (e^{U_H(\tau_{k+1})} - e^{U_H(\tau_{k})}) + f_l(e^{U_H(\tau_l+h)}) (\omega) = J_h(\psi_{\omega}, \phi_{\omega})
+  &&\brkt{\sum_{k=1}^{l-1} f_k (e^{U_H(\tau_{k+1})}  - e^{U_H(\tau_{k})}) + f_l(e^{U_H(\tau_l+m)}-e^{U_H(\tau_l)})} (\omega)  \\
+  &=& \underbrace{\sum_{k=1}^{l-1} f_k (e^{U_H(\tau_{k+1})} - e^{U_H(\tau_{k})})}_{:=J^1} (\omega) + f_l\brkt{e^{U_H(\tau_l)}\brkt{(e^{U_H(\tau_l+m)}-e^{U_H(\tau_l)})-1}}(\omega)\\
+  &=& J^1(\omega) + f_l(\exp\{\int_{\mathbb{R}}\mathbbm{1}_{\{\tau_l\ge u\}}(\tau_l(\omega)+m-u)^{H-\frac{1}{2}}-\mathbbm{1}_{\{\tau_l\ge u\}}(\tau_l(\omega)-u)^{H-\frac{1}{2}}\mathop{d\omega(u)}\\
+&+& \int_{\mathbb{R}} \mathbbm{1}_{(\tau_l, \tau_l+m]}(\tau_l+m - u)^{H-\frac{1}{2}}\mathop{d\omega(u)}\})\\
+&=&  J^1(\psi_{\omega}) + \underbrace{f_l\brkt{\exp\{\int_{-\infty}^{\tau_l(\psi_{\omega})}(\tau_l(\psi_{\omega})+h+u)^{H-\frac{1}{2}}-(\tau_l(\psi_{\omega})-u)^{H-\frac{1}{2}}\mathop{d\psi_{\omega}(u)}\}}_{=:J^2(\psi_{\omega}, m)}}\\
+&\cdot&  \underbrace{\brkt{\exp\{\int_0^{m}(m-u)^{H-\frac{1}{2}}\mathop{d \phi_{\omega}(u)}\} - 1}}_{=:J^3(\phi_{\omega}, m)}\\
+  &=& J(\psi_{\omega}, \phi_{\omega}, m)
 \end{eqnarray*}
-where $J_h$ defined as
+where $J$ is defined as
 \begin{eqnarray*}
-  &&J_h(\psi, \phi) : = \brkt{\sum_{k=1}^{l-1} f_k\brkt{e^{U_H(\tau_{k+1})} - e^{U_H(\tau_{k})}}} (\psi) \\
-  &+& f_l\brkt{\exp\{\int_{-\infty}^{\tau_l(\psi)}(\tau_l(\psi)+h+u)^{H-\frac{1}{2}}-(\tau_l(\psi)-u)^{H-\frac{1}{2}}\mathop{d\psi(s)}\}}\\
-  &\cdot& f_l \brkt{\exp\{\int_0^{h}(h-u)^{H-\frac{1}{2}}\mathop{d \phi(u)}\} - 1}
+  J(\psi, \phi, t) : = J^1(\psi) + J^2(\psi, t)  &\cdot&  J^3(\phi, t)
 \end{eqnarray*}
-for $\psi\in\Omega^1, \phi\in\Omega^2$.
+for $\psi\in\Omega^1, \phi\in\Omega^2$.\\
+
+Indeed, fixing $\psi\in\Omega^1, \phi\in\Omega^2$, $J(\psi, \phi, \cdot)$ has continueous path on $(\Omega^1 \times \Omega^2, \mathscr{B}^1\otimes\mathscr{B}^2)$, then we can define a $\mathscr{B}^1\otimes\mathscr{B}^2$- measurable set
+$$
+E := \{(\psi, \phi) : \sup\limits_{m\le t\le T} J(\psi, \phi, t) < 0\}
+$$
+
+\begin{eqnarray*}
+  \mathrm{E} [\mathbbm{1}_{E}(\omega_1, \phi_{\omega})| \psi_{\omega}=\omega_1] &=& \mathcal{P^{\omega}}[\sup\limits_{m\le t \le T} J(\omega_1, \phi_{\omega}, t) < 0] \\
+  &\ge& \mathcal{P}^w[J^1(\omega_1) + \sup\limits_{m\le t \le T}J^2(\omega_1, t) \cdot \sup\limits_{m\le t \le T}J^3(\phi_{\omega}, t) < 0]
+\end{eqnarray*}
+It is clear $J^2(\omega_1)$ is bounded for a fixed $\omega_1$ on the compact set and $J^1(\omega_1)$ also. We set $J^1(\omega_1) = c_1 , \sup\limits_{_{m\le t \le T}}J^2(\omega_1, t) = c_2$. Thanks to Lemma \ref{sec:lll}, there exist $D \subset \Omega^{w} $  such that $\mathcal{P}^{w}[C] >0$ and 
+\begin{eqnarray*}
+  \int_0^{m}(m-u)^{H-\frac{1}{2}}\mathop{d \phi_{\omega}(u)} < c_3 
+\end{eqnarray*}
+for $\omega \in D$.
+where $c_3$ could be small enough that $c_2 \cdot e^{c_3 - 1} < 0 $. Under assumtion at beginning, $c_1 \le 0$ almost surely. All of this leads to 
+\begin{eqnarray*}
+  \mathcal{P}^w[ \mathrm{E} [\mathbbm{1}_{E}(\omega_1, \phi_{\omega})| \psi_{\omega}=\omega_1]] > 0
+\end{eqnarray*}
+for $\omega \in \Omega^w$.
+Then
+\begin{eqnarray*}
+  &&\mathcal{P}^w[\sum_{k=1}^{l} f_k (e^{U_H(\tau_{k+1})} - e^{U_H(\tau_k)}) < 0] \\
+&\ge&\mathcal{P}^w[\sum_{k=1}^{l-1} f_k (e^{U_H(\tau_{k+1})}  - e^{U_H(\tau_{k})}) +  \sup\limits_{m\le t \le T}f_l(e^{U_H(\tau_l+t)}-e^{U_H(\tau_l)})  < 0]\\
+&=& \mathrm{E}[ \mathrm{E} [\mathbbm{1}_{E}(\omega_1, \phi_{\omega})| \psi_{\omega}=\omega_1]] > 0
+\end{eqnarray*}
+this contradicts our assumption. It must be that ${\mathcal{P}}[(\xi^1 \cdot S)_T < 0] > 0$.
+
 \end{proof}
+
 \newpage
 
 %---------- x. conclusion ---------%
 \section{Conclusion}
 
+blah
+\newpage
+blah
 \newpage
 
 %---------- reference -------------%

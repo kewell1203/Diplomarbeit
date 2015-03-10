@@ -1,19 +1,19 @@
 \contentsline {section}{\numberline {1}Introduction}{1}
-\contentsline {section}{\numberline {2}Gaussian Process and Brownian Motion}{2}
-\contentsline {subsection}{\numberline {2.1}Probability Space and Stochastic Process }{2}
-\contentsline {subsection}{\numberline {2.2}Normal Distribution and Gaussian Process}{3}
-\contentsline {subsection}{\numberline {2.3}Brownian Motion}{9}
-\contentsline {section}{\numberline {3}Stable Measures and Stable Integrals}{14}
-\contentsline {subsection}{\numberline {3.1}Stable Variables}{14}
-\contentsline {subsection}{\numberline {3.2}Stable Random Measures}{15}
-\contentsline {subsection}{\numberline {3.3}Stable Integrals}{16}
-\contentsline {section}{\numberline {4}Fractional Brownian Motion}{18}
-\contentsline {subsection}{\numberline {4.1}Definition of Fractional Brownian Motion}{18}
-\contentsline {subsection}{\numberline {4.2}Regularity}{21}
-\contentsline {subsection}{\numberline {4.3}Fractional Brownian Noise}{22}
-\contentsline {subsection}{\numberline {4.4}FBM is not Semimartingale for $H\not =\frac {1}{2}$}{24}
-\contentsline {section}{\numberline {5}Fractional Ornstein Uhlenbeck Process Model}{29}
-\contentsline {section}{\numberline {6}Application in Financial Mathematics}{30}
-\contentsline {subsection}{\numberline {6.1}Fractional Black-Scholes Model}{30}
-\contentsline {section}{\numberline {7}Conclusion}{32}
-\contentsline {section}{References}{33}
+\contentsline {section}{\numberline {2}Gaussian Process and Brownian Motion}{4}
+\contentsline {subsection}{\numberline {2.1}Probability Space and Stochastic Process }{4}
+\contentsline {subsection}{\numberline {2.2}Normal Distribution and Gaussian Process}{5}
+\contentsline {subsection}{\numberline {2.3}Brownian Motion}{11}
+\contentsline {section}{\numberline {3}Stable Measures and Stable Integrals}{16}
+\contentsline {subsection}{\numberline {3.1}Stable Variables}{16}
+\contentsline {subsection}{\numberline {3.2}Stable Random Measures}{17}
+\contentsline {subsection}{\numberline {3.3}Stable Integrals}{18}
+\contentsline {section}{\numberline {4}Fractional Brownian Motion}{20}
+\contentsline {subsection}{\numberline {4.1}Definition of Fractional Brownian Motion}{20}
+\contentsline {subsection}{\numberline {4.2}Regularity}{23}
+\contentsline {subsection}{\numberline {4.3}Fractional Brownian Noise}{24}
+\contentsline {subsection}{\numberline {4.4}FBM is not Semimartingale for $H\not =\frac {1}{2}$}{26}
+\contentsline {section}{\numberline {5}Fractional Ornstein Uhlenbeck Process Model}{31}
+\contentsline {section}{\numberline {6}Application in Financial Mathematics}{32}
+\contentsline {subsection}{\numberline {6.1}Fractional Black-Scholes Model}{32}
+\contentsline {section}{\numberline {7}Conclusion}{37}
+\contentsline {section}{References}{39}
