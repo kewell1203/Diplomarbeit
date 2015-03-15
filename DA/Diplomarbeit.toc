@@ -12,8 +12,9 @@
 \contentsline {subsection}{\numberline {4.2}Regularity}{23}
 \contentsline {subsection}{\numberline {4.3}Fractional Brownian Noise}{24}
 \contentsline {subsection}{\numberline {4.4}FBM is not Semimartingale for $H\not =\frac {1}{2}$}{26}
-\contentsline {section}{\numberline {5}Fractional Ornstein Uhlenbeck Process Model}{31}
-\contentsline {section}{\numberline {6}Application in Financial Mathematics}{32}
-\contentsline {subsection}{\numberline {6.1}Fractional Black-Scholes Model}{32}
-\contentsline {section}{\numberline {7}Conclusion}{37}
-\contentsline {section}{References}{39}
+\contentsline {section}{\numberline {5}Fractional Ornstein-Uhlenbeck Process}{31}
+\contentsline {section}{\numberline {6}Applications in Financial Mathematics}{34}
+\contentsline {subsection}{\numberline {6.1}Fractional Black-Scholes Model}{34}
+\contentsline {subsection}{\numberline {6.2}Fractional Volatility Model}{38}
+\contentsline {section}{\numberline {7}Conclusion}{39}
+\contentsline {section}{References}{41}

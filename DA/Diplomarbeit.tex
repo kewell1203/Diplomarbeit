@@ -1258,30 +1258,113 @@ Remark that, $(iii)$ means, in fact, $\{\frac{1}{\sqrt{j!}}\cdot\eta_j\}_{j=0}^{
 
 \newpage
 %---------- 4. section ------------%
-\section{Fractional Ornstein Uhlenbeck Process Model}
+\section{Fractional Ornstein-Uhlenbeck Process}
 \setcounter{equation}{0}
+In this section we turn our attention on the fractional Ornstein-Uhlenbeck process (for short, we denote FOU). Consider the following stochastic dynamics
+\begin{eqnarray}
+  \mathop{dX_t} = -aX_t\mathop{dt} + \gamma \mathop{dU_H(t)},
+\end{eqnarray}
+where $(X_t)_{t\ge 0}$ is a stochastic process, $a\in\mathbb{R}, \gamma\in\mathbb{R}_{+}$ and $(U_H(t))_{t\ge 0} $ a FBM with Hurst exponent $H$. In fact, given a initial solution $X_0(\omega)=b(\omega)$, then it is
+\begin{eqnarray}
+  X_t(\omega) = b(\omega) - a\int_0^t X_u(\omega) \mathop{du} + \gamma U_H(t)(\omega)
+  \label{sec:oup}
+\end{eqnarray}
+for $t \ge 0$.
+
+Due to $U_H(t)$ is $\alpha$-H\"older-continuous with $\alpha < H$, we have following
+\begin{lemma}
+  Let $U_H(t)$ be a FBM and $u, d\in \mathbb{R}$ such that $d\le s$. Then there exist a Riemann-Stieljes integral such that 
+  \begin{eqnarray}
+	\int_d^s e^{au} \mathop{dU_H(u)} = e^{as} U_H(s) - e^{ad} U_H(d) - a\int_d^s U_H(u) e^{au}\mathop{du}.
+	\label{sec:rie}
+  \end{eqnarray}
+\end{lemma}
+
+\begin{proof}
+  See. \cite{chriel}, p.11, Proposition A.1 .
+\end{proof}
+
+\begin{theorem}
+  $\hat{X}^{b,H}_t := e^{-at} \brkt{b + \gamma\int_0^t e^{au}\mathop{dU_H(u)}}$ is the solution that solves (\ref{sec:oup}) for $u\ge 0$.
+  \label{sec:sol}
+\end{theorem}
+
+\begin{proof}
+  Cf. \cite{chriel}, p.11, Proposition A.1 . We define
+  \begin{eqnarray*}
+	Y(t):=\int_0^t X_u \mathop{du},
+  \end{eqnarray*}
+ 
+ for $t\ge 0$. Rewirte (\ref{sec:oup}) with $Y_t$ and $Y(0)=0$,
+  \begin{eqnarray*}
+	Y'(t) = b - aY(t) + \gamma U_H(t)
+  \end{eqnarray*}
+  And the solution of that linear differential equation with $Y(0)=0$ is
+  \begin{eqnarray*}
+	Y(t) = e^{-at}\int_0^t e^{au}(b+\gamma U_H(u)) \mathop{du},
+  \end{eqnarray*}
+  in terms of Definition above, using (\ref{sec:rie})
+	\begin{eqnarray*}
+	&&X(t) =  Y'(t)\\
+	&=& -ae^{-at}\int_0^t e^{au}(b+\gamma U_H(u)) \mathop{du} + e^{-at}e^{at}(b+\gamma U_H(t)) \\
+	&=&  -ae^{-at}\int_0^t e^{au}(b+\gamma U_H(u)) \mathop{du} + b +\gamma U_H(t)\\
+	&=& e^{-at} \brkt{\underbrace{-a\int_0^t e^{at} \gamma U_H(u) \mathop{du} + e^{at}\gamma U_H(t)}_{\gamma\int_0^t e^{au} \mathop{dU_H(u)}} -a\int_0^t e^{au} du \cdot b } + b\\
+  &=&  e^{-at} \brkt{\gamma\int_0^t e^{au} \mathop{dU_H(u)} - e^{au}|^{u=t}_{u=0} \cdot b } + b\\
+  &=&  e^{-at} \brkt{\gamma\int_0^t e^{au} \mathop{dU_H(u)} + b}
+	\end{eqnarray*}
+\end{proof}
+
+Let $\hat{X}_{H,t}:= \hat{X}_t^{\gamma\int_{-\infty}^0 e^{au}\mathop{dU_H(u)}, H} := e^{-at}\brkt{\gamma\int_{-\infty}^t e^{au}\mathop{dU_H(u)}}$.
+\begin{theorem}
+  $(\hat{X}_{H,t})_{t\ge 0}$ is Gaussian and stationary process.
+  \label{sec:gsp}
+\end{theorem}
+
+\begin{proof}
+  Fix $\epsilon^j > 0 H\in (0,1)$ , then there exists  $\{u_0<u_1^j<\dots<u^j_{k_j}\le t_j\}$ such that
+  \begin{eqnarray*}
+	|\int_{-\infty}^{t_j} e^{au}\mathop{dU_H(u)} - \sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}) - U_H(u^j_{l}))| < \epsilon^j.
+  \end{eqnarray*}
+  for $0 \le j \le d $.\\
+  In one hand, we calculate the characterstic function of $(\hat{X}_{t_1},\dots, \hat{X}_{t_d})$ approximately with respect with $\epsilon^1,\dots,\epsilon^d$.
+  \begin{eqnarray*}
+	\mathrm{E}[\exp\{i\sum_{j=1}^d \xi_j\hat{x}_{t_j}\}] \approx \mathrm{E}[\exp\{ i\sum_{j=1}^d \xi_j\brkt{\sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}) - U_H(u^j_{l})) }\}]
+  \end{eqnarray*}
+  Notice that since $(U_H(t))$ is Gaussian process, any linear transform of its instance is Gaussian again. In other words, 
+  \begin{eqnarray*}
+	\sum_{j=1}^d \xi_j \brkt{\sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}) - U_H(u^j_{l})) }
+  \end{eqnarray*}
+  is Gaussian. Passing $\epsilon^1,\dots,\epsilon^d$ to zero, it implies immediately $(\hat{X}_{t_1},\dots, \hat{X}_{t_d})$ is Gaussian due to the continuaty theorem of characteristic function.\\
+  On the other hand,
+	\begin{eqnarray*}
+	\mathrm{E}[\exp\{i\sum_{j=1}^d \xi_j\hat{x}_{t_j }\}] \approx \mathrm{E}[\exp\{ i\sum_{j=1}^d \xi_j\brkt{\sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}) - U_H(u^j_{l})) }\}]
+  \end{eqnarray*}
+  Since $\{U_H(t)\}$ has stationary increments, then 
+  \begin{eqnarray*}
+	&& \mathrm{E}[\exp\{ i\sum_{j=1}^d \xi_j\brkt{\sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}) - U_H(u^j_{l})) }\}] \\
+	&=& \mathrm{E}[\exp\{ i\sum_{j=1}^d \xi_j\brkt{\sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}+\tau) - U_H(u^j_{l}+\tau)) }\}]
+  \end{eqnarray*}
+  which is convergent if $\epsilon$'s tend to zero and must be equal $\mathrm{E}[\exp\{ i\sum_{j=1}^d \xi_j \hat{X}_{t_j+\tau}\}]$, i.e., $(\hat{X}_t)$ is stationary process.
+\end{proof}
+
+\begin{lemma}
+  Let $H$ be that $H\in (0, \frac{1}{2}) \cup (\frac{1}{2}, 1)$. Then
+  \begin{eqnarray*}
+	\varsigma_{X_{H}}(\tau) = \frac{1}{2} \gamma^2 \sum_{k=1}^{N} a^{-2k}\brkt{\prod_{j=0}^{2k-1}(2H-j)}\tau^{2(H-k)} + \mathcal{O}(\tau^{2(H-N-1)})
+\end{eqnarray*}
+for $N \in \mathbb{N}_{0}, \tau\in\mathbb{R}$
+  \label{sec:autocor}
+\end{lemma}
+\begin{proof}
+  See \cite{chriel}, p.7, Theorem 2.3 .
+\end{proof}
 \newpage
 
 %---------- 5. Anwendung in die finanzmathe bzw. in der volatility process -------%
-\section{Application in Financial Mathematics}
+\section{Applications in Financial Mathematics}
 \setcounter{equation}{0}
 \subsection{Fractional Black-Scholes Model}
 blah\dots blah
-A finace market is modeled with two stochastic processes that a process of a riskless asset $(A_t)_t$ and a process of price of a stock $(S_t)_t$.  The stock is assumed that it pays no dividends. We give our fractional Black-Scholes model as follows
-\begin{eqnarray}
-  \mathop{dA_t} &=& rA_t\mathop{dt}\nonumber\\
-  \mathop{dS_t} &=& \mu_t S_t \mathop{dt} + \sigma U_H(t)
-  \label{sec:fbs1}
-\end{eqnarray}
-for $t\in [0, T]$.
-
-Setting initial values $A_0=1, S_0=1$, 
-\begin{eqnarray}
-  A_t &=& \exp(rt)\nonumber\\
-  S_t &=& \exp(\mu_tt +\sigma U_H(t)), t\in [0, T]
-  \label{sec:fbs2}
-\end{eqnarray}
-is the solution of (\ref{sec:fbs1}). \\
 First we give some basic concepts in following. Through this section we denote $\mathcal{F}^X_t$ the filtration of a stochatic process $(X_t)$. Our finance market consist of $\hat{X}:=(X_t^0,\dots, X_t^n)$.
 
 \begin{definition}
@@ -1296,20 +1379,30 @@ First we give some basic concepts in following. Through this section we denote $
   for $t \in [0, T]$.
 \end{definition}
 
+%\begin{definition}
+%  A strategy $(\hat{\xi}_t)_{t\in [0, T]}$ is said to be \emph{self-financing}, if 
+%  \begin{eqnarray*}
+%	\hat{\xi}_t \cdot \hat{X}_t = \hat{\xi}_{t+\Delta} \cdot \hat{X}_t
+%  \end{eqnarray*}
+%  for $t \in [0, T]$.
+%\end{definition}
+
 \begin{definition}
-  A strategy $(\hat{\xi}_t)_{t\in [0, T]}$ is said to be \emph{self-financing}, if 
+  A stochastic process $(\tilde{V}_{t\in[0,T]})$ is said to be \emph{discounted value process} of a value process $(V_t)_t{t\in [0, T]}$ respect to $\hat{\xi}_{t\in [0, T]}$, if 
   \begin{eqnarray*}
-	\hat{\xi}_t \cdot \hat{X}_t = \hat{\xi}_{t+\Delta} \cdot \hat{X}_t
+	\tilde{V}_t = \frac{V_t}{X_t^0}
   \end{eqnarray*}
   for $t \in [0, T]$.
 \end{definition}
 
 \begin{definition}
-  A stochastic process $(\tilde{V}_{t\in[0,T]})$ is said to be \emph{discounted value process} of a value process $(V_t)_t{t\in [0, T]}$ respect to $\hat{\xi}_{t\in [0, T]}$, if 
-  \begin{eqnarray*}
-	\tilde{V}_t = \frac{V_t}{\xi_t^0}
-  \end{eqnarray*}
-  for $t \in [0, T]$.
+  A strategy $(\hat{\xi}_t)$ is said to be \emph{self-financing}, if
+  \begin{eqnarray}
+	V_T = V_0 + \sum_{j=1}^m \hat{\xi}_{s_j}\cdot (\hat{X}_{s_j} - \hat{X}_{s_{j-1}}) 
+	\label{sec:123}
+  \end{eqnarray}
+  \label{sec:def}
+  for $0=s_0\le s_1\le \dots\le s_m=T$.
 \end{definition}
 
 \begin{definition}
@@ -1319,6 +1412,22 @@ First we give some basic concepts in following. Through this section we denote $
 	\item $\mathcal{P}[\tilde{V}_T > 0] > 0$.
 	\end{enumerate}
   \end{definition}
+To be specific, our finance market is modeled with two stochastic processes that a process of a riskless asset $(A_t)_t$ and a process of price of a stock $(S_t)_t$.  The stock is assumed that it pays no dividends. Setting initial values $A_0=1, S_0=1$, we give our fractional Black-Scholes model as follows
+%\begin{eqnarray}
+%  \mathop{dA_t} &=& rA_t\mathop{dt}\nonumber\\
+%  \mathop{dS_t} &=& \mu_t S_t \mathop{dt} + \sigma U_H(t)
+%  \label{sec:fbs1}
+%\end{eqnarray}
+%for $t\in [0, T]$.
+
+%Setting initial values $A_0=1, S_0=1$, 
+\begin{eqnarray}
+  A_t &=& \exp(rt)\nonumber\\
+  S_t &=& \exp((rt + \mu(t) +\sigma U_H(t)), t\in [0, T],
+  \label{sec:fbs2}
+\end{eqnarray}
+where  $r\in\mathbb{R}, \sigma\in\mathbb{R}_+, \sup\limits_{t\in[0, T]}\mu(t) < \infty$.
+%is the solution of (\ref{sec:fbs1}). \\ 
 
 \begin{lemma}
   Let $(X_t)_{t\ge 0}$ be a stochastic process continueous in $t$. If $(X_t)$ is a modification of the process 
@@ -1337,31 +1446,31 @@ First we give some basic concepts in following. Through this section we denote $
 \begin{proof}
   See \cite{chridito}, p.15, Lemma 4.2 .
 \end{proof}
-
+TODO: wiener sample path space\dots\dots\dots\dots
 \begin{theorem}
   Let $(S_t)_{t\in[0, T]}$ be a stochastic process such that
   \begin{eqnarray}
-	S_t = \exp\brkt{a(t) + \sigma U_H(t)},
+	\tilde{S}_t = \exp\brkt{\mu(t) + \sigma U_H(t)},
 	\label{sec:fbs}
   \end{eqnarray}
-  where $U_H(t)$ is FBM and $a: [0, T]\rightarrow \mathbb{R}$ a measurable and bounded on its domain. If there exist
+  where $\mu, \sigma$ are as in (\ref{sec:fbs2}), $U_H(t)$ is a FBM. If there exist
   \begin{eqnarray*}
-  \xi^1 = f_0\mathbbm{1}_{\{0\}}+\sum_{k=1}^{n-1} f_k \mathbbm{1}_{(\tau_k, \tau_{k+1}]}
+  \xi^1_t = f_0\mathbbm{1}_{\{0\}}(t)+\sum_{k=1}^{n-1} f_k \mathbbm{1}_{(\tau_k, \tau_{k+1}]}(t)
   \end{eqnarray*}
-  where $\{f_k\}_0^n$ is family of real $\mathcal{F}^{U_H}_k $-measurable function with $\mathcal{F}^{U_H}_k $ Filtration generated of $\{U_H(k)\}$ , $0 < \tau_1 < \cdots <\tau_n \le T$ are stopping times respect to $\mathcal{F}^{U_H}_t $ respectively,  with $\tau_{k+1} - \tau_k\ge m$ and $\mathcal{P}[f_k\neq 0]>0$, then
+  where $t\in[0, T], \{f_k\}_0^{n-1}$ is family of  $\mathcal{F}^{U_H}_k $-measurable function, $0 = \tau_1 < \cdots <\tau_n = T$ are stopping times respect to $\mathcal{F}^{U_H}_t $ respectively,  with $\tau_{k+1} - \tau_k\ge m$ and $\mathcal{P}[f_k\neq 0]>0$, then
   \begin{eqnarray*}
-	\mathcal{P}[(\xi^1 \cdot S)_T < 0] > 0.
+	\mathcal{P}[(\xi^1 \cdot \tilde{S})_T < 0] > 0.
 	\label{sec:claim}
   \end{eqnarray*}
 \end{theorem}
 
 \begin{proof}
  % We prove the $\mahtcal{\mu^w} [(\xi^1 \codt S)_T < 0] > 0$ to obtain the claim. \\
-  Cf.\cite{chridito}, p.18, Theorem 4.3 . We have
-    \begin{eqnarray*}	
-	  (\xi^1 \cdot S)_T = \sum_{k=1}^{n-1} f_k(e^{U_H(\tau_{k+1})} - e^{U_H(\tau_k)}).
-	\end{eqnarray*}
-  Assume ${\mathcal{P}}[(\xi^1 \cdot S)_T < 0] = 0$, then there exist 
+  Cf.\cite{chridito}, p.18, Theorem 4.3 . $\xi^1$ is predictable. %We have
+    %\begin{eqnarray*}	
+	%  (\xi^1 \cdot S)_T = \sum_{k=1}^{n-1} f_k(e^{U_H(\tau_{k+1})} - e^{U_H(\tau_k)}).
+	%\end{eqnarray*}
+  Assume ${\mathcal{P}}[(\xi^1 \cdot \tilde{S})_T < 0] = 0$, then there exist 
   $$
   l = \min \{ j: \mathcal{P}[f_j \neq 0] > 0,\hspace{1em} \mathcal{P}[\sum_{k=1}^{j} f_k (e^{U_H(\tau_{k+1})} - e^{U_H(\tau_k)})\ge 0]=1 \}
   $$
@@ -1440,10 +1549,25 @@ Then
 &=& \mathrm{E}[ \mathrm{E} [\mathbbm{1}_{E}(\omega_1, \phi_{\omega})| \psi_{\omega}=\omega_1]] > 0
 \end{eqnarray*}
 this contradicts our assumption. It must be that ${\mathcal{P}}[(\xi^1 \cdot S)_T < 0] > 0$.
-
 \end{proof}
 
+\begin{corollary}
+  Let strategy $(\xi^0, \xi^1)$ be such that, $\xi^1$ is given as in Theorem \ref{sec:claim}. Then the strategy has no arbitrage in our finance market.
+\end{corollary}
+\begin{proof}
+  Assume $(\xi^0, \xi^1)$ is a self-financing strategy. In terms of Definition \ref{sec:def},
+\begin{eqnarray*}
+  \tilde{V}_T - \tilde{V}_0 &=&  \sum_{k=1} ^ n \frac{(\xi^0_kA_k + \xi^1_kS_k)}{A_k} - \frac{(\xi^0_{k}A_{k-1} + \xi^1_{k}S_{k-1})}{A_{k-1}}\\
+  &=&  \sum_{k=1}^{n} \xi_k (\tilde{S_k} - \tilde{S_{k-1}})
+\end{eqnarray*}
+It follows then from \ref{sec:claim}, $\mathcal{P}[(\tilde{V}_T - \tilde{V}_0) < 0] > 0$, since and therefore there is no arbitrage in this sense.
+\end{proof}
+
+\subsection{Fractional Volatility Model}
+
 \newpage
+
+
 
 %---------- x. conclusion ---------%
 \section{Conclusion}
@@ -1457,16 +1581,19 @@ blah
 \addcontentsline{toc}{section}{References}
 \fancyhead[LO, RE]{}
 \begin{thebibliography}{99}
-	\bibitem{bauer} \textsc{Bauer,~H.} (2002). Wahrscheinlichkeitstheorie(5th. durchges. und verb. Aufl.). Berlin: W. de Gruyter
-	\bibitem{chenu} \textsc{Cheridito,~P., \& Nualart,~D.} (2005). Stochastic Integral of Divergence Type with Respect to Fractional Brownian Motion with Hurst Parameter $H \in(0, \frac{1}{2})$. Ann. Inst. H. Poincar\'e Probab. Statist. 41(6), pp.1049-1081 
-	\bibitem{chridito} \textsc{Cheridito,~P.} (2003). Arbitrage in Fractional Brownian Motion Models. Finance Stoch. 7. no. 4, 533-553
-	\bibitem{gradin} \textsc{Gradinaru~M., Nourdin~I., Russo~F., Vallois~P.} (2005). m-Order Integrals and Generalized Ito's Formula; The Case of a Fractional Brownian Motion with Any Hurst Index. Ann. Inst. H. Poincar\'e Probab. Statist. 41(4), pp.781-806 
+	\bibitem{bauer} \textsc{Bauer,~H.} (2002). Wahrscheinlichkeitstheorie(5th. durchges. und verb. Aufl.). Berlin: W. de Gruyter.
+	\bibitem{chenu} \textsc{Cheridito,~P., \& Nualart,~D.} (2005). Stochastic Integral of Divergence Type with Respect to Fractional Brownian Motion with Hurst Parameter $H \in(0, \frac{1}{2})$. Ann. Inst. H. Poincar\'e Probab. Statist. 41(6):1049-1081. 
+	\bibitem{chridito} \textsc{Cheridito,~P.} (2003). Arbitrage in Fractional Brownian Motion Models. Finance Stoch. 7. no. 4, 533-553.
+	\bibitem{chriel} \textsc{Cheridito,~P., \& Kawaguchi,~H., \& Maejima, ~M.} (2003) Fractional Ornstein- Uhlenbeck Processes. Electron. J. Probab, 8(3):1-14.
+	\bibitem{comren} \textsc{Comte,~F. \& Renault,~E.} (1998). Long Memory in Continuous-time Stochastic Volatility Models. Mathematical Finance, 8(4):291-323.
+	\bibitem{gradin} \textsc{Gradinaru,~M., Nourdin,~I., Russo,~F., Vallois,~P.} (2005). m-Order Integrals and Generalized Ito's Formula; The Case of a Fractional Brownian Motion with Any Hurst Index. Ann. Inst. H. Poincar\'e Probab. Statist. 41(4):781-806. 
 	\bibitem{loeve} \textsc{L\`oeve,~M.} (1960). Probability Theory (2nd ed.). N.J.: D. Van Nostrand Princeton.
 	\bibitem{samorodnitsky} \textsc{Samorodnitsky,~G., \& Taqqu, ~M.} (1994). Stable Non-Gaussian Random Processes: Stochastic Models with Infinite Variance. New York: Chapman \& Hall.
 	\bibitem{severini}\textsc{Severini,~T.} (2005). Elements of Distribution Theory. New York, NY: Cambridge University Press.
-	\bibitem{mandelbrot} \textsc{Mandelbrot, ~B.B., \& Van Ness, ~J.W.} (1968). Fractional Brownian Motions, Fractional Noises and Applications. SIAM Review 10 (4), 422–437.
-	\bibitem{nourdin} \textsc{Nourdin, I.} (2012). Selected Aspects of Fractional Brownian Motion. Milano: Springer Milan.
+	\bibitem{mandelbrot} \textsc{Mandelbrot, ~B.B., \& Van Ness, ~J.W.} (1968). Fractional Brownian Motions, Fractional Noises and Applications. SIAM Review 10(4):422–437.
+	\bibitem{nourdin} \textsc{Nourdin,~I.} (2012). Selected Aspects of Fractional Brownian Motion. Milano: Springer Milan.
 	\bibitem{shilling} (2012, October 1). Stochastic Processes. Lecture conducted from \textsc{Schilling, R.}, Dresden.
+	\bibitem{Gatheral} \textsc{Gatheral,~J. \& Jaisson,~T. \& Rosenbaum,~M} (2014). Volatility is Rough.
 \end{thebibliography}
 \newpage
 \end{document}
