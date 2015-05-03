@@ -1,26 +1,23 @@
 \contentsline {section}{\numberline {1}Introduction}{1}
-\contentsline {section}{\numberline {2}Gaussian Processes and Brownian Motion}{2}
-\contentsline {subsection}{\numberline {2.1}Probability Spaces and Stochastic Processes }{2}
-\contentsline {subsection}{\numberline {2.2}Normal Distribution and Gaussian Process}{3}
-\contentsline {subsection}{\numberline {2.3}Brownian Motion}{10}
-\contentsline {section}{\numberline {3}Stable Measures and Stable Integrals}{15}
-\contentsline {subsection}{\numberline {3.1}Stable Variables}{15}
-\contentsline {subsection}{\numberline {3.2}Stable Random Measures}{16}
-\contentsline {subsection}{\numberline {3.3}Stable Integrals}{17}
-\contentsline {section}{\numberline {4}Fractional Brownian Motion}{19}
-\contentsline {subsection}{\numberline {4.1}Definition of Fractional Brownian Motion}{19}
-\contentsline {subsection}{\numberline {4.2}Regularity}{22}
-\contentsline {subsection}{\numberline {4.3}Fractional Brownian Noise}{24}
-\contentsline {subsection}{\numberline {4.4}FBM is not Semimartingale for $H\not =\frac {1}{2}$}{26}
-\contentsline {section}{\numberline {5}Fractional Ornstein-Uhlenbeck Process}{31}
-\contentsline {subsection}{\numberline {5.1}Fractional Ornstein-Uhlenbeck Process}{31}
-\contentsline {section}{\numberline {6}Applications in Financial Mathematics}{35}
-\contentsline {subsection}{\numberline {6.1}Fractional Black-Scholes Model}{35}
-\contentsline {subsection}{\numberline {6.2}Fractional Calculus}{39}
-\contentsline {subsubsection}{\numberline {6.2.1}Fractional Integral}{39}
-\contentsline {subsubsection}{\numberline {6.2.2}Fractional Derivative}{40}
-\contentsline {subsubsection}{\numberline {6.2.3}Discretization Fractional Process}{40}
-\contentsline {subsection}{\numberline {6.3}Fractional Stochastic Volatility Model}{44}
-\contentsline {subsection}{\numberline {6.4}Rough Fractional Stochastic Volatility Model}{46}
-\contentsline {subsection}{\numberline {6.5}Weighted Fractional Stochastic Volatility Model}{47}
-\contentsline {subsection}{\numberline {6.6}Discussion}{52}
+\contentsline {section}{\numberline {2}Gaussian Processes and Brownian Motion}{3}
+\contentsline {subsection}{\numberline {2.1}Probability Spaces and Stochastic Processes }{3}
+\contentsline {subsection}{\numberline {2.2}Normal Distribution and Gaussian Process}{4}
+\contentsline {subsection}{\numberline {2.3}Brownian Motion}{11}
+\contentsline {section}{\numberline {3}Stable Measures and Stable Integrals}{16}
+\contentsline {subsection}{\numberline {3.1}Stable Variables}{16}
+\contentsline {subsection}{\numberline {3.2}Stable Random Measures}{17}
+\contentsline {subsection}{\numberline {3.3}Stable Integrals}{18}
+\contentsline {section}{\numberline {4}Fractional Brownian Motion}{20}
+\contentsline {subsection}{\numberline {4.1}Definition of Fractional Brownian Motion}{20}
+\contentsline {subsection}{\numberline {4.2}Regularity}{23}
+\contentsline {subsection}{\numberline {4.3}Fractional Brownian Noise}{25}
+\contentsline {subsection}{\numberline {4.4}FBM is not Semimartingale for $H\not =\frac {1}{2}$}{27}
+\contentsline {section}{\numberline {5}Fractional Ornstein-Uhlenbeck Process}{32}
+\contentsline {subsection}{\numberline {5.1}Fractional Ornstein-Uhlenbeck Process}{32}
+\contentsline {section}{\numberline {6}Applications in Financial Mathematics}{36}
+\contentsline {subsection}{\numberline {6.1}Fractional Black-Scholes Model}{36}
+\contentsline {subsection}{\numberline {6.2}Fractional Stochastic Volatility Model}{40}
+\contentsline {subsection}{\numberline {6.3}Rough Fractional Stochastic Volatility Model}{42}
+\contentsline {subsection}{\numberline {6.4}Fractional Calculus and Discretization Fractional Process}{44}
+\contentsline {subsection}{\numberline {6.5}Weighted Fractional Stochastic Volatility Model}{49}
+\contentsline {subsection}{\numberline {6.6}Discussion}{54}

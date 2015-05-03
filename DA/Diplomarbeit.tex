@@ -1,6 +1,6 @@
 %        File: Diplomarbeit.tex
 %     Created: Fri Jan 02 04:00 PM 2015 C
-% Last Change: Fri Mon 16 08:00 PM 2015 C
+  % Last Change: Sat May 02 08:00 PM 2015 C
 %      Author: Eduard Zhu
 %       Email: Kewell1203@gmail.com
 
@@ -107,24 +107,32 @@
 \setcounter{section}{0}
 \setcounter{page}{1}
 \section{Introduction}
-Fractional Brownian motion(FBM) introduced by Kolmogorov is a centered Gaussian process $U_H$ which has covariance function as follows
+The aim of this Diploma thesis is to study fractional Brownian motion(FBM). Unlike ordinary Brownian motion, FBM need not have independent increments. FBM was first introduced by Kolmogorov as a centered Gaussian process $U_H$ which has covariance function as follow
 \begin{eqnarray*}
   \mathrm{Cov}[U_H(t), U_H(s)] &=& \frac{1}{2} (|t|^{2H} + |s|^{2H} - |t-s|^{2H}),
 \end{eqnarray*}
-where $H$ is real number in $(0, \frac{1}{2})$. Mandelbrot and Van Ness recognized there is a integration representation
-\begin{eqnarray}
+where $H$ is real number in $(0, 1)$. The successive pioneer work can be traced to Mandelbrot and Van Ness. Where FBM has a integral representation
+\begin{eqnarray*}
  	U_H(t) - U_H(s) = \frac{1}{\Gamma(H+\frac{1}{2})}\brkt{\int_{\mathbb{R}} \mathbbm{1}_{\{t\ge u\}}\cdot (t-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{s\ge u\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}},
 	\label{sec:int}
-\end{eqnarray}
-which could fulfil the preceeding covariance property.\\
-The main tasks of this thesis are to study FBM by its integration representation and to discuss its applications in financial mathematics. It is arranged as follows. In Section 2 we shall give some basic concepts of Gaussion processes and Brownian motion. To define the integral of (\ref{sec:int}), we introduce in Section 3 the stable integrals. In terms of (\ref{sec:int}), FBM could be a self-similar process and has stationary increments satisfying
-\begin{eqnarray}
-  U_H(t+\tau) - U_H(t) \sim \kappa \tau^{H} U_H(1).
+\end{eqnarray*}
+and has stationary self-similar increments satisfying for $t\in \mathbb{R}, \tau > 0$
+%which could fulfil the preceeding covariance property.\\
+%The main tasks of this thesis are to study FBM by its integration representation and to discuss its applications in financial mathematics. It is arranged as follows. In Section 2 we shall give some basic concepts of Gaussion processes and Brownian motion. To define the integral of (\ref{sec:int}), we introduce in Section 3 the stable integrals. In terms of (\ref{sec:int}), FBM could be a self-similar process and has stationary increments satisfying
+\begin{eqnarray*}
+  U_H(t+\tau) - U_H(t) \sim \kappa \tau^{H} 
   \label{sec:int1}
-\end{eqnarray}
-We deal with it in detail in Section 4 and show FBM is not a semi-martingal when $H\neq \frac{1}{2}$. From Section 5 up to the end we'll turn our attension on applications of FBM.
+\end{eqnarray*}
+with some constant $\kappa$. Thank to Theorem of Kolmogorov Chentsov, FBM must be a continuous-time process.\\
 
-is called Ornstein-Uhlenbeck process which has a stationary and long memorial solution. In Section 6 are presented financial modelling driven by FBM. It will be split into two parts to discuss, the FSV model with $H > \frac{1}{2}$, and RFSV model with $H < \frac{1}{2}$. Each one has its advantages and disvantages. Howerver, we give a mix of them in the end of this section. It may provide new research direction on the future work.
+One of applications of FBM was fractional Ornstein-Uhlenbeck process(FOU), which defined as the stationary solution of the SDE with $(U_H)_t)_t$
+\begin{eqnarray*}
+  \mathop{dX_t} = -aX_t\mathop{dt} + \gamma\mathop{dU_H(t)}
+\end{eqnarray*}
+where $a,\gamma \in \mathbb{R}_+$. Although Rogers showed FBM is not a semimartingale for $H\neq \frac{1}{2}$, Cheridito proved the Riemann-Stieljes integral exist. In addition, if $H\in(\frac{1}{2}, 1)$, FOU exhibit long memory preporty. More recently, FOU have attracted applied in stochastic volatility models. In particular \\
+
+The structure of this thesis as follow. We will provide in Section 2 basic concepts of probability theory and stochastic process involving Gaussian process which could be characterized by characteristic function. As example, Brownian motion is discussed in the end in this section. Section 3 devoted to stable integrals which ensures FBM defines by a integral in this sense as a Gaussian process. Section 4 presents definition in sense of stable integral. From them we'll show self-simalar stationary property of increments of FBM, regularity, and it is non martingale except for $H=\frac{1}{2}$. From Section 5 up to the end we'll turn towards applications of FBM in financial mathematics. In Section 5, we deal with FOU. It exhibit long memory if $H > \frac{1}{2}$. In Section 6 we'll list applications of FBM, not only for pricing models of risky asset(fractional Black-Scholes)  but also for stochastic volatility models. We complete the proof of Cheridito to show that if there exist a minimal amount of time between two successive transactions, fractional Black-Scholes is arbitragefree. In fractional stochastic volatility model, we use FOU to model log-volatility. It differ from the choise of $H$. Whilst $H>\frac{1}{2}$(in FSV) to ensures long memory, generate the model by $H<\frac{1}{2}$(RFSV)  more desirable volatility smoothness according to empirical data. In order to XXXXX, we define weighted fractional volatility model which inherit long memory property from FSV and could have a very close resulting to RFSV.
+
 \newpage
 
 %---------- 2. section ------------%
@@ -166,8 +174,6 @@ We set $T=\mathbb{R}$ for without specificing. Some basically definitions, which
 for $t_1, \dots, t_n$ and $t_1+\tau,\dots,t_n+\tau \in \mathbb{R}$. 
 \label{sec:stn}
 \end{definition}
-
-
 \begin{definition}
   Let $(X_t)_t$ be a stochastic process. 
   \begin{equation*}
@@ -180,7 +186,7 @@ for $t_1, \dots, t_n$ and $t_1+\tau,\dots,t_n+\tau \in \mathbb{R}$.
 \end{definition}
 
 \begin{definition}
-  A stochastic process $(X_t)_t$ is said to be \emph{weak-sense stationary} if 
+  A stochastic process $(X_t)_t$ is said to be \emph{weak  stationary} if 
   \begin{eqnarray*}
 	\mathrm{E}[X_t] = \mathrm{E}[X_{t+\tau}]
   \end{eqnarray*}
@@ -190,7 +196,7 @@ for $t_1, \dots, t_n$ and $t_1+\tau,\dots,t_n+\tau \in \mathbb{R}$.
   \end{eqnarray*}
   for $\tau, s \in \mathbb{R}$.
 \end{definition}
-Remark that, weak-sense stationary is more general as stationary process. If $(X_t)_t$ is weak-sense stationary process, we write $\varsigma_X(\tau)$ for $\varsigma_X(t+\tau, t)$ for any $t$. $\eta_X(\tau)$ is used in the same way. 
+Remark that, weak stationarity is more general as stationarity. If $(X_t)_t$ is weak stationary process, we write $\varsigma_X(\tau)$ for $\varsigma_X(t+\tau, t)$ for any $t$. $\eta_X(\tau)$ is used in the same way. 
 
 %\begin{definition}
 %  A stochastic process $(X_t)_t$ is said to be \emph{ergodic} if the moving average of $X_t$ over $T$ tend to infinity, in fact,
@@ -1431,13 +1437,14 @@ Cheridito et al.\cite{chriel} shows the following Lemma with H\"older continuity
 	\end{eqnarray*}
 \end{proof}
 
-In order to have a centered Gaussian solution, we define $\hat{X}_{H,t}:= \hat{X}_t^{\gamma\int_{-\infty}^0 e^{au}\mathop{dU_H(u)}, H} := e^{-at}\brkt{\gamma\int_{-\infty}^t e^{au}\mathop{dU_H(u)}}$.
+In order to have a stationary solution, we assume that the initial value is normally distributed that $\hat{X}_{H,t}:= \hat{X}_t^{\gamma\int_{-\infty}^0 e^{au}\mathop{dU_H(u)}, H} := e^{-at}\brkt{\gamma\int_{-\infty}^t e^{au}\mathop{dU_H(u)}}$.
 \begin{theorem}
   $(\hat{X}_{H,t})_{t\ge 0}$ is centered Gaussian and stationary.
   \label{sec:gsp}
 \end{theorem}
 
 \begin{proof}
+  For the sake of simplicity, we let $\hat{X}_{H,t} = \int_{-\infty}^t e^{au}\mathop{dU_H(u)}$.
   Fix $\epsilon^j > 0, H\in (0,1)$ , then there exists  $\{u_0^j<u_1^j<\dots<u^j_{k_j}\le t_j\}$ such that
   \begin{eqnarray*}
 	&&|\hat{X}_{H,t_j} - \sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}) - U_H(u^j_{l}))|\\
@@ -1445,25 +1452,25 @@ In order to have a centered Gaussian solution, we define $\hat{X}_{H,t}:= \hat{X
 	&<& \epsilon^j.
   \end{eqnarray*}
   for $0 \le j \le d $.\\
-  In the one hand, we calculate the characterstic function of $(\hat{X}_{t_1},\dots, \hat{X}_{t_d})$ approximately with respect to $\epsilon^1,\dots,\epsilon^d$.
+  In the one hand, we calculate the characterstic function of $(\hat{X}_{H, t_1},\dots, \hat{X}_{H, t_d})$ approximately with respect to $\epsilon^1,\dots,\epsilon^d$.
   \begin{eqnarray*}
-	\sum_{j=1}^d \xi_j\hat{x}_{t_j} \approx \sum_{j=1}^d \xi_j\brkt{\sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}) - U_H(u^j_{l}))}
+	\sum_{j=1}^d \xi_j\hat{X_{H,t_j}}_{t_j} \approx \sum_{j=1}^d \xi_j\brkt{\sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}) - U_H(u^j_{l}))}
   \end{eqnarray*}
-  Notice that since $(U_H(t))$ is centered Gaussian process, any linear combination of its instances is centered Gaussian again. In other words, 
+  Notice that since $(U_H(t))$ is centered Gaussian process, any infinite linear combination of its instances is centered Gaussian again. In other words, 
   \begin{eqnarray*}
 	\sum_{j=1}^d \xi_j \brkt{\sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}) - U_H(u^j_{l})) }
   \end{eqnarray*}
   is centered Gaussian. Passing $\epsilon^1,\dots,\epsilon^d$ to zero, it implies immediately $(\hat{X}_{t_1},\dots, \hat{X}_{t_d})$ is centered Gaussian process due to Corolary \ref{sec:gauss}.\\
   On the other hand,
 	\begin{eqnarray*}
-	\mathrm{E}[\exp\{i\sum_{j=1}^d \xi_j\hat{x}_{t_j }\}] \approx \mathrm{E}[\exp\{ i\sum_{j=1}^d \xi_j\brkt{\sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}) - U_H(u^j_{l})) }\}]
+	\mathrm{E}[\exp\{i\sum_{j=1}^d \xi_j\hat{X}_{H, t_j}\}] \approx \mathrm{E}[\exp\{ i\sum_{j=1}^d \xi_j\brkt{\sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}) - U_H(u^j_{l})) }\}]
   \end{eqnarray*}
   Since $\{U_H(t)\}$ has stationary increments, then 
   \begin{eqnarray*}
 	&& \mathrm{E}[\exp\{ i\sum_{j=1}^d \xi_j\brkt{\sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}) - U_H(u^j_{l})) }\}] \\
 	&=& \mathrm{E}[\exp\{ i\sum_{j=1}^d \xi_j\brkt{\sum_{l=0}^{k_j-1} e^{au^j_l}(U_H(u^j_{l+1}+\tau) - U_H(u^j_{l}+\tau)) }\}]
   \end{eqnarray*}
-  which converges if $\epsilon$'s tend to zero and must be equal $\mathrm{E}[\exp\{ i\sum_{j=1}^d \xi_j \hat{X}_{t_j+\tau}\}]$, i.e., $(\hat{X}_t)$ is stationary process.
+  which converges if $\epsilon$'s tend to zero and must be equal $\mathrm{E}[\exp\{ i\sum_{j=1}^d \xi_j \hat{X}_{H, t_j+\tau}\}]$, i.e., $(\hat{X}_{H,t})$ is stationary process.
 \end{proof}
 
 \begin{theorem}
@@ -1487,7 +1494,7 @@ for $N \in \mathbb{N}_{0}, \tau\in\mathbb{R}$, $\gamma, a \in \mathbb{R}_+$ as i
   \begin{eqnarray*}
 	\varsigma_{\hat{X}_{H}}(\tau) = \sum_{k=1}^N c(a, \gamma, N, H) \tau^{2H-2k} + \mathrm{o}(\tau)
   \end{eqnarray*}
-  is obviously tend to zero as $\tau$ goes to infinity. And To check convergence of $\sum_{\tau=1}^{\infty} \varsigma_{\hat{X}_{H}}(\tau)$, we only need to check the term of $k=1$ in the summation, because in the case $k>1$, $\tau^{2H-2k} < \tau^{2H-2}$ for $\tau\in\mathbb{N}_{+}$. We deal with it in same way as in Theorem \ref{sec:lmemory}(use Cauchy condesation test). That means, for $2H < 1$, namely $H<\frac{1}{2}, \sum_{\tau=1}^{\infty} \varsigma_{X_{H}}(\tau)$ converges. For $H\in (\frac{1}{2}, 1)$, it diverges. Thus $(\varsigma_{\hat{X}_{H}}(t))_{t\ge 0}$ has long memory for $H\in(\frac{1}{2}, 1)$.
+  is obviously tend to zero as $\tau$ goes to infinity. And To check convergence of $\sum_{\tau=1}^{\infty} \varsigma_{\hat{X}_{H}}(\tau)$, we only need to check the term of $k=1$ in the summation, because in the case $k>1$, $\tau^{2H-2k} < \tau^{2H-2}$ for $\tau\in\mathbb{N}_{+}$. We deal with it in same way as in Theorem \ref{sec:lmemory}(use Cauchy condesation test). That means, if $2H < 1$, namely $H<\frac{1}{2}, \sum_{\tau=1}^{\infty} \varsigma_{X_{H}}(\tau)$ converges. For $H\in (\frac{1}{2}, 1)$, it diverges. Thus $(\varsigma_{\hat{X}_{H}}(t))_{t\ge 0}$ has long memory for $H\in(\frac{1}{2}, 1)$.
 \end{proof}
 \newpage
 
@@ -1702,220 +1709,29 @@ this contradicts our assumption. It must be that ${\mathcal{P}}[(\xi^1 \cdot S)_
 It follows then from Theorem \ref{sec:claim}, $\mathcal{P}[(\tilde{V}_T - \tilde{V}_0) < 0] > 0$, since and therefore there is no arbitrage in this sense.
 \end{proof}
 
-\subsection{Fractional Calculus}
-\subsubsection{Fractional Integral}
-\begin{eqnarray*}
-  &&\int_0^s\int_0^{s_1}\int_0^{s_2}\cdots\int_0^{s_{n-1}}\, f(s_n)ds_n\cdots ds_2 ds_1\\
-  &=& \frac{1}{(n-1)!} \int_0^s (s-u)^{n-1} f(u) \mathop{du}
-\end{eqnarray*}
-for $n\in \mathbb{N}_+$.
-\begin{eqnarray}
-  I^\alpha f(s) := \frac{1}{\Gamma(\alpha)} \int^s_0 (s-u)^{\alpha-1} f(u) \mathop{du}
-  \label{sec:fraint}
-\end{eqnarray}
-for $\alpha \in \mathbb{R}_+$.
-
-Remark, $I^\alpha I^\beta = I^\beta I^\alpha = I^{\alpha+\beta}$.
-Let $\Phi_\alpha(s):= \frac{s^{\alpha-1}}{\Gamma(\alpha)}$ for $\alpha \in \mathbb{R}_+$, then
-\begin{eqnarray}
-  I^\alpha f(s) = \Phi_\alpha(s) \ast f(s)
-  \label{}
-\end{eqnarray}
-
-\subsubsection{Fractional Derivative}
-
-\begin{eqnarray}
-  D^\beta f(s) := \begin{cases} \frac{d^n}{ds^n}[\frac{1}{\Gamma(l-\beta)}\int_0^s \frac{f(u)}{(s-u)^{\beta + 1 - n}}\mathop{du}] &\mbox{if } n-1 < \beta < n,\\
-	\frac{d^n}{ds^n} f(s) & \mbox{if } \beta=n
-  \end{cases}
-  \label{sec:frader}
-\end{eqnarray}
-%This Long memory property may explain why in stock market, large upheavals tend to be followed by large upheavals and small upheavals happend after by small upheavals.  In order to model long memory volatility process, Comte and Renault are forced to set $H\in (\frac{1}{2}, 1)$ in (\ref{sec:fv2}) named fractional volatility stochastic(FSV), see\cite{comren}. \\
-\subsubsection{Discretization Fractional Process}
-\begin{definition}
-  The \emph{fractional process of order $\alpha$}  is defined as
-  \begin{eqnarray}
-	X(t) &=&  \int_0^{t} g(t - u) \mathop{dB_u}
-	\label{sec:frac}
-  \end{eqnarray}
-  where
-  \begin{eqnarray*}
-	g(s) &=& \frac{s^\alpha h(s)}{\Gamma(1+\alpha)}
-  \end{eqnarray*}
-  for $|\alpha| < \frac{1}{2}$ and $h$ continuously differentiable on $[0, T]$.
-\end{definition}
-In \cite{comte}, Comte gave a truncated representation FBM $(U_{\alpha,t})$.
-\begin{eqnarray}
-  U_{\alpha,t} &=& \int_0^t \frac{(t-u)^\alpha}{\Gamma(1+\alpha)}\mathop{dB_u}, 
-  \label{<sec:cc1>}
-\end{eqnarray}
-Where $|\alpha| < \frac{1}{2}, (B_u)$ Brownian motion. Notice that $\alpha$ is given by $H-\frac{1}{2}$ as in previous representation and the long memory property remains true.
-
-\begin{proposition}
-  Let $X(t)$ be a fractional process of order $\alpha$ as by (\ref{sec:frac}). Then
-  \begin{eqnarray}
-	X(t) &=& \int_0^t c(t-u)\mathop{dU_{\alpha,u}}
-	\label{sec:bb1}
-  \end{eqnarray}
-  and 
-  \begin{eqnarray}
-	c(s) &=& \frac{d}{ds}\brkt{\int_0^s \frac{(s-u)^{-\alpha}u^\alpha h(u) \mathop{du}}{\Gamma(1-\alpha)\Gamma(1+\alpha)}}.
-\label{sec:frac2}
-  \end{eqnarray}
-  \begin{eqnarray}
-	u^\alpha h(u) = \frac{d}{\mathop{du}}\brkt{\int_0^u c(s) (u-s)^\alpha \mathop{ds}}.
-	\label{sec:frac3}
-  \end{eqnarray}
-\end{proposition}
-
-\begin{proof}
-  See \cite{core}, pp.20~21, Eq. (4), (5).
-\end{proof}
-\begin{definition}
-  The \emph{fractional derivation of order $\alpha$} of (\ref{sec:frac}) is defined as
-  \begin{eqnarray}
-   && X^{(\alpha)}_t\nonumber\\
-	&:=&  \int_0^t \frac{(t-u)^{-\alpha}}{\Gamma(1-\alpha)} \mathop{dX_{t}}\nonumber\\
-    &:=&  \frac{d}{dt}\int_0^t \frac{(t-u)^{-\alpha}}{\Gamma(1-\alpha)} X_{t} \mathop{du} \nonumber\\
-	&=& D^{\alpha} X(t)
-	\label{sec:cc4}
-  \end{eqnarray}
-\end{definition}
-
-\begin{proposition}
-  Let $|\alpha| < \frac{1}{2}$, if $h(0) \neq 0$ and $h$ is twice continuously differentiable, then 
-  %\begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]
-  $$X^{(\alpha)}_t = \int_0^t c(t-s) \mathop{dB_s}.$$
-  where $c$ and $h$ are one-to-one related by (\ref{sec:frac2}) and (\ref{sec:frac3}).
-%\item $(X^{(\alpha)})^{-\alpha}=X$ for $\alpha\in(-\frac{1}{2}, \frac{1}{2})$.
-%\end{enumerate}
-\end{proposition}
-\begin{proof}
-  See  \cite{core}, p.111, Proposition 4.
-  \end{proof}
-  \begin{theorem}
-	\begin{eqnarray}
-	X_t &=& \int_0^t \frac{(t-u)^\alpha}{\Gamma(1+\alpha)}\mathop{dX^{(\alpha)}_u}
-	\label{sec:imp}
-  \end{eqnarray}
-  \end{theorem}
-  \begin{proof}
-  \begin{eqnarray*}
-	&&\int_0^t \frac{(t-u)^\alpha}{\Gamma(1+\alpha)}\mathop{dX^{(\alpha)}_u}\\
-	&=& \int_0^t \frac{(t-u)^\alpha}{\Gamma(1+\alpha)} \brkt{\frac{d}{du} \int_0^u \frac{(u-s)^{-\alpha}}{\Gamma(1-\alpha)}X_s\mathop{ds}}\mathop{du}\\
-	&=& \int_0^t \brkt{\frac{d}{du} \int_0^u \frac{(t-u)^\alpha(u-s)^{-\alpha}}{\Gamma(1+\alpha)\Gamma(1-\alpha)}X_s\mathop{ds}}\mathop{du}\\
-	&=& \frac{d}{du}\int_0^u \brkt{\int_0^t \frac{(t-u)^\alpha(u-s)^{-\alpha}}{\Gamma(1+\alpha)\Gamma(1-\alpha)}\mathop{du}} X_s \mathop{ds}
-  \end{eqnarray*}
-
-  \begin{eqnarray*}
-	&&\int_0^t\frac{(t-u)^\alpha(u-s)^{-\alpha}}{\Gamma(1+\alpha)\Gamma(1-\alpha)}\mathop{du}\\
-	&=& \int_{-s}^{t-s}\frac{(t+s-u)^\alpha(u)^{-\alpha}}{\Gamma(1+\alpha)\Gamma(1-\alpha)}\mathop{du}\\
-	&=& \int_{t-1}^{2t+1}\frac{(1-u)^\alpha(u)^{-\alpha}}{\Gamma(1+\alpha)\Gamma(1-\alpha)}\mathop{du}\\
-	&\overset{\text{xxx}}{=}& 1
-  \end{eqnarray*}
- 
-  \begin{eqnarray}
-	&&\int_0^t \frac{(t-u)^\alpha}{\Gamma(1+\alpha)}\mathop{dX^{(\alpha)}_u}\nonumber\\
-	&=& \frac{d}{du}\int_0^u X_s \mathop{ds}
-  \end{eqnarray}
-\end{proof}
-  \begin{example}
-  The truncated FOU process driven by $U_{\alpha, t}$ is 
-  \begin{eqnarray}
-  X_{\alpha,t} = \gamma\int_0^t e^{-a(t-u)}\mathop{dU_{\alpha, u}} 
-  \label{sec:cc2}
-\end{eqnarray}
-It is a form of (\ref{sec:frac}) with
-\begin{eqnarray*}
-  c(u) &=&  \gamma e^{-au}
-\end{eqnarray*}
-In terms of (\ref{sec:frac3}),
-\begin{eqnarray*}
-  &&g(u)\\
-  &=& \frac{\frac{d}{du}\int_0^{u} c(s)(u-s)^\alpha \mathop{ds}}{\Gamma(1+\alpha)}\\
-  &=& \frac{\gamma}{\Gamma(1+\alpha)}\frac{d}{\mathop{du}}\int_0^u e^{-as} (u-s)^\alpha \mathop{ds}
-\end{eqnarray*}
-Using partial integration,
-\begin{eqnarray*}
-  &&g(u)\\
-  &=& \frac{\gamma}{\Gamma(1+\alpha)}\brkt{\brkt{\frac{d}{\mathop{du}} (-\frac{1}{1+\alpha}e^{-as}(u-s)^{1+\alpha}|_{s=0}^u)} - \brkt{\frac{d}{\mathop{du}}(\int_0^u -a e^{-as}(u-s)^\alpha)\mathop{ds}}}\\
-  &=& \frac{\gamma}{\Gamma(1+\alpha)}\brkt{\brkt{\frac{d}{\mathop{du}}(\frac{u^{1+\alpha}}{1+\alpha})} - a e^{-au}\brkt{\int_0^u e^{-as}s^\alpha\mathop{ds}}}\\
-  &=& \frac{\gamma}{\Gamma(1+\alpha)} (u^\alpha - a e^{-au}\int_0^u e^{-as}s^\alpha\mathop{ds})
-\end{eqnarray*}
-then $g = \gamma (1 + \frac{a e^{-au}\int_0^u e^{-as}s^\alpha\mathop{ds}}{u^\alpha})$ and therefore $g(0)\neq 0$ and it is twice continueously differable. I.e., its fractional derivative of order $\alpha$ is 
-\begin{eqnarray*}
-  X^{(\alpha)}(t) &=&  \int_0^t c(t-u) \mathop{dB_u}\\
-  &=& \gamma\int_0^t e^{-a(t-u)}\mathop{dB_u}
-\end{eqnarray*}
-and 
-\begin{eqnarray*}
-  X_{\alpha,t} &=& \int_0^t \frac{(t-s)^\alpha}{\Gamma(1+\alpha)} \mathop{dX^{(\alpha)}(s)}.
-\end{eqnarray*}
-\end{example}
-
-To approximate $ X_{\alpha,t}$ on a discrete time scale, according to (\ref{sec:imp}), Comte had defined a quantity
-\begin{eqnarray}
- \hat{X}_{\alpha,n}(t) = \sum_{k=1}^{\floor{nt}} \frac{(t - \frac{k-1}{n})^\alpha}{\Gamma(1+\alpha)} \brkt{X^{(\alpha)}_{\frac{k}{n}} - X^{(\alpha)}_{\frac{k-1}{n}}}
-  \label{sec:cc7}
-\end{eqnarray}
-\begin{theorem}
-  $\hat{X}_{\alpha,n}(t)\rightarrow X_{\alpha,n}(t)$ in distribution as $n$ tend to infinity.  
-  \label{sec:cont}
-\end{theorem}
-\begin{proof}
-  See. \cite{comren}, p.298, Proposition 3.1 .
-\end{proof}
-Since $\hat{X}_{\alpha, n}(t)$ is asymtotically stationary and Gaussian,  an AR(1) approach of $X^{(\alpha)}$ could be given,
-\begin{eqnarray}
-  (1-c_nL_n) {X}^{(\alpha)}_{\frac{k}{n}} = \epsilon(\frac{k}{n})
-  \label{sec:cc6}
-\end{eqnarray}
-where $\epsilon(\cdot) \sim \mathcal{N}(0, \mathrm{Var}[X^{(\alpha)}_{\cdot}]), L_n $ represents the Lag operator such that $L_n X^{(\alpha)}_{\frac{k}{n}} = X^{(\alpha)}_{\frac{k-1}{n}}$  and $c_n$ are normalised cofficients corresponding to (\ref{sec:cc7}). Moreover, in the one hand,
-\begin{eqnarray}
-  \hat{X}_{\alpha,n}(\frac{k}{n}) &=& \sum_{l=1}^{k} \frac{(\frac{k}{n} - \frac{l-1}{n})^\alpha}{\Gamma(1+\alpha)} \brkt{X^{(\alpha)}_{\frac{l}{n}} - X^{(\alpha)}_{\frac{l-1}{n}}}\nonumber\\
-  &=& \sum_{l=1}^{k} \frac{(k - l + 1)^\alpha}{\Gamma(1+\alpha)n^\alpha} \brkt{X^{(\alpha)}_{\frac{l}{n}} - X^{(\alpha)}_{\frac{l-1}{n}}}\nonumber\\
-  &\overset{m=k-l}{=}& \sum_{m=0}^{k-1} \frac{(m + 1)^\alpha}{\Gamma(1+\alpha)n^\alpha} \brkt{X^{(\alpha)}_{\frac{k-m}{n}} - X^{(\alpha)}_{\frac{k-m-1}{n}}}\nonumber\\ 
-  &=& \brkt{\sum_{m=0}^{k-1} \frac{(m + 1)^\alpha - m^\alpha}{\Gamma(1+\alpha)n^\alpha} \cdot L_n^m} X^{(\alpha)}_{\frac{k}{n}} \nonumber\\
-  &\overset{(\ref{sec:cc6})}{=}&  \brkt{\sum_{m=0}^{k-1} \frac{(m + 1)^\alpha - m^\alpha}{\Gamma(1+\alpha)n^\alpha} \cdot L_n^m} (1-c_nL_n)^{-1}\epsilon(\frac{k}{n}).
-\end{eqnarray}
-We rewrite this then
-\begin{eqnarray*}
-  (1-c_nL_n)\brkt{\sum_{m=0}^{k-1} \frac{(m + 1)^\alpha - m^\alpha}{\Gamma(1+\alpha)n^\alpha} \cdot L_n^m}^{-1}  \hat{X}_{\alpha,n}(\frac{k}{n}) =\epsilon(\frac{k}{n}).
-\end{eqnarray*}
-
-On the other hand, if we take consideration with the $ARFIMA(1, \alpha, 0)$, insteading of the content with $\{\}^{-1}$ by the $\alpha$-integrated term $(1-L_n)^\alpha$. Then we have
-\begin{eqnarray*}
-  (1-c_nL_n) (1-L_n)^\alpha \hat{X}_{\alpha,n}(\frac{k}{n}),
-\end{eqnarray*}
-which is in general not Gaussian. Furthermore, $(1-L_n)^\alpha \hat{X}_{\alpha,n}$ is in general not a $AR(1)$.  In the other words, the ARFIMA$(1, \alpha, 0)$ may not fit such a high-frequency data that is comfortable with the fractional stochastic volatility model driven by FBM. 
-
-
-for $n \in \mathbb{Z}$ and $\beta \in \mathbb{R} $.
 \subsection{Fractional Stochastic Volatility Model}
-In framework of Black-scholes, an risky asset price is modelded as follows
+In framework of the Black-Scholes, a risky asset price is modelded as follow
 \begin{eqnarray}
-  \mathop{dS_t} &=& rS_t\mathop{dt} + \sigma S_t \mathop{dw}
+  \mathop{dS_t} &=& rS_t\mathop{dt} + \sigma S_t \mathop{dB_t}
 \end{eqnarray}
-for $r, \sigma > 0$. In the simplest case, the volatility is assumed as a constant or a deterministic function of time and underlying price of the asset. Such models, however, are not only a time-inhomogeneous but also generate unrealistic volatility dynamics. For solve this problem, in 
+for $r, \sigma \in \mathbb{R}_{+}$. In the simplest case, the volatility is assumed as a constant or a deterministic function of time and underlying price of the asset. Such models, however, generate unrealistic volatility dynamics. For solve this problem, in 
 such  Hull-White, Heston or SABR models, the volatility also modelded as a stochastic process(e.g. semimartingal).\\
 In our paper,  the log-volatility is assumed to obey fractional Ornstein-Uhlenbeck process. That means
 
 \begin{eqnarray}
-  \mathop{dX_t} = -a(X_t - \mu)\mathop{dt} + \gamma \mathop{dU_H(t)}
+  \mathop{dX_t} = -a X_t \mathop{dt} + \gamma \mathop{dU_H(t)}
   \label{sec:fv}
 \end{eqnarray}
-where $X_t=\log(\sigma_t)$. By the proceeding section, we have a stationary solution 
+where $a, \gamma \in \mathbb{R}_{+}$. By the proceeding section, we have a stationary solution 
 \begin{eqnarray}
-\hat{X}_{H,t}=\mu + e^{-at}\int_{-\infty}^t e^{au}\mathop{dU_H(u)}
+\hat{X}_{H,t}= e^{-at}\int_{-\infty}^t e^{au}\mathop{dU_H(u)}
 \label{sec:fv2}
 \end{eqnarray}
-for an appropriate initial value.  Where $\hat{\sigma}_{H,t} = \exp\{\hat{X}_{H,t}\}$. As result of this, $(\hat{\sigma}_{H,t})$ is obviously stationary, because the exp function remains the distribution of $(\hat{X}_{H,t})$.
- 
-\begin{proposition}
-  Let $\hat{X}_{H,t}$ be such that as in (\ref{sec:fv2}) and $\hat{\sigma}_{H,t} = \exp\{\hat{X}_{H,t}\}$, then $(\hat{\sigma}_{H,t})$ has long memory for $H\in(\frac{1}{2}, 1)$. 
-\end{proposition}
-For the sake of simplecity meaning in (\ref{sec:fv2}), putting $\mu$ off, i.e., $\hat{X}_{H,t}= e^{-at}\int_{-\infty}^t e^{au}\mathop{dU_H(u)}$.
+for an appropriate initial condition. $\hat{\sigma}_{H,t} = \exp\{\hat{X}_{H,t}\}$ has following property. %As result of this, $(\hat{\sigma}_{H,t}):= \exp\{\hat{X}_{H,t}\}$ is weak stationary, we show this in following.
 
+\begin{proposition}
+  Let $\hat{X}_{H,t}$ be such that as in (\ref{sec:fv2}) and $\hat{\sigma}_{H,t} = \exp\{\hat{X}_{H,t}\}$, then $(\hat{\sigma}_{H,t})$ is weak stationary and has long memory for $H\in(\frac{1}{2}, 1)$. 
+\end{proposition}
 \begin{proof}
   We start our proof by definition of the autocovariance of $\hat{\sigma}_{H,t}$
   \begin{eqnarray*}
@@ -1933,78 +1749,76 @@ For the sake of simplecity meaning in (\ref{sec:fv2}), putting $\mu$ off, i.e., 
   \begin{eqnarray*}
 	&& \varsigma_{\hat{\sigma}_H}(\tau) \\
 	&=&  \exp(\frac{1}{2}\mathrm{Var}[\hat{X}_{H,t} + \hat{X}_{H, t+\tau}]) - \exp(\mathrm{Var}[\hat{X}_{H,t}])\\
-	&=& \exp(\frac{1}{2}(\mathrm{Var}[\hat{X}_{H,t}] + \mathrm{Var}[\hat{X}_{H,t+\tau}] + \mathrm{E}[\hat{X}_{H,t}\hat{X}_{H,t+\tau}])) - \exp(\mathrm{Var}[\hat{X}_{H,t}])\\
-	&=& \exp(\mathrm{Var}[\hat{X}_{H,t}] + \frac{1}{2}\mathrm{Cov}[\hat{X}_{H,t}, \hat{X}_{H,t+\tau}]) - \exp(\mathrm{Var}[\hat{X}_{H,t}])\\
+	&=& \exp(\frac{1}{2}(\mathrm{Var}[\hat{X}_{H,t}] + \mathrm{Var}[\hat{X}_{H,t+\tau}] + 2\mathrm{E}[\hat{X}_{H,t}\hat{X}_{H,t+\tau}])) - \exp(\mathrm{Var}[\hat{X}_{H,t}])\\
+	&=& \exp(\mathrm{Var}[\hat{X}_{H,t}] + \mathrm{Cov}[\hat{X}_{H,t}, \hat{X}_{H,t+\tau}]) - \exp(\mathrm{Var}[\hat{X}_{H,t}])\\
   \end{eqnarray*}
   The term $\mathrm{Var}[\hat{X}_{H,t}]$ is independent of $\tau$. We define $\mathrm{Var}[\hat{X}_{H,t}] = C$. Then
 \begin{eqnarray*}
 	&& \varsigma_{\hat{\sigma}_H}(\tau) \\
-	&=& \exp(C) \exp(\frac{1}{2}\varsigma_{\hat{X}_{H}}(\tau)) - \exp(C)\\
-	&=& \exp(C)(\exp(\frac{1}{2}\varsigma_{\hat{X}_{H}}(\tau)) - 1)\\
-	&=& \kappa(\exp(\frac{1}{2}\varsigma_{\hat{X}_{H}}(\tau)) - 1)
+	&=& \exp(C) \exp(\varsigma_{\hat{X}_{H}}(\tau)) - \exp(C)\\
+	&=& \exp(C)(\exp(\varsigma_{\hat{X}_{H}}(\tau)) - 1)\\
+	&=& \kappa(\exp(\varsigma_{\hat{X}_{H}}(\tau)) - 1)
  \end{eqnarray*}
- for some $\kappa$.\\
+ for some $\kappa$. Obviously, $\mathbb{E}[\hat{\sigma}_{H}(t)]=1$. With $ \varsigma_{\hat{\sigma}_H}(0) = \kappa(\exp(\varsigma_{\hat{X}_{H}}(0)) - 1)$, the first claim is proved.\\
  In the one hand, as we known, $\varsigma_{\hat{X}_{H}}(\tau)$ vanishes, for $H\in(\frac{1}{2}, 1)$, as $\tau$ goes to infinity. I.e.,
  $$
- \lim\limits_{\tau\rightarrow \infty}\kappa(\exp(\frac{1}{2}\varsigma_{\hat{X}_{H}}(\tau)) - 1) = 0.
+ \lim\limits_{\tau\rightarrow \infty}\kappa(\exp(\varsigma_{\hat{X}_{H}}(\tau)) - 1) = 0.
  $$
  On the other hand, consider in Theorem \ref{sec:autocov},
 \begin{eqnarray*}
   \varsigma_{\hat{X}_{H}}(\tau)) = \mu \tau^{2H-2} + \mathrm{o}(\tau)
 \end{eqnarray*}
 for some $\mu$.
-And $\varsigma_{\hat{X}_{H}}(\tau)$ is the equivalence infinitesimal of $\exp(\frac{1}{2}\varsigma_{\hat{X}_{H}}(\tau)) - 1$. Hence,
+And $\varsigma_{\hat{X}_{H}}(\tau)$ is the equivalence infinitesimal of $\exp(\varsigma_{\hat{X}_{H}}(\tau)) - 1$. Hence,
 \begin{eqnarray*}
   &&  \lim\limits_{\tau\rightarrow \infty} \frac{\varsigma_{\hat{\sigma}_H}(\tau) - \kappa \mu \tau^{2H-2}}{\tau}\\
-  &=& \lim\limits_{\tau\rightarrow \infty}\frac{\kappa(\exp(\frac{1}{2}\varsigma_{\hat{X}_{H}}(\tau)) - 1) - \kappa \mu \tau^{2H-2}}{\tau}\\
+  &=& \lim\limits_{\tau\rightarrow \infty}\frac{\kappa(\exp(\varsigma_{\hat{X}_{H}}(\tau)) - 1) - \kappa \mu \tau^{2H-2}}{\tau}\\
   &=& \lim\limits_{\tau\rightarrow \infty}\frac{\kappa(\varsigma_{\hat{X}_{H}}(\tau) - \mu\tau^{2H-2})}{\tau}\\
   &=& 0
 \end{eqnarray*}
 This implies $\varsigma_{\hat{\sigma}_H}(\tau) = \kappa\mu \tau^{2H-2} + \mathrm{o}(\tau)$. For the same reason as in Theorem \ref{sec:lmemory}, the long memory property requires $1<2H$, namely, $H\in(\frac{1}{2}, 1)$.
 \end{proof}
 
-This Long memory property may explain why in stock market, large upheavals tend to be followed by large upheavals and small upheavals happend after by small upheavals.  In order to model long memory volatility process, Comte and Renault are forced to set $H\in (\frac{1}{2}, 1)$ in (\ref{sec:fv2}) named fractional volatility stochastic(FSV), see\cite{comren}. \\
-atility model driven by FBM. 
+The Long memory property may explain why in stock market, large upheavals tend to be followed by large upheavals and small upheavals happend after by small upheavals.  In order to model long memory volatility process, Comte and Renault are forced to set $H\in (\frac{1}{2}, 1)$ in (\ref{sec:fv2}) named fractional volatility stochastic(FSV), see\cite{comren}. \\
 
 \subsection{Rough Fractional Stochastic Volatility Model}
-In order to generate a disirable volatility dynamics, Gatheral et al.(2014) take the implied volatility $\sigma^{BS}(m, \tau)$ into account. The implied volatility refer to the value of volatility required in the Black-Scholes model such that the pricing is coincide with the asset price observed. Graphing implied Volatility as a function of moneyness and time to expiriation seems to be a U-shape which is so-called volatility smile. In particular, the term structure of volatility skew of at-the-money of stylized data
+In order to generate a disirable volatility dynamics, Gatheral et al.(2014) take the implied volatility $\sigma^{BS}(m, \tau)$ into account. Where $m$ is the log-moneyness and $\tau$ is time to expiration date. The implied volatility refer to the value of volatility required in the Black-Scholes model such that the pricing is coincide with the asset price observed.  Graphing implied Volatility as a function of moneyness and time to expiriation seems to be a U-shape which is so-called volatility smile. In particular, the term structure of volatility skew of at-the-money of stylized data
 \begin{eqnarray*}
   \kappa(\tau)=|\frac{\partial}{\partial m}\sigma^{BS}(m, \tau)|_{m=0}|,
 \end{eqnarray*}
-acts as a power law with exponent around $-\frac{1}{2}$, which explained for example in \cite{gradin}. In the one hand, in the FSV model with $H \in (\frac{1}{2}, 1)$, the volatility smile is depressed by arising $\tau$, see \cite{comteetla}, p.350, equation (4.7). On the other hand,  in \cite{fukasawa}, the volatility is driven by FBM with Hurst exponent $H$ in Fukasawa's model whose volatility skew of at-the-money has a form $\kappa(\tau) \sim \tau^{H-\frac{1}{2}}$ as $\tau$ goes to zero. This requires that $H$ is near zero to match the power law decay of $\kappa(\tau)$.  All of this suggest us, we should apply a stochastic volatility model which is driven by FBM with Hurst exponent $H \in (0, \frac{1}{2})$.\\
+acts as a power law with exponent around $-\frac{1}{2}$, which is explained for example in \cite{gradin}. In the one hand, in the FSV model with $H \in (\frac{1}{2}, 1)$, the volatility smile is depressed by arising $\tau$, see \cite{comteetla}, p.350, Eq. (4.7). On the other hand,  in \cite{fukasawa}, the volatility is driven by FBM with Hurst exponent $H$ in Fukasawa's model whose volatility skew of at-the-money has a form $\kappa(\tau) \sim \tau^{H-\frac{1}{2}}$ as $\tau$ goes to zero. This requires that $H$ is near zero to match the power law decay of $\kappa(\tau)$.  All of this suggest us, we should apply a stochastic volatility model which is driven by FBM with Hurst exponent $H \in (0, \frac{1}{2})$.\\
 Replaced by $H \in (0, \frac{1}{2})$ in (\ref{sec:fv}), a fractional stochastic volatility model (RFSV) is
 \begin{eqnarray}
-  \mathop{dX_t} = -a(X_t - \mu)\mathop{dt} + \gamma \mathop{dU_H(t)},
+  \mathop{dX_t} = -a X_t \mathop{dt} + \gamma \mathop{dU_H(t)},
   \label{sec:rfm}
 \end{eqnarray}
-for $a>0, \gamma>0$ and a stationary solution
+for $a,\gamma \in \mathbb{R}_+$ and a stationary solution
 \begin{eqnarray}
-\hat{X}_{H,t}=\mu + e^{-at}\gamma\int_{-\infty}^t e^{au}\mathop{dU_H(u)}.
+\hat{X}_{H,t}=e^{-at}\gamma\int_{-\infty}^t e^{au}\mathop{dU_H(u)}.
 \label{sec:rfm2}
 \end{eqnarray}
 
 Consider a quantity defined on $[0, T]$ with mesh $\tau$
 \begin{eqnarray}
-  s(\tau) = \frac{1}{N}\sum\limits_{k=1}^N|\log(\sigma_{k\tau}) - \log(\sigma_{(k-1)\tau})|^2
+  s(\tau, \sigma) = \frac{1}{N}\sum\limits_{k=1}^N|\log(\sigma_{k\tau}) - \log(\sigma_{(k-1)\tau})|^2
   \label{sec:smo}
 \end{eqnarray}
-Due to the volatilities are not observable, we could take spot volatility values instead of them. In \cite{chridito}, the daily spot variances by daily realized variance estimates are used. A plotting of $\log(s(\tau))$ against $\log(\tau)$ looks then as straight line, i.e.,
+Where $N = \floor{T/\tau}$. Due to the volatilities are not observable, we could take spot volatility values instead of them. In \cite{chridito}, the daily spot variances by daily realized variance estimates $\tilde{\sigma}$ are used. A plotting of $\log(s(\tau, \tilde{\sigma}))$ against $\log(\tau, \tilde{\sigma})$ looks then as straight line, i.e.,
 \begin{eqnarray}
-  s(\tau) =  k\tau^z
+  s(\tau, \tilde{\sigma}) =  k\tau^z
   \label{sec:smth}
 \end{eqnarray}
-I.e., there is a linear relationship between $log(s(\tau))$ and $\tau$. Insteading $\log(\sigma(t))$ by $\hat{X}_{H,t}$,  we take our attention on our stochastic volatility model, not only in FSV but also in RFSV, 
+There is a linear relationship between $log(s(\tau))$ and $\tau$ and the RFSV model does match the observed phenomenon.Insteading $\sigma(t)$ by $\hat{X}_{H,t}$ 
 \begin{eqnarray}
-  s(\tau)^{SV} &=&  \frac {1}{N}\sum\limits_{k=1}^N|\hat{X}_{H,k\tau} - \hat{X}_{H,(k-1)\tau}|^2\nonumber
+  s(\tau, \hat{X}_{H}) &=&  \frac {1}{N}\sum\limits_{k=1}^N|\hat{X}_{H,k\tau} - \hat{X}_{H,(k-1)\tau}|^2\nonumber
 \end{eqnarray}
 
 Since $(\hat{X}_{H,t})$ is stationary, we could apply weak law of large number, as $N$ goes to infinity,
 \begin{eqnarray}
-  s(\tau)^{SV} &=& \mathrm{E}[|\hat{X}_{H,t+\tau}-\hat{X}_{H,t}|^2]\nonumber\\
+  s(\tau, \hat{X}_{H}) &\overset{\tau\downarrow0}{\rightarrow}& \mathrm{E}[|\hat{X}_{H,t+\tau}-\hat{X}_{H,t}|^2]\nonumber\\
   &=& 2 \mathrm{Var}[\hat{X}_{H,t}] - 2 \mathrm{Cov}[\hat{X}_{H,t}, \hat{X}_{H,t+\tau}]\nonumber
   \label{sec:smtsv}
 \end{eqnarray}
-We recall the Theorem \ref{sec:autocov} that $s(\tau)^{SV}$ in general not a form of (\ref{sec:rfsv}).
 
 \begin{theorem}
   Let $(\hat{X}_{H, t, a})$ be as in (\ref{sec:rfm2}) driven by a FBM $(U_H(t))$ with $H\in (0,\frac{1}{2})$, then
@@ -2020,22 +1834,237 @@ We recall the Theorem \ref{sec:autocov} that $s(\tau)^{SV}$ in general not a for
 The theorem shows if $a$ is small enough, $(\hat{X}_{H, t})_t$ behaves essentially as FBM at a compact time scale.
 
 \begin{theorem}
-  Let $(\hat{X}_{H, t, a})$ the solution by (\ref{sec:rfm2}) with $H\in(0, \frac{1}{2})$, then, as $a$ goes to zero,
+  Let $(\hat{X}_{H, t, a})$ the solution by (\ref{sec:rfm2}) with $H\in(0, \frac{1}{2})$, then 
   \begin{eqnarray}
-	\mathrm{Var}[\hat{X}_{H,t, a}] - \mathrm{Cov}[\hat{X}_{H,t, a}, \hat{X}_{H,t+\tau, a}] = \frac{1}{2} \gamma^2\tau^{2H}
+	\mathrm{Var}[\hat{X}_{H,t, a}] - \mathrm{Cov}[\hat{X}_{H,t, a}, \hat{X}_{H,t+\tau, a}] \rightarrow \frac{1}{2} \gamma^2\tau^{2H}
 	\label{sec:rfsv}
   \end{eqnarray}
-  for $t>0, \tau>0$.
+ as $a$ goes to zero, for $t>0, \tau>0$.
 \end{theorem}
 \begin{proof}
   Cf. \cite{gradin}, p.16, Corollary 3.2 .
 \end{proof}
 
-(\ref{sec:rfsv}) shows, the choise of $H\in(0,\frac{1}{2})$ enable us to model the log-volatility process has a form of (\ref{sec:smth}). It may turn out to be RFSV is more reasonable than FSV for this empirical result of Linearity between $\log(s(\tau))$ and $\log(\tau)$.
+(\ref{sec:rfsv}) shows, the choise of $H\in(0,\frac{1}{2})$ enable us to model the log-volatility process has a form of (\ref{sec:smth}). It may turn out to be RFSV is more reasonable than FSV for this empirical result.
+
+\subsection{Fractional Calculus and Discretization Fractional Process}
+The fractional integral could be derived from the repeated integral which is approached by Riemann-Liouville integral.
+\begin{eqnarray*}
+  &&\int_0^s\int_0^{s_1}\int_0^{s_2}\cdots\int_0^{s_{n-1}}\, f(s_n)ds_n\cdots ds_2 ds_1\\
+  &=& \frac{1}{(n-1)!} \int_0^s (s-u)^{n-1} f(u) \mathop{du}
+\end{eqnarray*}
+for $n\in \mathbb{N}_+$. Where $n$ is said to be \emph{the order} of the fractional integral. We extend it with the order $\alpha \in \mathbb{R}_+$.
+\begin{definition}
+  Let $f$ is locally integrable function. Then we define \emph{fractional integral of order $\alpha$} as follow
+\begin{eqnarray}
+  I^\alpha f(s) := \frac{1}{\Gamma(\alpha)} \int^s_0 (s-u)^{\alpha-1} f(u) \mathop{du}
+  \label{sec:fraint}
+\end{eqnarray}
+for $\alpha \in \mathbb{R}_+$.
+\end{definition}
+
+Remark, $I^\alpha I^\beta = I^\beta I^\alpha = I^{\alpha+\beta}$.
+Let $\Phi_\alpha(s):= \frac{s^{\alpha-1}}{\Gamma(\alpha)}$ for $\alpha \in \mathbb{R}_+$, then
+\begin{eqnarray}
+  I^\alpha f(s) = \Phi_\alpha(s) \ast f(s)
+\end{eqnarray}
+
+We give the definition of fractional derivative.
+\begin{definition}
+Let $f$ is locally integrable function. Then we define \emph{fractional derivative of order $\alpha$} as follow
+\begin{eqnarray}
+  D^\alpha f(s) := \begin{cases} \frac{d^n}{ds^n}[\frac{1}{\Gamma(l-\alpha)}\int_0^s \frac{f(u)}{(s-u)^{\alpha + 1 - n}}\mathop{du}] &\mbox{if } n-1 < \alpha < n,\\
+	\frac{d^n}{ds^n} f(s) & \mbox{if } \alpha=n
+  \end{cases}
+  \label{sec:frader}
+\end{eqnarray}
+\end{definition}
+for $n \in \mathbb{Z}$ and $\alpha \in \mathbb{R} $.
+%This Long memory property may explain why in stock market, large upheavals tend to be followed by large upheavals and small upheavals happend after by small upheavals.  In order to model long memory volatility process, Comte and Renault are forced to set $H\in (\frac{1}{2}, 1)$ in (\ref{sec:fv2}) named fractional volatility stochastic(FSV), see\cite{comren}. \\
+\begin{definition}
+  The \emph{fractional process of order $\alpha$}  is defined as
+  \begin{eqnarray}
+	X(t) &=&  \int_0^{t} g(t - u) \mathop{dB_u}
+	\label{sec:frac}
+  \end{eqnarray}
+  where 
+  \begin{eqnarray*}
+	g(s) &=& \Phi_{\alpha+1}(s)h(s)\\
+	&=& \frac{s^\alpha h(s)}{\Gamma(1+\alpha)}
+  \end{eqnarray*}
+  with $h \in C^2([0, T])$,  $|\alpha| < \frac{1}{2}$.
+\end{definition}
+In \cite{comte}, Comte gave a truncated representation FBM $(U_{\alpha,t})$.
+\begin{eqnarray}
+  U_{\alpha,t} &=& \int_0^t \frac{(t-u)^\alpha}{\Gamma(1+\alpha)}\mathop{dB_u}, 
+  \label{<sec:cc1>}
+\end{eqnarray}
+Where $|\alpha| < \frac{1}{2}, (B_u)$ Brownian motion. Notice that $\alpha$ is given by $H-\frac{1}{2}$ as in previous representation and the long memory property remains true.
+
+\begin{proposition}
+  Let $X(t)$ be a fractional process of order $\alpha$ as by (\ref{sec:frac}). Then
+  \begin{eqnarray}
+	X(t) &=& \int_0^t c(t-u)\mathop{dU_{\alpha, u}}\\
+	&:=& \frac{d}{dt}\brkt{\int_0^t c(t-u) U_{\alpha, u} \mathop{du}}
+	\label{sec:bb1}
+  \end{eqnarray}
+  where $c \in C([0, T]),$ $c$ and $g$ are functions related by
+  \begin{eqnarray}
+	c(s) &=& \frac{d}{ds}\brkt{\int_0^s \frac{(s-u)^{-\alpha}u^\alpha h(u) \mathop{du}}{\Gamma(1-\alpha)\Gamma(1+\alpha)}}.
+\label{sec:frac2}
+  \end{eqnarray}
+  \begin{eqnarray}
+	u^\alpha h(u) = \frac{d}{\mathop{du}}\brkt{\int_0^u c(s) (u-s)^\alpha \mathop{ds}}.
+	\label{sec:frac3}
+  \end{eqnarray}
+\end{proposition}
+
+\begin{proof}
+  See \cite{core}, pp.106-108, Lemma 1, Proposition 1. 
+\end{proof}
+\begin{definition}
+  The \emph{fractional derivation of order $\alpha$} of (\ref{sec:frac}) is defined as
+  \begin{eqnarray}
+   && X^{(\alpha)}(t)\nonumber\\
+	&:=&  \int_0^t \frac{(t-u)^{-\alpha}}{\Gamma(1-\alpha)} \mathop{dX_{t}}\nonumber\\
+    &:=&  \frac{d}{dt}\int_0^t \frac{(t-u)^{-\alpha}}{\Gamma(1-\alpha)} X_{t} \mathop{du} \nonumber\\
+	&=& D^{\alpha} X(t)
+	\label{sec:cc4}
+  \end{eqnarray}
+  for $|\alpha| < \frac{1}{2}$.
+\end{definition}
+
+\begin{proposition}
+  Let $|\alpha| < \frac{1}{2}$, if $h(0) \neq 0$ and $h \in C^2([0, T])$ , then 
+  %\begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]
+  $$X^{(\alpha)}(t) = \int_0^t c(t-s) \mathop{dB_s}.$$
+  where $c$ and $h$ are one-to-one related by (\ref{sec:frac2}) and (\ref{sec:frac3}).
+%\item $(X^{(\alpha)})^{-\alpha}=X$ for $\alpha\in(-\frac{1}{2}, \frac{1}{2})$.
+%\end{enumerate}
+\end{proposition}
+\begin{proof}
+  See  \cite{core}, p.111, Proposition 4.
+  \end{proof}
+  \begin{theorem}
+	Let $|\alpha| < \frac{1}{2}$. Then
+	\begin{eqnarray}
+	X(t) &=& \int_0^t \frac{(t-u)^\alpha}{\Gamma(1+\alpha)}\mathop{dX^{(\alpha)}_u}
+	\label{sec:imp}
+  \end{eqnarray}
+  \end{theorem}
+  \begin{proof}
+	Since all the integrands is nonnegative, we could apply Fubini theorem.
+  \begin{eqnarray*}
+	&&\int_0^t \frac{(t-u)^\alpha}{\Gamma(1+\alpha)}\mathop{dX^{(\alpha)}_u}\\
+	&=& \frac{d}{dt}\int_0^t \frac{(t-u)^\alpha}{\Gamma(1+\alpha)} \brkt{ \int_0^u \frac{(u-s)^{-\alpha}}{\Gamma(1-\alpha)}\mathop{dX_s}}\mathop{du}\\
+	%&=& \int_0^t \frac{(t-u)^\alpha}{\Gamma(1+\alpha)} \brkt{\frac{d}{du} \int_{0}^{u} \frac{(u)^{-\alpha}}{\Gamma(1-\alpha)}X_s\mathop{ds}}\mathop{du}\\
+%	&=& \int_0^t \brkt{\frac{d}{du} \int_0^u \frac{(t-u)^\alpha(u-s)^{-\alpha}}{\Gamma(1+\alpha)\Gamma(1-\alpha)}X_s\mathop{ds}}\mathop{du}\\
+	&=& \frac{d}{dt}\int_{0}^{t} \brkt{\int_s^t \frac{(t-u)^\alpha (u-s)^{-\alpha}}{\Gamma(1+\alpha)\Gamma(1-\alpha)}\mathop{du}} \mathop{dX_s}
+  \end{eqnarray*}
+  Changing variable with $v:= \frac{u-s}{t-s}$,
+  \begin{eqnarray*}
+   &&\int_s^t \frac{(t-u)^\alpha (u-s)^{-\alpha}}{\Gamma(1+\alpha)\Gamma(1-\alpha)}\mathop{du}\\
+   &=& \int_0^1 \frac{(t-s - (t-s)v)^\alpha (t-s)^{-\alpha}}{\Gamma(1+\alpha)\Gamma(1-\alpha)}(t-s)\mathop{dv}\\
+   &=& \frac{(t-s)}{\Gamma(1+\alpha)\Gamma(1-\alpha)}\int_0^1 (1-v)^\alpha v^{-\alpha} \mathop{dv}
+  \end{eqnarray*}
+Note that the beta function 
+\begin{eqnarray*}
+  B(x,y) &=& \int_0^1 t^{x-1} (1-t)^{y-1} \mathop{dt}\\
+  &=& \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+\end{eqnarray*}
+for $x, y \in \mathbb{R}_+$.
+Then,
+\begin{eqnarray*}
+   &&\int_s^t \frac{(t-u)^\alpha (u-s)^{-\alpha}}{\Gamma(1+\alpha)\Gamma(1-\alpha)}\mathop{du}\\
+   &=& \frac{(t-s)}{\Gamma(1+\alpha)\Gamma(1-\alpha)} B(1+\alpha, 1-\alpha)\\
+   &=& \frac{(t-s)}{\Gamma(1+\alpha)\Gamma(1-\alpha)} \frac{\Gamma(1+\alpha)\Gamma(1-\alpha)}{\Gamma(2)}\\
+   &=& t-s
+  \end{eqnarray*}
+  Plugging it back,
+  \begin{eqnarray*}
+	&&\int_0^t \frac{(t-u)^\alpha}{\Gamma(1+\alpha)}\mathop{dX^{(\alpha)}_u}\nonumber\\
+	&=& \frac{d}{dt}\int_0^t t-s \mathop{dX_s}\\
+%	&=& \frac{d^2}{dt^2}\int_0^t \frac{t-s}{\Gamma(2)} X_s \mathop{ds}\\
+	&=& \frac{d^2}{dt^2}\int_0^t (t-s) X_s \mathop{ds}\\
+	&=& \frac{d^2}{dt^2}\int_0^t X_s \int_s^t \mathop{du}  \mathop{ds}\\
+	&=& \frac{d^2}{dt^2} \int_0^t \int_s^t X_s \mathop{du}  \mathop{ds}\\
+	&=& \frac{d^2}{dt^2} \int_0^t \int_0^u X_s \mathop{ds}  \mathop{du}\\
+	&=& X_t
+  \end{eqnarray*}
+\end{proof}
+  \begin{example}
+  The truncated FOU process driven by $U_{\alpha, t}$ is 
+  \begin{eqnarray}
+  F_{\alpha,t} = \gamma\int_0^t e^{-a(t-u)}\mathop{dU_{\alpha, u}} 
+  \label{sec:cc2}
+\end{eqnarray}
+In terms of (\ref{sec:frac})
+\begin{eqnarray*}
+  c(u) &=&  \gamma e^{-au}
+\end{eqnarray*}
+And according to  (\ref{sec:frac3}),
+\begin{eqnarray*}
+  &&g(u)\\
+  &=& \frac{\frac{d}{du}\int_0^{u} c(s)(u-s)^\alpha \mathop{ds}}{\Gamma(1+\alpha)}\\
+  &=& \frac{\gamma}{\Gamma(1+\alpha)}\frac{d}{\mathop{du}}\int_0^u e^{-as} (u-s)^\alpha \mathop{ds}
+\end{eqnarray*}
+Using partial integration,
+\begin{eqnarray*}
+  &&g(u)\\
+  &=& \frac{\gamma}{\Gamma(1+\alpha)}\brkt{\brkt{\frac{d}{\mathop{du}} (-\frac{1}{1+\alpha}e^{-as}(u-s)^{1+\alpha}|_{s=0}^u)} - \brkt{\frac{d}{\mathop{du}}(\int_0^u -a e^{-as}(u-s)^\alpha)\mathop{ds}}}\\
+  &=& \frac{\gamma}{\Gamma(1+\alpha)}\brkt{\brkt{\frac{d}{\mathop{du}}(\frac{u^{1+\alpha}}{1+\alpha})} - a e^{-au}\brkt{\int_0^u e^{-as}s^\alpha\mathop{ds}}}\\
+  &=& \frac{\gamma}{\Gamma(1+\alpha)} (u^\alpha - a e^{-au}\int_0^u e^{-as}s^\alpha\mathop{ds})
+\end{eqnarray*}
+According to (\ref{sec:frac}), $h(u) = \gamma (1 + \frac{a e^{-au}\int_0^u e^{-as}s^\alpha\mathop{ds}}{u^\alpha})$. It is clear $h(0)\neq 0$ and it is continueously differable. I.e., its fractional derivative of order $\alpha$ is 
+\begin{eqnarray*}
+  F^{(\alpha)}_t &=&  \int_0^t c(t-u) \mathop{dB_u}\\
+  &=& \gamma\int_0^t e^{-a(t-u)}\mathop{dB_u}
+\end{eqnarray*}
+and 
+\begin{eqnarray*}
+  F_{\alpha,t} &=& \int_0^t \frac{(t-s)^\alpha}{\Gamma(1+\alpha)} \mathop{dF^{(\alpha)}(s)}.
+\end{eqnarray*}
+\end{example}
+
+To approximate a FOU $ F_{\alpha,t}$ on a discrete time scale, according to (\ref{sec:imp}), Comte had defined a quantity
+\begin{eqnarray}
+ \tilde{F}_{\alpha,n}(t) = \sum_{k=1}^{\floor{nt}} \frac{(t - \frac{k-1}{n})^\alpha}{\Gamma(1+\alpha)} \brkt{F^{(\alpha)}_{\frac{k}{n}} - F^{(\alpha)}_{\frac{k-1}{n}}}
+  \label{sec:cc7}
+\end{eqnarray}
+\begin{theorem}
+  $\tilde{F}_{\alpha,n}(t)\rightarrow F_{\alpha,n}(t)$ in distribution as $n$ tend to infinity.  
+  \label{sec:cont}
+\end{theorem}
+\begin{proof}
+  See. \cite{comren}, p.298, Proposition 3.1 .
+\end{proof}
+We suppose the initial value $F_{\alpha, 0}$ is centered Gaussian. Then  ${F}_{\alpha, n}(t)$ is asymtotically stationary and Gaussian solution of FOU,  an AR(1) approach of $X^{(\alpha)}$ could be given,
+\begin{eqnarray}
+  (1-c_nL_n) {F}^{(\alpha)}_{\frac{k}{n}} = \epsilon(\frac{k}{n})
+  \label{sec:cc6}
+\end{eqnarray}
+where $\epsilon(\cdot) \sim \mathcal{N}(0, \mathrm{Var}[F^{(\alpha)}_{\cdot}]), L_n $ represents the Lag operator such that $L_n F^{(\alpha)}_{\frac{k}{n}} = F^{(\alpha)}_{\frac{k-1}{n}}$  and $c_n$ are normalised cofficients corresponding to (\ref{sec:cc7}). Moreover, in the one hand, as n goes to infinity, we have following equation in distribution.
+\begin{eqnarray}
+  F_{\alpha,n}(\frac{k}{n}) &=& \sum_{l=1}^{k} \frac{(\frac{k}{n} - \frac{l-1}{n})^\alpha}{\Gamma(1+\alpha)} \brkt{F^{(\alpha)}_{\frac{l}{n}} - F^{(\alpha)}_{\frac{l-1}{n}}}\nonumber\\
+  &=& \sum_{l=1}^{k} \frac{(k - l + 1)^\alpha}{\Gamma(1+\alpha)n^\alpha} \brkt{F^{(\alpha)}_{\frac{l}{n}} - F^{(\alpha)}_{\frac{l-1}{n}}}\nonumber\\
+  &\overset{m=k-l}{=}& \sum_{m=0}^{k-1} \frac{(m + 1)^\alpha}{\Gamma(1+\alpha)n^\alpha} \brkt{F^{(\alpha)}_{\frac{k-m}{n}} - F^{(\alpha)}_{\frac{k-m-1}{n}}}\nonumber\\ 
+  &=& \brkt{\sum_{m=0}^{k-1} \frac{(m + 1)^\alpha - m^\alpha}{\Gamma(1+\alpha)n^\alpha} \cdot L_n^m} F^{(\alpha)}_{\frac{k}{n}} \nonumber\\
+  &\overset{(\ref{sec:cc6})}{=}&  \brkt{\sum_{m=0}^{k-1} \frac{(m + 1)^\alpha - m^\alpha}{\Gamma(1+\alpha)n^\alpha} \cdot L_n^m} (1-c_nL_n)^{-1}\epsilon(\frac{k}{n}).
+\end{eqnarray}
+We rewrite this then
+\begin{eqnarray*}
+  (1-c_nL_n)\brkt{\sum_{m=0}^{k-1} \frac{(m + 1)^\alpha - m^\alpha}{\Gamma(1+\alpha)n^\alpha} \cdot L_n^m}^{-1}  F_{\alpha,n}(\frac{k}{n}) =\epsilon(\frac{k}{n}).
+\end{eqnarray*}
+
+On the other hand, if we take consideration with the $ARFIMA(1, \alpha, 0)$, insteading of the content with $\{\}^{-1}$ by the $\alpha$-integrated term $(1-L_n)^\alpha$. Then we have
+\begin{eqnarray*}
+  (1-c_nL_n) (1-L_n)^\alpha F_{\alpha,n}(\frac{k}{n}),
+\end{eqnarray*}
+which is in general not Gaussian. Furthermore, $(1-L_n)^\alpha F_{\alpha,n}$ is in general not a $AR(1)$.  In the other words, the ARFIMA$(1, \alpha, 0)$ may not fit such a high-frequency data that is comfortable with the fractional stochastic volatility model driven by FBM. 
 
 \subsection{Weighted Fractional Stochastic Volatility Model}
 \begin{definition}
-  A \emph{mixed fractional Brownian motion} is defined as follows
+  A \emph{mixed fractional Brownian motion} is defined as follow
 \begin{eqnarray}
   M_{\alpha,\beta,H_1,H_2}(t) = \alpha U_{H_1}(t) + \beta U_{H_2}(t)
   \label{sec:mfsv}
@@ -2054,13 +2083,14 @@ for $t\in \mathbb{R}$, where $\alpha, \beta$ are real numbers and $U_{H_1}, U_{H
 \end{proposition}
 
 \begin{proof}
-  (i): $M_{\alpha,\beta,H_1,H_2}(t) = \alpha U_{H_1}(t) + \beta U_{H_2}(t) = \alpha \cdot 0 + \beta \cdot 0 = 0$.
+  (i): $\mathrm{E}[M_{\alpha,\beta,H_1,H_2}(t)] = \alpha \mathrm{E}[U_{H_1}(t)] + \beta \mathrm{E}[U_{H_2}(t)] = \alpha \cdot 0 + \beta \cdot 0 = 0$.
   To prove it is a Gaussian processes, let us have a look at it's characteristic function
   \begin{eqnarray*}
-	&&\mathrm{E}[\exp(i\xi\sum\limits_{k=1}^{d} c_k M_{\alpha,\beta,H_1,H_2}(k))]\\
-	&=& \mathrm{E}[\exp(i\xi\sum\limits_{k=1}^{d} c_k (\alpha U_{H_1}(k) + \beta U_{H_2}(k)))]
+	&&\sum\limits_{k=1}^{d} c_k M_{\alpha,\beta,H_1,H_2}(k)\\
+	&=& \sum\limits_{k=1}^{d} c_k (\alpha U_{H_1}(k) + \beta U_{H_2}(k))\\
+	&=& \sum\limits_{k=1}^{d} c_k \alpha U_{H_1}(k) + \sum\limits_{k=1}^{d} c_k \beta U_{H_1}(k)
   \end{eqnarray*}
-  Since $U_{H_1}(t), U_{H_2}(t)$ are independent and $(U_{H_1}(t))_t, (U_{H_2}(t))_t$ are centered Gaussian process, $\sum\limits_{k=1}^{d} c_k (\alpha U_{H_1}(k) + \beta U_{H_2}(k))$ is centered Gaussian and therefore $(M_{\alpha,\beta,H_1,H_2}(t))_t$ is centered Gaussian process. \\
+  Since $U_{H_1}(t), U_{H_2}(t)$ are independent and $(U_{H_1}(t))_t, (U_{H_2}(t))_t$ are centered Gaussian process, $\sum\limits_{k=1}^{d} c_k \alpha U_{H_1}(k) + \sum\limits_{k=1}^{d} c_k \beta U_{H_2}(k)$ is centered Gaussian and therefore $(M_{\alpha,\beta,H_1,H_2}(t))_t$ is centered Gaussian process. \\
   (ii): Using independence of $U_{H_1}(t)$ and $U_{H_2}(t)$, we have
   \begin{eqnarray*}
 	&&\mathrm{Cov}[M_{\alpha,\beta,H_1,H_2}(t), M_{\alpha,\beta,H_1,H_2}(s)]\\
@@ -2073,17 +2103,17 @@ And the rest is clear.\\
 (iii): 
 \begin{eqnarray*}
   M_{\alpha,\beta,H_1,H_2}(qt) &=&  \alpha U_{H_1}(qt)+\beta U_{H_2}(qt)\\
-  &\sim& \alpha q^{H_1} U_{H_1} + \beta q^{H_2} U_{H_2}\\
+  &\sim& \alpha q^{H_1} U_{H_1}(t) + \beta q^{H_2} U_{H_2}(t)\\
   &=& M_{\alpha q^{H_1}, \beta q^{H_2}, H_1, H_2}(t)
 \end{eqnarray*}
 \end{proof}
-We could give our stochastic volatility model diven by the mixed FBM. Given all parameter as in the assumption as before, we have 
+We could give our stochastic volatility model driven by the mixed FBM. Given all parameter as in the assumption as before, we have 
 
 \begin{eqnarray}
   \mathop{dX_{\alpha,\beta,H_1,H_2}(t)} = -aX_{\alpha,\beta,H_1,H_2}(t)\mathop{dt} + \gamma \mathop{dM_{\alpha,\beta,H_1,H_2}(t)}
   \label{sec:wfsv}
 \end{eqnarray}
-for $t\ge 0$ and where $a>0, \gamma >0$.
+for $t\ge 0$ and where $a, \gamma \in \mathbb{R}_+$.
 
 \begin{proposition}
   For an appropriate initial condition of (\ref{sec:wfsv}), there exist a solution $\hat{X_t}$ satisfies follwing properties
@@ -2108,22 +2138,27 @@ As in Theorem \ref{sec:sol}, we have the solution
 \end{eqnarray*}
 Given $X_0$ so that
 \begin{eqnarray}
-  X_{\alpha,\beta,H_1,H_2}(t) &=&  \alpha \underbrace{\gamma e^{-at}\int_{-\infty}^t e^{au} \mathop{d U_{H_1}}}_{:=J_{H_1}(t)} + \beta\underbrace{ \gamma e^{-at}\int_{-\infty}^t e^{au} \mathop{d U_{H_2}}}_{:=J_{H_2}(t)}.
+  \hat{X}_{\alpha,\beta,H_1,H_2}(t) &=&  \alpha \underbrace{\gamma e^{-at}\int_{-\infty}^t e^{au} \mathop{d U_{H_1}}}_{:=J_{H_1}(t)} + \beta\underbrace{ \gamma e^{-at}\int_{-\infty}^t e^{au} \mathop{d U_{H_2}}}_{:=J_{H_2}(t)}.
   \label{sec:jjj}
 \end{eqnarray}
-Notice $(J_{H_1}(t)), (J_{H_2}(t))$ are stationary fractional Ornstein-Uhlenbeck process. Since $J_{H_1}(t), J_{H_2}(t)$ defined as integral of $U_{H_1}, U_{H_2}$ of Riemann-Stieljes sense, they are therefore independent.  Hence  $\sum\limits_{k=1}^{d} c_k (\alpha J_{H_1}(k) + \beta J_{H_2}(k))$ are centered Gaussian.\\
+Notice $(J_{H_1}(t)), (J_{H_2}(t))$ are stationary fractional Ornstein-Uhlenbeck process. Since $J_{H_1}(t), J_{H_2}(t)$ defined as integral of $U_{H_1}, U_{H_2}$ of Riemann-Stieljes sense, they are therefore independent.  Hence 
+\begin{eqnarray*}
+  && \sum\limits_{k=1}^{d} c_k \hat{X}_{\alpha,\beta,H_1,H_2}\\
+  &=& \sum\limits_{k=1}^{d} c_k \alpha J_{H_1}(k) + \sum\limits_{k=1}^{d} c_k \beta J_{H_2}(k)
+\end{eqnarray*}
+are centered Gaussian.\\
 For (i): 
  \begin{eqnarray*}
    &&\mathrm{E}[\exp(i\xi\sum\limits_{k=1}^{d} c_k X_{\alpha,\beta,H_1,H_2}(k))]\\
    &=& \mathrm{E}[\exp(i\xi\sum\limits_{k=1}^{d} c_k (\alpha J_{H_1}(k) + \beta J_{H_2}(k)))]\\
    &=& \mathrm{E}[\exp(i\xi\sum\limits_{k=1}^{d} c_k (\alpha J_{H_1}(k+s) + \beta J_{H_2}(k+s)))]
   \end{eqnarray*}
-  for a fixed $s$. This shows $(X_{\alpha,\beta,H_1,H_2}(t))$ is centered Gaussian and stationary.\\
+  for a fixed $s$. This shows $(\hat{X}_{\alpha,\beta,H_1,H_2}(t))$ is stationary.\\
   For (ii): 
   \begin{eqnarray*}
 	&&\varsigma(\tau) \\
-	&=& \mathrm{Cov}[X_{\alpha,\beta,H_1,H_2}(0),X_{\alpha,\beta,H_1,H_2}(\tau)]\\
-	&=& \mathrm{E}[X_{\alpha,\beta,H_1,H_2}(0)X_{\alpha,\beta,H_1,H_2}(\tau)]\\
+	&=& \mathrm{Cov}[\hat{X}_{\alpha,\beta,H_1,H_2}(0), \hat{X}_{\alpha,\beta,H_1,H_2}(\tau)]\\
+	&=& \mathrm{E}[\hat{X}_{\alpha,\beta,H_1,H_2}(0) \hat{X}_{\alpha,\beta,H_1,H_2}(\tau)]\\
 	&=& \mathrm{E}[(\alpha J_{H_1}(0) + \beta J_{H_2}(0))(\alpha J_{H_1}(\tau) + \beta J_{H_2}(\tau)]\\
 	&=& \alpha^2\mathrm{E}[J_{H_1}(0) J_{H_1}(\tau)] + \alpha\beta\mathrm{E}[J_{H_1}(0)J_{H_2}(\tau)] + \alpha\beta\mathrm{E}[J_{H_2}(0)J_{H_1}(\tau)] + \beta^2\mathrm{E}[J_{H_2}(0)J_{H_2}(\tau)].
   \end{eqnarray*}
@@ -2137,29 +2172,29 @@ For (i):
   &+& \frac{1}{2} (\beta\gamma)^2 \sum_{k=1}^{N} a^{-2k}\brkt{\prod_{j=0}^{2k-2}(2H_2-j)}\tau^{2(H_2-k)} + \mathrm{o}(\tau).
   \end{eqnarray*}
   \end{proof}
-  As by Corollary \ref{sec:longmer}, the summation over $\tau$ of the latter of the last line of the equation diverges, when $H_2 \in (\frac{1}{2}, 1)$. And not only the former but also the latter tend to zero as $\tau$ goes to zero. Thus, $(\hat{X}_t)$ has long memory property. 
+  $\varsigma(\tau)$ tend to zero as $\tau$ goes to zero. As by Corollary \ref{sec:longmer}, the summation over $\tau$ of the latter of the last line of the equation diverges, when $H_2 \in (\frac{1}{2}, 1)$. Thus, $(\hat{X}_t)$ has long memory property. 
 
   \begin{definition}
-	We add a restriction that $\alpha^2 + \beta^2 = 1$ and let $a$ so small such that it near zero to (\ref{sec:wfsv}), then we get our \emph{weighted fractional Brownian motion}.
+	We add a restriction that $\alpha^2 + \beta^2 = 1$ to (\ref{sec:wfsv}) and let $a$ so small such that it close to zero , then we get our \emph{weighted fractional Brownian motion}.
   \end{definition}
   
 \begin{proposition}
   Let $M_{\alpha,\beta,H_1,H_2}$ be a weighted fractional brownian motion with respect to $U_{H_1}$ and $U_{H_2}$, $T, \tau>0$, $a, \gamma$ are defined by (\ref{sec:wfsv}), $J_{H_1}, J_{H_2}$ are defined by (\ref{sec:jjj}), $\phi=H_1-\frac{1}{2}, \psi=H_2-\frac{1}{2}$. Then
 \begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]	
-  \item $\mathrm{E}[\sup\limits_{t\in[0,T]}|M_{\alpha,\beta,H_1,H_2}(t) - U_{H_1}(t)|] \rightarrow 0$
+  \item $\mathrm{E}[\sup\limits_{t\in[0,T]}|\hat{X}_{\alpha,\beta,H_1,H_2}(t) - U_{H_1}(t)|] \rightarrow 0$
 	as $a\rightarrow 0, \alpha\rightarrow 1$.
-  \item $\mathrm{E}[|M_{\alpha,\beta,H_1,H_2}(t+\tau) - M_{\alpha,\beta,H_1,H_2}(t)|] \rightarrow \frac{1}{2}  \gamma^2 \tau^{2H}$
+  \item $\mathrm{E}[|\hat{X}_{\alpha,\beta,H_1,H_2}(t+\tau) - \hat{X}_{\alpha,\beta,H_1,H_2}(t)|] \rightarrow \frac{1}{2}  \gamma^2 \tau^{2H}$
 	as $a\rightarrow 0, \alpha\rightarrow 1$.
   \item Let 
 	\begin{eqnarray}
-	  &&\hat{X}_{\alpha,\beta,H_1,H_2}(t) \\
+	  &&\tilde{X}_{\alpha,\beta,H_1,H_2}(t) \\
 	  &=&  \alpha\sum_{k=1}^{\floor{nt}} \frac{(t - \frac{k-1}{n})^\phi}{\Gamma(1+\phi)} \brkt{J_{H_1}^{(\phi)}(\frac{k}{n}) - J_{H_1}^{(\phi)}(\frac{k-1}{n})} \\
 	  &+& \beta\sum_{k=1}^{\floor{nt}} \frac{(t - \frac{k-1}{n})^\psi}{\Gamma(1+\psi)} \brkt{J_{H_2}^{(\psi)}(\frac{k}{n}) - J_{H_2}^{(\psi)}(\frac{k-1}{n})}
 	  \label{sec:disc}
 	\end{eqnarray}
-	then,
+	then, as $n$ goes to infinity,
 	\begin{eqnarray*}
-	  \hat{X}_{\alpha,\beta,H_1,H_2}(t) \rightarrow X_{\alpha,\beta,H_1,H_2}(t)
+	  \tilde{X}_{\alpha,\beta,H_1,H_2}(t) \rightarrow \hat{X}_{\alpha,\beta,H_1,H_2}(t)
 	\end{eqnarray*}
 	in distribution.
   \end{enumerate}
@@ -2167,21 +2202,22 @@ For (i):
   \begin{proof}
 (i): 
 \begin{eqnarray*}
-  &&\mathrm{E}[\sup\limits_{t\in[0,T]}|M_{\alpha,\beta,H_1,H_2}(t) - U_{H_1}|]\\
-  &=&\mathrm{E} [\sup\limits_{t\in[0,T]}|M_{\alpha,\beta,H_1,H_2}(t) - \alpha J_{H_1}(t) + \alpha J_{H_1}(t) - U_{H_1}(t)|]\\
-  &\le&\mathrm{E} [\sup\limits_{t\in[0,T]}\underbrace{|M_{\alpha,\beta,H_1,H_2}(t) - \alpha J_{H_1}(t)|}_{\overset{\alpha\uparrow 1}{\rightarrow}0 }] + \mathrm{E} [\sup\limits_{t\in[0,T]}|\underbrace{\alpha J_{H_1}(t)}_{\overset{\alpha\uparrow 1}{\rightarrow} J_{H_1}(t)} - U_{H_1}(t)|]\\ 
+  &&\mathrm{E}[\sup\limits_{t\in[0,T]}|\hat{X}_{\alpha,\beta,H_1,H_2}(t) - U_{H_1}|]\\
+  &=&\mathrm{E} [\sup\limits_{t\in[0,T]}|\hat{X}_{\alpha,\beta,H_1,H_2}(t) - \alpha J_{H_1}(t) + \alpha J_{H_1}(t) - U_{H_1}(t)|]\\
+  &\le&\mathrm{E} [\sup\limits_{t\in[0,T]}\underbrace{|\hat{X}_{\alpha,\beta,H_1,H_2}(t) - \alpha J_{H_1}(t)|}_{\overset{\alpha\uparrow 1}{\rightarrow}0 }] + \mathrm{E} [\sup\limits_{t\in[0,T]}|\underbrace{\alpha J_{H_1}(t)}_{\overset{\alpha\uparrow 1}{\rightarrow} J_{H_1}(t)} - U_{H_1}(t)|]\\ 
   &\overset{\alpha\uparrow 1}{\rightarrow}&  \mathrm{E} [\sup\limits_{t\in[0,T]}|J_{H_1}(t) - U_{H_1}(t)]\\
 	&\overset{a\downarrow 0}{\rightarrow}& 0
 \end{eqnarray*}
 (ii):
 \begin{eqnarray*}
-	&& \mathrm{E}[|M_{\alpha, \beta, H_1, H_2}(t+\tau) - M_{\alpha, \beta, H_1, H_2}(t)|^2]\\
-	&=& 2\mathrm{Var}[M_{\alpha, \beta, H_1, H_2}(t)] - 2\mathrm{Cov}[M_{\alpha, \beta, H_1, H_2}(t), M_{\alpha, \beta, H_1, H_2}(t+\tau)]\\
+  && \mathrm{E}[|\hat{X}_{\alpha, \beta, H_1, H_2}(t+\tau) - \hat{X}_{\alpha, \beta, H_1, H_2}(t)|^2]\\
+  &=& 2\mathrm{Var}[\hat{X}_{\alpha, \beta, H_1, H_2}(t)] - 2\mathrm{Cov}[\hat{X}_{\alpha, \beta, H_1, H_2}(t), M_{\alpha, \beta, H_1, H_2}(t+\tau)]\\
 	&=& 2(\alpha^2\mathrm{Var}[J_{H_1}(t)] + \beta^2\mathrm{Var}[J_{H_2}(t)]  \\
 	&-& \alpha^2\mathrm{Cov}[J_{H_1}(t), J_{H_1}(t+\tau)] - \beta^2\mathrm{Cov}[J_{H_2}(t), J_{H_2}(t+\tau)])\\
     &=&  2(\alpha^2\mathrm{Var}[J_{H_1}(t)] - \alpha^2\mathrm{Cov}[J_{H_1}(t), J_{H_1}(t+\tau)] \\
 	&+& \beta^2\mathrm{Var}[J_{H_2}(t)] - \beta^2\mathrm{Cov}[J_{H_2}(t), J_{H_2}(t+\tau)])\\
 	&\rightarrow& \alpha^2(\frac{1}{2}\gamma^2 \tau^{2H_1}) + \beta^2\varsigma_{\hat{J}_{H_2}}(\tau)  \\
+	&\overset{\alpha\uparrow 1}{\rightarrow}& \frac{1}{2}\gamma^2\tau^{2H_1}
 \end{eqnarray*}
 (iii): Suppose $\{Y_t\}_t, \{Z_t\}_t$ are two families of random variables with $Y_t \rightarrow Y, Z_t \rightarrow Z$ in distribution. $Y_t, Z_t$ are independent for each $t$. Then  $Y_t + Z_t \rightarrow Y+Z$, because, using continuity theorem of characteristic function
 \begin{eqnarray*}
@@ -2195,25 +2231,25 @@ $$
 and 
 $$\beta\sum_{k=1}^{\floor{nt}} \frac{(t - \frac{k-1}{n})^\psi}{\Gamma(1+\psi)} \brkt{J_{H_2}^{(\psi)}(\frac{k}{n}) - J_{H_2}^{(\psi)}(\frac{k-1}{n})}
 $$
-are independent. According Theorem \ref{sec:cont}, 
+are independent. According Theorem \ref{sec:cont} and Theorem of Cramer Slutsky. 
 $$
 \alpha\sum_{k=1}^{\floor{nt}} \frac{(t - \frac{k-1}{n})^\phi}{\Gamma(1+\phi)} \brkt{J_{H_1}^{(\phi)}(\frac{k}{n}) - J_{H_1}^{(\phi)}(\frac{k-1}{n})} \rightarrow \alpha J_{H_1}(t)
 $$ and
 $$
 \beta\sum_{k=1}^{\floor{nt}} \frac{(t - \frac{k-1}{n})^\psi}{\Gamma(1+\psi)} \brkt{J_{H_2}^{(\psi)}(\frac{k}{n}) - J_{H_2}^{(\psi)}(\frac{k-1}{n})} \rightarrow \beta J_{H_2}(t)
 $$ in distribution.
-Then
+Then, since mentioned above,
 \begin{eqnarray*}
-  \hat{X}_{\alpha,\beta,H_1,H_2}(t) &\overset{\text{Cramer Slutsky}}{\rightarrow}& \alpha J_{H_1}(t) + \beta J_{H_2}(t)\\
-  &=& X_{\alpha,\beta,H_1,H_2}(t)
+  \tilde{X}_{\alpha,\beta,H_1,H_2}(t) &\rightarrow& \alpha J_{H_1}(t) + \beta J_{H_2}(t)\\
+  &=& \hat{X}_{\alpha,\beta,H_1,H_2}(t)
 \end{eqnarray*}
 	\end{proof}
 	\subsection{Discussion}
-	As well known, we deal with the volatility as fractional stochastic volatility model. A high-frequency data may have required to take a great $H$. In FSV, we choose $H > \frac{1}{2}$ and that will make sure the solution of log-volatility SDE has long memory. In contrast, although it could not exhibit the long memory by a $H < \frac{1}{2}$, RFSV demonstrate a more reasonable smoothness of volatility. In another words, RFSV ensures $H$ to match the slop of the plotting of $log(s(\tau))$ agains $log(\tau)$, see (\ref{sec:smo}).\\
-	The weighted-FSV model inherit long memory of FSV. With the manipulatable factor, one can achieve a result of smoothness of volatility near it by RFSV. As by RFSV, as $a$ goes to zero, the $log(\sigma)$ is modeled to act as FBM at any compact time scale.\\
-	Both in FSV and RFSV, there is a discretization motived by fractional derivation. An AR(1) approach can be applied in them. But %这个却不能在wsfv 应用。
+	In this section, we deal with the volatility by fractional stochastic volatility model. In order to model log-volatility, we take FOU process into account. In FSV, we choose $H > \frac{1}{2}$ and that will make sure the solution of log-volatility SDE has long memory. In contrast, although it could not exhibit the long memory by a $H < \frac{1}{2}$, RFSV demonstrate a more reasonable smoothness of volatility. For instance, RFSV ensures  the slop of the plotting of $log(s(\tau, \hat{X}))$ agains $log(\tau, \hat{X})$ is consist with the empirical result we observed, see (\ref{sec:smo}).\\
+	The weighted-FSV model inherit long memory of FSV. With the manipulatable factor, one can achieve a result of smoothness of volatility close to it by RFSV. As by RFSV, as $a$ goes to zero, the $\hat{X}$ acts locally as FBM at any compact time scale.\\
+	Not only  in FSV but also in RFSV, there is a AR(1)  discretization motived by fractional derivative. However, it is not the case by weighted-FSV. We approach $\hat{X}$  there with the sum of two fractional derivatives.
 	\\
-	The future work is maybe the question, whether a dirsable discretization could have found which can compare with the usual models like ARFIMA.
+	The future work is maybe the question, whether a dirsable discretization could have found which works with a mixed order of fractional derivatives.
 
 
 
@@ -2243,6 +2279,18 @@ Then
 	\bibitem{shilling} (2012, October 1). Stochastic Processes. Lecture conducted from \textsc{Schilling, R.}, Dresden.
 	\bibitem{Gatheral} \textsc{Gatheral,~J. \& Jaisson,~T. \& Rosenbaum,~M} (2014). Volatility is Rough.
 \end{thebibliography}
+
+\newpage
+\thispagestyle{empty}
+\Large
+\textbf{ERKL\"ARUNG} \\[1em]
+\large
+Hiermit erkl\"are ich, dass ich die am heutigen Tag eingereichte Diplomarbeit zum Thema ,,Fractional Brownian motion and applications in financial mathematics`` unter Betreuung von Prof.\ Dr.\ rer.\ nat.\ M.\ Keller-Ressel selbstst\"andig erarbeitet, verfasst und Zitate kenntlich gemacht habe. Andere als die angegebenen Hilfsmittel wurde von mir nicht benutzt. \\[5em]
+\vspace{2cm}
+\large
+Datum \hfill Unterschrift 
+\end{document}
+
 \end{document}
 
 
