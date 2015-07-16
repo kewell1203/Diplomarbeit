@@ -1,0 +1,389 @@
+%        File: DA_Beamer.tex
+%     Created: Sun Jun 26 05:00 PM 2011 C
+% Last Change: Sun Jun 26 05:00 PM 2011 C
+%
+\documentclass[12pt]{beamer}
+\usefonttheme[stillsansserifmath]{serif}
+\usetheme{Madrid}
+\defbeamertemplate*{frametitle}{smoothbars theme}
+{%
+\nointerlineskip%
+\begin{beamercolorbox}[wd=\paperwidth,leftskip=.3cm,rightskip=.3cm plus1fil,vmode]{frametitle}
+	\vskip.3ex
+	\usebeamerfont*{frametitle}\insertframetitle%
+	\vskip.3ex
+\end{beamercolorbox}%
+}
+%\let\Tiny=\tiny
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{bbm}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\def\F{\mathcal{F}}
+\def\B{\mathcal{B}}
+\def\RR{\mathbb{R}}
+\def\NN{\mathbb{N}}
+\def\i{\mathrm{i}}
+\def\e{\mathrm{e}}
+\def\d{\mathrm{d}}
+\def\k{\mathrm{k}}
+\def\Var{\mathrm{Var}}
+\def\ind{\mathbf{1}}
+\def\la{\langle}
+\def\ra{\rangle}
+\newcommand{\compl}[1]{{#1}^{c}}
+% sigma algebra
+\def\sa{$\sigma$- Algebra\ } 
+% prob. space
+\def\bs{$(\Omega, \mathscr{A}, \mathcal{P})$\ } 
+\def\bsigma{\mathscr{B}\brkt{\mathbb{R}^{n}}}
+\newcommand{\sqbr}[1]{\left[ {#1} \right]}
+\newcommand{\brkt}[1]{\left({#1} \right)}
+\newtheorem{proposition}{Proposition}
+%%%%
+\makeatletter
+\newenvironment{customitem}[2]{
+  \ifnum\@itemdepth &gt;2\relax\@toodeep\else
+  \advance\@itemdepth\@ne%
+  \beamer@computepref\@itemdepth%
+  \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+  \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+  \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+  \begin{list}
+    {
+      \usebeamertemplate{itemize \beameritemnestingprefix item}
+    }
+    { \leftmargin=#1 \itemindent=#2
+      \def\makelabel##1{%
+        {%  
+          \hss\llap{{%
+              \usebeamerfont*{itemize \beameritemnestingprefix item}%
+              \usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
+        }%  
+      }%  
+    }
+    \fi
+  }
+  {
+  \end{list}
+  \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body end}%
+}
+\makeatother
+%%%%
+\title[Diploma Thesis]{Fractional Brownian Motion and its Application in financial mathematics}
+\author{Ke Zhu} 
+\institute[TU Dresden]{Supervisor: Prof.~Dr.~rer.~nat.~M.~Keller-Ressel\\[2ex] Institute of Mathematical Stochastics\\ TU Dresden}
+\date[July 2015]{July ??, 2015}
+\begin{document}
+\begin{frame}[plain]
+	\titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{Contents}
+	\begin{itemize}
+		\item Introduction of fBm
+			\vspace{2ex}
+			\pause
+		\item Definition and Properties of fBm
+			\vspace{2ex}
+			\pause
+		\item Applications
+			\vspace{2ex}
+			\pause
+			\begin{itemize}
+				\item OU-Process 
+					\vspace{1.5ex}
+					\pause
+				\item Fractional Black-Scholes Model
+					\vspace{1.5ex}
+					\pause
+				\item Fractional Volatility Model
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	\frametitle{Introduction of fBm}
+	Aims
+	\begin{itemize}
+	 \item Centered Gaussian process $(U_H(t))$ 
+	   \vspace{4ex}
+	  \item 
+	  $\mathrm{Cov}[U_H(t), U_H(s)] = \frac{1}{2} (|t|^{2H} + |s|^{2H} - |t-s|^{2H})$ with Hurst exponent $H\in (0, 1)$.
+	  \vspace{2ex}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  Mandelbrot and Van Ness
+	\frametitle{Integral Representation}
+	\begin{definition}
+	Let $(U_H(t))_{t\in \mathbb{R}}$ be a $\mathbb{R}$-valued stochatstic process and $H$ be a real number such that $0<H<1$. $(U_H(t))$ is said to be \emph{fractional Brownian motion} if 
+  \begin{eqnarray}
+		&&U_H(t) - U_H(s)\nonumber\\
+		&=& \frac{1}{\Gamma(H+\frac{1}{2})}\brkt{\int_{\mathbb{R}} \mathbbm{1}_{\{t > u\}}\cdot (t-u)^{H-\frac{1}{2}}
+		- \mathbbm{1}_{\{s > u\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}}
+	\label{sec:frtbm}
+  \end{eqnarray}
+  for $t\ge s, t, s \in \mathbb{R}$, where $(B_u)$ is defined as two-sides Brownian motion and the integral is defined in the sense of stable integral.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}
+	$U_H(0) = 0$, then
+	\begin{eqnarray}
+	&&U_H(t) \nonumber\\
+	&=& \frac{1}{\Gamma(H+\frac{1}{2})}\brkt{\int_{\mathbb{R}} \underbrace{\mathbbm{1}_{\{t > u\}}\cdot (t-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u < 0\}} (-u)^{H-\frac{1}{2}}}_{f_t(u)} \, \mathop{dB_u}}.
+	\label{sec:fbm}
+  \end{eqnarray}
+\end{theorem}
+\begin{eqnarray*}
+  J(f_t) : f_t \rightarrow \int_{\mathbb{R}} f_t \mathop{dB_u}
+\end{eqnarray*}
+  If the integrand $f$ is quadratic integrable then $(\ref{sec:frtbm})$ is well-defined in the sense of stable integral.
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}
+	 $U_H(t) \sim \mathcal{N}(0, \frac{1}{\Gamma(H+\frac{1}{2})^2}(\int_{\mathbb{R}} |f_t(u)^2|\, \mathop{du}))$
+  \end{theorem}
+
+  \begin{proposition}
+  The stable integral is linear:
+\begin{equation*}
+  J(f_t + f_s) \overset{a.s.}{=}J(f_t) + J(f_s)
+\end{equation*}
+\end{proposition}
+  \end{frame}
+
+\begin{frame}
+ \begin{theorem}
+	$U_H(t)-U_H(s) \sim \mathcal{N}(0, \frac{1}{\Gamma(H+\frac{1}{2})^2}(\int_{\mathbb{R}} |f_t(u)-f_s(u)|^2\, \mathop{du})$
+  \end{theorem}
+  \begin{theorem}
+   The variance of $U_H(t)$ is $\frac{1}{(\Gamma(H+\frac{1}{2}))^2}t^{2H}\, \mathrm{E} U^2_H(1)$ for any $t \in \mathbb{R}$.
+  \label{sec:fbmp1}
+\end{theorem}
+Divide with $\frac{1}{(\Gamma(H+\frac{1}{2}))^2}\mathrm{E} U^2_H(1)$ then, \\
+\vspace{2ex}
+\hspace{8em}$\mathrm{Var}[U_H(t)]=t^{2H}$.
+\end{frame}
+\frametitle{Introduction of fBm}
+\begin{frame}
+  What is a fBm ?
+\end{frame}
+
+\frametitle{Introduction of fBm}
+\begin{frame}
+  \begin{theorem}
+  Let  $(U_H(t))_{t}$ be a fBm. The covariance of $U_H(t)$ and $U_H(s)$ is $ \frac{1}{2}(t^{2H} + s^{2H} - |t-s|^{2H})$ for $t, s \in \mathbb{R}$.
+\end{theorem}
+
+\begin{proof}
+  \begin{eqnarray}
+	\mathrm{Cov}[U_H(t), U_H(s)] &=& \mathrm{E}[U_H(t)U_H(s)] \nonumber\\
+	&=& \frac{1}{2}(\mathrm{E}[U_H(t)^2] + \mathrm{E}[U_H(s)^2] \nonumber\\
+	&-& \mathrm{E}[(U_H(t) - U_H(s))^2]) \nonumber\\
+	&=& \frac{1}{2}(t^{2H} + s^{2H} - |t-s|^{2H})
+	\label{sec:eqn4}
+  \end{eqnarray}
+\end{proof}
+\end{frame}
+
+\begin{frame}
+ \begin{theorem}
+  $(U_H(t))_{t}$ is Gaussian process.
+\end{theorem}
+\begin{theorem}
+   Let $(U_H(t))_{t}$ be a fBm, then $(U_H(t))_{t}$ has stationary and H-self similar increments .
+\end{theorem} 
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}
+	\begin{eqnarray*}
+	   (U_H(t_1),\dots,U_H(t_n)) \sim (U_H(t_1+\tau),\dots,U_H(t_n+\tau))
+	\end{eqnarray*}
+  \end{theorem}
+  \begin{theorem}
+\begin{eqnarray*}
+  (U_H(ct_1),\dots, U_H(ct_k)) \sim (c^H U_H(t_1),\dots, c^H U_H(t_k))
+\end{eqnarray*}
+  \end{theorem}
+\end{frame}
+
+\begin{frame}
+  \begin{definition}
+  A stationary stochastic process $(X_t)_t$ is said to have \emph{long memory} if its autocovariance $\varsigma_X(\tau)$ tends to $0$ so slowly such that
+  $ \sum_{\tau = 0} ^{\infty} \varsigma_X(\tau)$ diverges.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+  $S_H(k) = U_H(k+1) - U_H(k)$ for $k\in \mathbb{R}$.
+  \begin{theorem}
+	The fractional Brownian noise $S_H(k)$ with $H \in (\frac{1}{2}, 1)$ has long memory.
+  \end{theorem}
+\end{frame}
+\begin{frame}
+  fBm is not semimartingal for $H \neq\frac{1}{2}$.
+\end{frame}
+
+
+\begin{frame}
+  \begin{eqnarray*}
+ \mathop{dX_t} = -aX_t\mathop{dt} + \gamma \mathop{dU_H(t)},
+ \label{sec:ou1}
+\end{eqnarray*}
+where $(X_t)_{t\ge 0}$ is a stochastic process, $a, \gamma\in\mathbb{R}_{+}$ and $(U_H(t))_{t\ge 0} $ fBm with Hurst exponent $H$. In fact, given an initial condition $X_0(\omega)=b(\omega)$, then in the theory of SDE, (\ref{sec:ou1}) is understood as
+\begin{eqnarray*}
+  X_t(\omega) = b(\omega) - a\int_0^t X_u(\omega) \mathop{du} + \gamma U_H(t)(\omega)
+  \label{sec:oup}
+\end{eqnarray*}
+for $t \ge 0$.
+
+In order to have a stationary solution, we assume that the initial value is centered Gaussian that $\hat{X}_{H,t}:= \hat{X}_t^{\gamma\int_{-\infty}^0 e^{au}\mathop{dU_H(u)}, H} := e^{-at}\brkt{\gamma\int_{-\infty}^t e^{au}\mathop{dU_H(u)}}$.
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}
+	 $(\hat{X}_{H,t})_{t\ge 0}$ has long memory for $H\in (\frac{1}{2}, 1)$.
+  \end{theorem}
+\end{frame}
+
+\begin{frame}
+  Fractional Black-Scholes model
+  \begin{eqnarray*}
+  A_t &=& \exp(rt)\nonumber\\
+  S_t &=& \exp(rt + \mu(t) +\sigma U_H(t)), t\in [0, T],
+  \label{sec:fbs2}
+\end{eqnarray*}
+where  $r\in\mathbb{R}, \sigma\in\mathbb{R}_+, \sup\limits_{t\in[0, T]}\mu(t) < \infty$.
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}
+  Let $(S_t)_{t\in[0, T]}$ be a stochastic process such that
+  \begin{eqnarray}
+	\tilde{S}_t = \exp\brkt{\mu(t) + \sigma U_H(t)},
+	\label{sec:fbs}
+  \end{eqnarray}
+  where $\mu, \sigma$ are as in (\ref{sec:fbs2}), $U_H(t)$ is a fBm. If there exist
+  \begin{eqnarray*}
+  \xi^1_t = f_0\mathbbm{1}_{\{0\}}(t)+\sum_{k=1}^{n-1} f_k \mathbbm{1}_{(\tau_k, \tau_{k+1}]}(t)
+  \end{eqnarray*}
+  where $t\in[0, T], f_k$ is family of  $\mathcal{F}^{U_H}_k $-measurable function for $k \in \{1,\dots,n-1\}$. $0 = \tau_1 < \cdots <\tau_n = T$ are stopping times with respect to $\mathcal{F}^{U_H}_{\tau_k} $ respectively,  with $\tau_{k+1} - \tau_k\ge m$ for some $m>0$. If there exists a $k \in \{0,\dots,n-1\}$ such that $\mathcal{P}[f_k\neq 0]>0$ , then
+  \begin{eqnarray*}
+	\mathcal{P}[(\xi^1 \cdot \tilde{S})_T < 0] > 0,
+  \end{eqnarray*}
+	\label{sec:claim}
+	where $(\xi^1 \cdot \tilde{S})_T := \sum_{k=1}^{n} \xi^1_{\tau_k} (\tilde{S}_{k} - \tilde{S}_{k-1})$.
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+   The market (\ref{sec:fbs2}) is arbitrage-free, if there exists a minimal amount of time between two successive transactions,.
+\end{frame}
+
+\begin{frame}
+\begin{eqnarray}
+  \mathop{dS_t} &=& r_tS_t\mathop{dt} + \sigma_t S_t \mathop{dB_t},\\
+  \sigma_t &=& \exp\{X_t\} \nonumber\\
+  \mathop{dX_t} &=&  -a X_t \mathop{dt} + \gamma \mathop{dU_H(t)},
+  \label{sec:fv}
+\end{eqnarray}
+where $a, \gamma \in \mathbb{R}_{+}$. In the proceeding section, we have a stationary solution 
+\begin{eqnarray}
+\hat{X}_{H,t}= e^{-at}\gamma\int_{-\infty}^t e^{au}\mathop{dU_H(u)}
+\label{sec:fv2}
+\end{eqnarray} 
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}
+  $(\hat{\sigma}_{H,t})$ has long memory for $H\in(\frac{1}{2}, 1)$. 
+  \end{theorem}
+\end{frame}
+
+\begin{frame}
+  Smoothness of $\sigma_t$.
+  \begin{eqnarray*}
+  s(\tau, \sigma) = \frac{1}{N}\sum\limits_{k=1}^N|\log(\sigma_{k\tau}) - \log(\sigma_{(k-1)\tau})|^2,
+  \label{sec:smo}
+\end{eqnarray*}
+\begin{theorem}
+  \begin{eqnarray}
+	\mathrm{Var}[\hat{X}_{H,t, a}] - \mathrm{Cov}[\hat{X}_{H,t, a}, \hat{X}_{H,t+\tau, a}] \rightarrow \frac{1}{2} \gamma^2\tau^{2H}
+	\label{sec:rfsv}
+  \end{eqnarray}
+ as $a$ goes to zero, for $t>0, \tau>0$.
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+  \begin{definition}
+  A \emph{mixed fractional Brownian motion} is defined as follows
+\begin{eqnarray}
+  M_{\alpha,\beta,H_1,H_2}(t) = \alpha U_{H_1}(t) + \beta U_{H_2}(t)
+  \label{sec:mfsv}
+\end{eqnarray}
+for $t\in \mathbb{R}$, where $\alpha, \beta$ are real numbers and $U_{H_1}, U_{H_2}$ are two independent fBm's with Hurst exponents $H_1 \in (0, \frac{1}{2}), H_2 \in (\frac{1}{2}, 1)$ respectively.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+  \begin{eqnarray*}
+	X_{\alpha,\beta,H_1,H_2}(t) = X_{\alpha,\beta,H_1,H_2}(0) - a\int_0^t X_u \mathop{du} + \gamma M_{\alpha,\beta,H_1,H_2}(t).
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \hat{X}_{\alpha,\beta,H_1,H_2}(t) &=&  \alpha \gamma e^{-at}\int_{-\infty}^t e^{au} \mathop{d U_{H_1}} + \beta \gamma e^{-at}\int_{-\infty}^t e^{au} \mathop{d U_{H_2}}.
+  \label{sec:jjj}
+\end{eqnarray*}
+\end{frame}
+
+\begin{frame}
+  \begin{proposition}
+  $\hat{X_t}$ satisfies following properties:
+\begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]
+  \item $(\hat{X_t})_{t\ge 0}$ is a centered Gaussian stationary process.
+  \item $\hat{X_t}$ has long memory.
+  \end{enumerate}
+\end{proposition}
+\end{frame}
+
+\begin{frame}
+  \begin{proposition}
+  Let $M_{\alpha,\beta,H_1,H_2}$ be a weighted fractional brownian motion with respect to $U_{H_1}$ and $U_{H_2}$. $T, \tau>0$, $a, \gamma$ are defined by (\ref{sec:wfsv}). $J_{H_1}, J_{H_2}$ are defined by (\ref{sec:jjj}). $\phi=H_1-\frac{1}{2}, \psi=H_2-\frac{1}{2}$. Then, for $t\in [0, T]$,
+\begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]	
+  \item $\mathrm{E}[\sup\limits_{t\in[0,T]}|\hat{X}_{\alpha,\beta,H_1,H_2}(t) - U_{H_1}(t)|] \rightarrow 0$
+	as $a\rightarrow 0, \alpha\rightarrow 1$.
+  \item $\mathrm{E}[|\hat{X}_{\alpha,\beta,H_1,H_2}(t+\tau) - \hat{X}_{\alpha,\beta,H_1,H_2}(t)|^2] \rightarrow  \gamma^2 \tau^{2H}$
+	as $a\rightarrow 0, \alpha\rightarrow 1$.
+  %\item Let $n\in \mathbb{N}$, define
+%	\begin{eqnarray*}
+%	  &&\tilde{X}_{\alpha,\beta,H_1,H_2}(t) \\
+%	  &:=&  \alpha\sum_{k=1}^{\floor{nt}} \frac{(t - \frac{k-1}{n})^\phi}{\Gamma(1+\phi)} \brkt{J_{H_1}^{(\phi)}(\frac{k}{n}) - J_{H_1}^{(\phi)}(\frac{k-1}{n})} \\
+%	  &+& \beta\sum_{k=1}^{\floor{nt}} \frac{(t - \frac{k-1}{n})^\psi}{\Gamma(1+\psi)} \brkt{J_{H_2}^{(\psi)}(\frac{k}{n}) - J_{H_2}^{(\psi)}(\frac{k-1}{n})}
+%	  \label{sec:disc}
+%	\end{eqnarray*}
+%	then, as $n$ goes to infinity,
+%	\begin{eqnarray*}
+%	  \tilde{X}_{\alpha,\beta,H_1,H_2}(t) \rightarrow \hat{X}_{\alpha,\beta,H_1,H_2}(t)
+%	\end{eqnarray*}
+%	in distribution.
+  \end{enumerate}
+  \end{proposition}
+\end{frame}
+
+%%%%%%%%
+%%%%%%%%
+%%%%%%%%
+\end{document}
+
+
