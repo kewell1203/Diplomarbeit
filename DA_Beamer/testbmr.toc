@@ -1,0 +1,11 @@
+\beamer@endinputifotherversion {3.20pt}
+\beamer@sectionintoc {1}{Contents}{2}{0}{1}
+\beamer@sectionintoc {2}{Introduction of fBm}{8}{0}{2}
+\beamer@sectionintoc {3}{fBm Properties}{17}{0}{3}
+\beamer@sectionintoc {4}{Applications}{26}{0}{4}
+\beamer@subsectionintoc {4}{1}{fOU}{26}{0}{4}
+\beamer@subsectionintoc {4}{2}{Fractional Black-Scholes model}{28}{0}{4}
+\beamer@subsectionintoc {4}{3}{Fractional stochastic volatility model}{31}{0}{4}
+\beamer@subsectionintoc {4}{4}{Rough Fractional stochastic volatility model}{33}{0}{4}
+\beamer@subsectionintoc {4}{5}{Weighted fractional Brownian motion}{37}{0}{4}
+\beamer@sectionintoc {5}{Thank you}{42}{0}{5}

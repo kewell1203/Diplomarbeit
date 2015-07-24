@@ -138,7 +138,7 @@ and has stationary $H$-self similar increments satisfying  $t\in \mathbb{R}, \ta
   U_H(t+\tau) - U_H(t) \sim \kappa \tau^{H} 
   \label{sec:int1}
 \end{eqnarray*}
-with some $\kappa$. According to Theorem of Kolmogorov Chentsov, fBm must be a continuous-time process.\\
+with some $\kappa$. According to Theorem of Kolmogorov Chentsov, fBm must be a $gamma$-H\:older-continuous process with $gamma < H$.\\
 
 One of applications of fBm is fractional Ornstein-Uhlenbeck process (fOU) 
 \begin{eqnarray*}
@@ -148,13 +148,13 @@ which is as the stationary solution of the SDE with
 \begin{eqnarray*}
   \mathop{dX_t} = -aX_t\mathop{dt} + \gamma\mathop{dU_H(t)},
 \end{eqnarray*}
-where $a,\gamma \in \mathbb{R}_+$. Although fBm is not a semi-martingale for $H\neq \frac{1}{2}$ (Liptser \& Shiryayev\cite{liptshir}), Cheridito prove fOU exists as Riemann-Stieljes integral driven by $U_H(t)$, i.e., for $a>0$,
+where $a,\gamma \in \mathbb{R}_+$. Although fBm is not a semimartingale for $H\neq \frac{1}{2}$ (Liptser \& Shiryayev\cite{liptshir}), Cheridito prove fOU exists as Riemann-Stieljes integral driven by $U_H(t)$, i.e., for $a>0$,
 \begin{eqnarray*}
   \int_{0}^t e^{au}\mathop{dU_H(u)}
 \end{eqnarray*}
 is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memory property. More recently, fOU is more and more commonly applied in stochastic volatility models. In particular, Comte and Renault\cite{comren} assume the log-volatility to follow fOU with $H\in(\frac{1}{2}, 1)$. In contrast, Gatheral et al.\cite{Gatheral} take $H \in (0, \frac{1}{2})$.
 
-  The structure of this thesis is as follows. We give in Section 2 basic concepts of probability theory and stochastic process involving Gaussian process, which could be characterized by characteristic function. Brownian motion is discussed at the end of this section as an example. Section 3 focuses on stable integrals, which ensure that fBm can be defined as a Gaussian process. Section 4 presents definition of fBm in the sense of stable integral, based on which we show self similarity, stationary property of increments of fBm, regularity, and non-semimartingale (except for $H=\frac{1}{2}$). From Section 5 up to the end we turn towards applications of fBm in financial mathematics. In Section 5, we deal with fOU, which exhibits long memory if $H > \frac{1}{2}$. In Section 6 we list out applications of fBm, not only for pricing models of risky asset (fractional Black-Scholes)  but also for stochastic volatility models. We complete the proof of Cheridito to show that if a minimal amount of time between two successive transactions exists, fractional Black-Scholes would be arbitrage-free. In fractional stochastic volatility model, we use fOU to model log-volatility. It differs from the choise of $H$. Whilst $H>\frac{1}{2}$ (in FSV) can ensure long memory, on the other hand, if $H < \frac{1}{2}$ the model (RFSV) can generate more desirable volatility smoothness according to empirical data. In order to combine two characteristics, we define weighted fractional stochastic volatility model inherits long memory property from FSV and could have a very close result as in RFSV.
+The structure of this thesis is as follows. We give in Section 2 basic concepts of probability theory and stochastic process involving Gaussian process, which could be characterized by characteristic function. Brownian motion is discussed at the end of this section as an example. Section 3 focuses on stable integrals, which ensure that fBm can be defined as a Gaussian process. Section 4 presents definition of fBm in the sense of stable integral, based on which we show self similarity, stationary property of increments of fBm, regularity, and non-semimartingale (except for $H=\frac{1}{2}$). From Section 5 up to the end we turn towards applications of fBm in financial mathematics. In Section 5, we deal with fOU, which exhibits long memory if $H > \frac{1}{2}$. In Section 6 we list out applications of fBm, not only for pricing model of risky asset (fractional Black-Scholes)  but also for stochastic volatility models. We elaborate some of details in the proof of Cheridito (\cite{chridito}, Theorem 4.3) to show that if a minimal amount of time between two successive transactions exists, fractional Black-Scholes would be arbitrage-free. In fractional stochastic volatility model, we use fOU to model log-volatility. It differs from the choise of $H$. Whilst $H>\frac{1}{2}$ (in FSV) can ensure long memory, on the other hand, if $H < \frac{1}{2}$ the model (RFSV) can generate more desirable volatility smoothness according to empirical data. In order to combine two characteristics, we define weighted fractional stochastic volatility model inherits long memory property from FSV and could have a very close result as in RFSV.
 
   \newpage
 
@@ -311,7 +311,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   \end{proof}
 
   \begin{definition}
-	  Let $X$ be a $\mathbb{R}^{n}$-valued random vector. $X$ is said to be \emph{normally distributed} or \emph{Gaussian}, if for any $d \in \mathbb{R}^{n}$ such that $d^TX$ is Gaussian in $\mathbb{R}$.
+	  Let $X$ be a $\mathbb{R}^{n}$-valued random vector. $X$ is said to be \emph{normally distributed} or \emph{Gaussian}, if for any $d \in \mathbb{R}^{n}$ it holds that $d^TX$ is Gaussian in $\mathbb{R}$.
 	  \label{sec:g1}
 	\end{definition}
 	%Note that, $<d,X>$ is defined as scalar product on $\mathbb{R}^{n}$ that means $\sum_{j=1}^{n}\,d_j\cdot X_i$. 
@@ -369,9 +369,9 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 	  &=& (2\pi)^{-\frac{n}{2}} e^{im^T\xi}  \int_{\mathbb{R}^{n}}e^{i y^T (\Sigma^{\frac{1}{2}}\xi)}\,e^{-\frac{1}{2}|y|^2}\, \mathop{dy}\\
 	  %&=& (2\pi)^{-\frac{n}{2}} e^{i\xi m} \int_{\mathbb{R}^{n}}e^{i y- (\Sigma^{\frac{1}{2}}\xi)}\,e^{-\frac{1}{2}|y|^2}\, \mathop{dy}\\
 	  &\overset{\text{Fourier transformation}}{=}& e^{im^T\xi}  e^{-\frac{1}{2}|\Sigma^{\frac{1}{2}}\xi|^2}\\
-	  &=& e^{im^T\xi}  e^{-\frac{1}{2}\xi^T\Sigma\xi}
+	  &=& e^{im^T\xi}  e^{-\frac{1}{2}\xi^T\Sigma\xi}.
 	\end{eqnarray*}
-	In terms of the uniqueness theorem of characteristic function (in \cite{bauer}, p.199, Satz 23.4), we can deduce (\ref{sec:dsy}) is density function of $X$.
+	In terms of the uniqueness theorem of characteristic function (in \cite{bauer}, p.199, Satz 23.4), we can deduce (\ref{sec:dsy}) is the density function of $X$.
   \end{proof}
 
   %A normal distributed normal random variable can be characterized by its expected value and variance respectively mean vector and covariance vector because of the characteristic function.
@@ -393,14 +393,14 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   \end{theorem}
 
   \begin{proof}
-	We suppose $X_1, \cdots, X_m$ are independent random vectors  on $\mathbb{R}^n$ and $c_1, \cdots, c_m \in \mathbb{R}$. Let us have a look at the characteristic function of it,
+	We suppose $X_1, \cdots, X_m$ are independent random vectors on $\mathbb{R}^n$ and $c_1, \cdots, c_m \in \mathbb{R}$. Let us have a look at the characteristic function of $\sum_{j=1}^m(c_jX_j)$ ,
 	\begin{eqnarray*}
 	  \mathrm{E}e^{i\xi^T\sum_{j=1}^m(c_jX_j)} &\overset{independent}{=}&\prod_{j=1}^{m} \mathrm{E}e^{i\xi^T(c_jX_j)}\\
 	  &=& \prod_{j=1}^m \exp\brkt{i\xi^T\mathrm{E}[c_jX_j]-\frac{1}{2}\xi^T\mathrm{Var}[c_jX_j]\xi}\\
 	  &=&  \exp\brkt{i\xi^T\mathrm{E}[\sum_{j=1}^{m}c_jX_j]-\frac{1}{2}\xi^T\mathrm\sum_{j=1}^{m}{Var}[c_jX_j]\xi}\\
 	  &\overset{independent}{=}&  \exp\brkt{i\xi^T\mathrm{E}[\sum_{j=1}^{m}c_jX_j]-\frac{1}{2}\xi^T\mathrm{Var}[\sum_{j=1}^{m}c_jX_j]\xi},
 	\end{eqnarray*}
-	which is a form of characteristic function of normal distribution. That means $\sum_{j=1}^m c_jX_j$ is Gaussian. 
+	which is a form of characteristic function of normal distribution. That means $\sum_{j=1}^m c_jX_j$ is Gaussian and the rest is clear. 
   \end{proof}
 
   \begin{example}[Bivariate Normal Distribution]
@@ -409,7 +409,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 		S_1 \\
 		S_2
 	  \end{array}
-	\right)$  has standard normal joint distribution since they are independent. We define
+	\right)$  has joint standard normal distribution since they are independent. We define
 	\begin{eqnarray}
 	  \left(
 	  \begin{array}{c}
@@ -581,39 +581,39 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   \subsection{Brownian Motion}
   The Brownian motion was first introduced by Bachelier in 1900 in his PhD thesis. Now we give the common definition of it.
   \begin{definition}
-  Let $(B_t)_{t\ge0}$ be a $\mathbb{R}^{n}$-valued stochastic process. $(B_t)$ is called \emph{Brownian motion} if it satisfies the following conditions:
+  Let $(B_t)_{t\ge0}$ be a $\mathbb{R}^{n}$-valued stochastic process. $B$ is called \emph{Brownian motion} if it satisfies the following conditions:
   \begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]
 	\item $B_0 = 0 $ a.s. .
 	\item $(B_{t_1} - B_{t_0}),\dots,(B_{t_n} - B_{t_{n_1}})$ are independent for $0=t_0<t_1<\dots<t_n$ and $n \in \mathbb{N}$.
 	\item $B_t - B_s \sim B_{t-s}$, for $0 \le s \le t < \infty$.
-	\item $B_t - B_s \sim \mathcal{N}(0, t-s)^{\otimes n}$.
+	\item $B_t - B_s \sim \mathcal{N}(0, I_n(t-s))$.
 	\item $B_t$ is continuous in $t$ a.s. .
   \end{enumerate}
   \end{definition}
   A usual saying for $(ii)$ and $(iii)$ is the Brownian motion has independent, stationary increments. In $(iv)$, $\mathcal{N}$ represents a random variable has a normal distribution. $B_t$ is normally distributed due to $(ii)$. It is clear that the increments of Brownian motion is stationary.
 
   \begin{proposition}
-	Let $(B_t)$ be $\mathbb{R}$-valued Brownian motion. Then the covariance of $B_m, B_n$ for $m, n \ge 0$ is $m \wedge n $.
+	Let $B$ be $\mathbb{R}$-valued Brownian motion. Then the covariance of $B_t, B_s$ for $t, s \ge 0$ is $t \wedge s $.
   \end{proposition}
   \begin{proof}
-	Without loss of generality, we assume that $m \ge n$, then
+	Without loss of generality, we assume that $t \ge s \ge 0$, then
 	\begin{eqnarray*}
-	  \mathrm{E}[B_mB_n] &=& \mathrm{E}[(B_m - B_n)B_n] + \mathrm{E}[B_n^2]\\
-	  &=& \mathrm{E}[B_m - B_n]\mathrm{E}[B_n] + n\\
-	  &=& n .
+	  \mathrm{E}[B_tB_s] &=& \mathrm{E}[(B_t - B_s)B_s] + \mathrm{E}[B_s^2]\\
+	  &=& \mathrm{E}[B_t - B_s]\mathrm{E}[B_s] + s\\
+	  &=& s .
 	\end{eqnarray*}
 	\label{sec:cor}
   \end{proof}
 
   \begin{proposition}
-	Let $(B_t)$ be  $\mathbb{R}$-valued Brownian motion. Then $B_{cm} \sim c^{\frac{1}{2}}B_m$.
+	Let $B$ be $\mathbb{R}$-valued Brownian motion. Then $B_{ct} \sim c^{\frac{1}{2}}B_t$.
   \end{proposition}
   \begin{proof}
-	Because $B_m$ is normal distributed for any $m > 0$, we then get
+	Because $B_t$ is normally distributed for any $t > 0$, we then get
 	\begin{eqnarray*}
-	  \mathrm{E} [e^{i\xi B_{cm}}] &=& e^{-\frac{1}{2}cm\xi^2}\\
-	  &=& e^{-\frac{1}{2}m(c^{\frac{1}{2}}\xi)^2}\\
-	  &=& \mathrm{E} [e^{i\xi c^{\frac{1}{2}}B_m}] .
+	  \mathrm{E} [e^{i\xi B_{ct}}] &=& e^{-\frac{1}{2}ct\xi^2}\\
+	  &=& e^{-\frac{1}{2}t(c^{\frac{1}{2}}\xi)^2}\\
+	  &=& \mathrm{E} [e^{i\xi c^{\frac{1}{2}}B_t}] .
 	\end{eqnarray*}
   \end{proof}
 
@@ -647,7 +647,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 	  &=& \exp\left(-\frac{1}{2}\left(\sum_{j=1}^{n-1} t_j\xi^{(j)}(\xi^{(j)}+2\xi^{(j+1)}+\dots+2\xi^{(n)}) + t_n(\xi^{(n)})^2\right)\right)\\
 	  &=& \exp\left(-\frac{1}{2}\left(\sum_{j,h=1}^n(t_j\wedge t_h)\xi^{(j)}\xi^{(h)}\right)\right).
 	\end{eqnarray*}
-	In Proposition \ref{sec:cor}, $(t_j\wedge t_h)_{t,h=1,\dots,n}$ is the covariance matrix of $V$ and therefore it is symmetric and positive definit. The mean vector of it is zero, so we have proved that the characteristic function is the form of a normal distributed random vector, i.e., $V$ is Gaussian.
+	In Proposition \ref{sec:cor}, $(t_j\wedge t_h)_{t,h=1,\dots,n}$ is the covariance matrix of $V$ and therefore it is symmetric and positive definit. The mean vector of $V$ is zero, so we have proved that the characteristic function is the form of a normal distributed random vector, i.e., $V$ is Gaussian.
   \end{proof}
 
   Schilling gave in his lecture \cite{shilling} the relationship between a one-dimensional Brownian motion and a n-dimensional Brownian motion.
@@ -677,11 +677,11 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   \end{proof}
 
   \begin{lemma}
-	 Let $(B_t)_{t\ge 0}$ be Brownian motion. Then
+	Let $(B_t)_{t\ge 0}$ be $\mathbb{R}$-valued Brownian motion. Then
 	 \begin{equation*}
-	   \mathrm{E}[B_t^{2k}] = (2k - 1)!! t^{2k}
+	   \mathrm{E}[B_t^{2k}] = (2k - 1)!!t^{2k}
 	 \end{equation*}
-	 for $k \in \mathbb{N}$.
+	 with $(2k - 1)!!=\prod_{j=1}^{k} (2j - 1)$, for $k \in \mathbb{N}$.
 	 \label{sec:le1}
   \end{lemma}
 
@@ -699,7 +699,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   \end{proof}
 
   \begin{corollary}
-	Let $(B_t)_{t\ge 0}$ be Brownian motion. Then $B_t$ is $\gamma$-H\"older continuous on a compact scale almost surely for all $\gamma < \frac{1}{2}$.
+	Let $(B_t)_{t\ge 0}$ be $\mathbb{R}$-valued Brownian motion. Then $B_t$ is $\gamma$-H\"older continuous on a compact scale almost surely for all $\gamma < \frac{1}{2}$.
   \end{corollary}
 
   \begin{proof}
@@ -714,7 +714,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   \newpage
 
   %-------- 3. section -----------%
-  \section{Stable Measures and Stable Integrals}
+  \section{Stable Random Measures and Stable Integrals}
   \setcounter{equation}{0}
   In order to represent an integration form of fBm, we deal with the stable integral in this section. In fact, fractional Brownian motion is a Gaussian process with zero mean. To show Gaussian properties of fBM, we define it by a 
   stable integral which can be imagined as stochastic process of stable variables on time.
@@ -786,7 +786,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   \end{proof}
 
   \begin{corollary}
-	Let $(B_t)_t$ be Brownian motion, then $B_t$ has a symmetric stable \\distribution.
+	Let $B$ be $\mathbb{R}$-valued Brownian motion, then $B_t$ has a symmetric stable \\distribution.
   \end{corollary}
   \begin{proof}
 	It is clear due to the previous Proposition.
@@ -803,7 +803,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   %\end{definition}
 
   \begin{equation}
-	\mathscr{G} = \{D \in \mathscr{D} : \mu[D] < \infty\}.
+	\mathscr{G} = \{F \in \mathscr{D} : \mu[F] < \infty\}.
   \end{equation}
 
   \begin{definition}
@@ -820,13 +820,13 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   %\begin{equation*}
   %  \nu: \mathscr{G}  \rightarrow \mathrm{L}^{\infty}(\Omega, \mathscr{A}, \mathcal{P}). 
   %\end{equation*}
-  $\nu$ is said to be \emph{stable random measure} on $(D, \mathscr{D})$ with control measure $\mu$, degree $\gamma$ and skewness intensity $\kappa(\cdot)$ if 
+	$\nu$ is said to be \emph{stable random measure} on $(D, \mathscr{D})$ with the \emph{control measure} $\mu$, the \emph{degree} $\gamma$ and the \emph{skewness intensity} $\kappa(\cdot)$ if 
   \begin{equation}
 	\nu[F] \sim \Lambda\brkt{\gamma, \frac{\int_F \kappa(x)\, \mu[\mathop{dx}]}{\mu[F]}, 0, (\mu[F])^{\frac{1}{\gamma}}}
   \end{equation}
   for $F \in \mathscr{G}$.
   \end{definition}
-  Samorodnitsky and Taqqu showed the existence of stable measures (See \cite{samorodnitsky}, pp.119$\sim$120).
+  Samorodnitsky and Taqqu showed the existence of stable random measures (See \cite{samorodnitsky}, pp.119$\sim$120).
 
   \begin{example}
 	Let $[0, T]$ be an index set, $0= t_1 < t_1 <\dots < t_k \le T$ for $k\in \mathbb{N}$ and $(B_{t})$ is Brownian motion.  We show the mapping $\nu : \mathscr{B}([0, T]) \rightarrow \mathcal{L}^0(\Omega)$, where $\nu[A_j](\omega):= B_{t_{j+1}}(\omega) - B_{t_{j}}(\omega)$ for $A_j=[t_{j}, t_{j+1})$.\\
@@ -840,18 +840,19 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 	  Finally, 
 	  \begin{eqnarray*}
 		\mathrm{E}[\exp(i\xi\nu[A_j])] &=& \mathrm{E}[\exp(i\xi(B_{t_{j+1}} - B_{t_{j}})]\\
-		&=& \exp(-\frac{(t_{j+1}-t_j)\xi^2}{2})
+		&=& \exp(-\frac{(t_{j+1}-t_j)\xi^2}{2}).
 	  \end{eqnarray*}
 	  According with (\ref{sec:stbl}), we deduce the control measure must be $\frac{|\cdot|}{2}$. In fact, $\nu[A_j] \sim \Lambda(2, 0, 0, \frac{\sqrt{2|t_{j+1} - t_j|}}{2})$.
 	\label{sec:ex2}
   \end{example}
 
   \subsection{Stable Integrals}
-  Samorodnitsky and Taqqu defined an integral with respect to stable measure as stochastic process in \cite{samorodnitsky}. 
+  Samorodnitsky and Taqqu defined an integral with respect to stable random measure as stochastic process in \cite{samorodnitsky}. 
+
   \begin{definition}
-	The \emph{stable integral} is given as follows:
+	Let $f(x) = \sum_{j=1}^n c_j \mathbb{1}_{E_j}(x)$ where $E_j$ are disjoint sets belongig $\mathscr{G}$. The \emph{stable integral} with respect to the stable random measure is  
   \begin{equation}
-	\int_F f(x)\, \nu(\mathop{dx}) (\omega),
+	\int_F f(x)\, \nu(\mathop{dx}) (\omega) := \sum_{j=1}^n c_j \nu(E_j) (\omega),
 	\label{sec:stbint}
   \end{equation}
   where $f : F \rightarrow \mathbb{R}$ is a measurable function, given $\gamma\in (0, 2], \mu : \mathscr{D}\rightarrow \mathscr{B}(\mathbb{R}), \kappa: \mathbb{R}\rightarrow \mathbb{R}$, such that 
@@ -860,16 +861,16 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 	  \int_F |\kappa(x) f(x) \ln|f(x)||\mu(\mathop{dx}) < \infty,\hspace{1em} \text{if} \hspace{1em} \gamma = 1,
 	\end{cases}
   \end{equation}
-  where $\gamma, \mu , \kappa$ are, respectively, \emph{degree}, \emph{control measure} and \emph{skewness intensity} of the stable measure $\nu$.
+  where $\gamma, \mu , \kappa$ are the \emph{degree}, the \emph{control measure} and the \emph{skewness intensity} of the stable random measure $\nu$ respectively.
   \end{definition}
-  Some properties of the stable integral are given by Samorodnitsky and Taqqu.
+  In \cite{samorodnitsky}, the definition can be extended on a general $f \in F$, which satisfies the condition \ref{sec:stbint}. Some properties of the stable integral are given by Samorodnitsky and Taqqu.
 
   \begin{proposition}
 	Let $J(f)$ be a stable integral as the form of (\ref{sec:stbint}). Then 
 	\begin{equation*}
 	  J(f) \sim \Lambda(\gamma, \kappa, \theta, \delta)
 	\end{equation*}
-  with degree, control measure, skewness intensity, respectively, 
+  with %degree, control measure, skewness intensity, respectively, 
   \begin{eqnarray*}
   \gamma &\in& (0, 2],\\
   \kappa &=& \frac{\int_F \kappa(x) |f(x)|^\gamma\cdot sgn(f(x)) \mu(\mathop{dx})}{\int_F|f(x)|^\gamma\mu(\mathop{dx})},\\
@@ -880,7 +881,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   \end{cases}\\
   \delta &=& \brkt{\int_F |f(x)^\gamma|\mu(\mathop{dx})}^{\frac{1}{\gamma}}, 
   \end{eqnarray*}
-  of the stable measure $\nu$.
+  of the stable random measure $\nu$.
   \label{sec:stbint2}
   \end{proposition}
   \begin{proof}
@@ -891,7 +892,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   \begin{equation}
 	J(c_1f_1 + c_2f_2) \overset{a.s.}{=}c_1J(f_1) + c_2J(f_2)
   \end{equation}
-  for any integrable $f_1, f_2$ with respect to some stable measure and real numbers $c_1, c_2$. 
+  for any integrable $f_1, f_2$ with respect to some stable random measure and real numbers $c_1, c_2$. 
   \label{sec:stblin}
   \end{proposition}
   \begin{proof}
@@ -924,13 +925,13 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   \begin{lemma}
 	(\ref{sec:fbm}) is well-defined, $U_H(t)$ has stable distribution and 
 	\begin{equation*}
-	  U_H(t) \sim \Lambda(2, 0, 0, \frac{1}{\Gamma(H+\frac{1}{2})}(\int_{\mathbb{R}} |f(u)^2|\, \mathop{\frac{du}{2}})^\frac{1}{2}),
+	  U_H(t) \sim \Lambda(2, 0, 0, \frac{1}{\Gamma(H+\frac{1}{2})}(\int_{\mathbb{R}} |f_t(u)^2|\, \mathop{\frac{du}{2}})^\frac{1}{2}),
 	\end{equation*}
 	where $f_t(u)$ is the integrand of integral of $U_H(t)$ in (\ref{sec:fbm}).
 	\label{sec:l2}
   \end{lemma}
   \begin{proof}
-	Firstly, $B_t$ is Gaussian and symmetric stable measure with zero mean and $\frac{|\cdot|}{2}$ is the control measure of it shown in Example \ref{sec:ex2}. \\
+	Firstly, $B_t$ is Gaussian and symmetric stable random measure with zero mean and $\frac{|\cdot|}{2}$ is the control measure of it shown in Example \ref{sec:ex2}. \\
 	Secondly, by $H=\frac{1}{2}$, $\int_{\mathbb{R}} f_t^2\frac{du}{2} = \frac{1}{2}\int_{0}^{|t|} \mathop{du} = \frac{1}{2}|t| < \infty$. By $H \neq \frac{1}{2}$, we deal it with Taylor expansion. As $u$ goes to $-\infty$, $f_t(u) = -(H-\frac{1}{2})(t-u)^{H-\frac{3}{2}}-(H-\frac{1}{2})(-u)^{H-\frac{3}{2}} + \mathrm{o}(1)$, where $\mathrm{o}(1)$ tends to zero when $u$ reaches around $-\infty$. Consider $H-\frac{3}{2} < 0$, then $f_t(u)$ is square integrable around $-\infty$. As $u$ goes to $t$, $f_t(u) \propto \mathbbm{1}_{\{t > u\}}(t-u)^{H-\frac{1}{2}}$. Hence, $f_t(u)$ is also square integrable around $u=t$. It is clear $f_t(u)=0$ when $u$ is around $\infty$. Then it satisfies the condition $\int_{-\infty}^{\infty}f_t^2(u)\,\mathop{\frac{du}{2}} < \infty$ .\\
 	%the well-definition was refered to by Samorodnitksy and Taqqu in \cite{samorodnitsky}, p.321, Proposition 7.2.6 for not only $H= \frac{1}{2}$, but also $H\neq \frac{1}{2}$. Which satisfies, in other words, the condition $\int_{-\infty}^{\infty}f^2(u)\,\mathop{\frac{du}{2}} < \infty$.\\
 	Finally, in terms of Proposition \ref{sec:stbint2}, we get the claim.
@@ -941,7 +942,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 	\label{sec:the1}
   \end{theorem}
   \begin{proof}
-	In terms of Lemma (\ref{sec:l2}), $\mathrm{E}[i\xi U_H(t)] = \exp\{-\xi^2 \frac{1}{2\Gamma(H+\frac{1}{2})^2}(\int_{\mathbb{R}} |f(u)^2|\, \mathop{du})\}$. The rest is clear thanks to the form of characteristic function of a Gaussian random variable.
+	In terms of Lemma \ref{sec:l2}, $\mathrm{E}[i\xi U_H(t)] = \exp\{-\xi^2 \frac{1}{2\Gamma(H+\frac{1}{2})^2}(\int_{\mathbb{R}} |f_t(u)^2|\, \mathop{du})\}$. The rest is clear thanks to the form of characteristic function of a Gaussian random variable.
   \end{proof}
   Notice that we can also define $U_H(t)$ by (\ref{sec:fbm}) with It\'o integral. It has the same expected value and variance as defined by stable integral. Since $U_H(t)$ is Gaussian, both of two versions have the same distribution. Following properties remain true by It\'o integral version.
   \begin{corollary}
@@ -999,262 +1000,262 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   %	&=&  2\mathrm{E}[((U_H(1))]\nonumber
   %  \end{eqnarray}
   %  that means $\mathrm{E}[((U_H(1))] = 0$. Due to (\ref{sec:eqn2}), $\mathrm{E}[(U_H(t)] = 0$ for $t\ge 0$.
-  %  Therefore, (\ref{sec:eqn2}) is variance of $U_H(t)$.
-	(\ref{sec:eqn2}) is variance of $U_H(t)$ due to $\mathrm{E}[(U_H(t)] = 0$.
-  \end{proof}
-  In order to normalize the variance, a definition of standard fBm is given.
+	%  Therefore, (\ref{sec:eqn2}) is variance of $U_H(t)$.
+	  (\ref{sec:eqn2}) is variance of $U_H(t)$ due to $\mathrm{E}[(U_H(t)] = 0$.
+	\end{proof}
+	In order to normalize the variance, a definition of standard fBm is given.
 
-  \begin{definition}
-	A stochastic process $(U_H(t))_{t}$ is said to be a \emph{standard fractional Brownian motion} (sfBm) if
-	\begin{equation}
-  U_H(t) = \hat{c}(H) \int_{\mathbb{R}} \mathbbm{1}_{\{t> u\}}\cdot (t-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u< 0\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u},
-  \label{sec:eqn3}
-  \end{equation}
-  where $\hat{c}(H) = \frac{1}{(\Gamma(H+\frac{1}{2})^2)\mathrm{E}[U_H(1)^2]} $.
-  \end{definition}
-  We consider from now on sfBm instead of fBm.
+	\begin{definition}
+	  A stochastic process $(U_H(t))_{t}$ is said to be a \emph{standard fractional Brownian motion} (sfBm) if
+	  \begin{equation}
+	U_H(t) = \hat{c}(H) \int_{\mathbb{R}} \mathbbm{1}_{\{t> u\}}\cdot (t-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u< 0\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u},
+	\label{sec:eqn3}
+	\end{equation}
+	where $\hat{c}(H) = \frac{1}{(\Gamma(H+\frac{1}{2})^2)\mathrm{E}[U_H(1)^2]} $.
+	\end{definition}
+	We consider from now on sfBm instead of fBm.
 
-  \begin{theorem}
-	Let  $(U_H(t))_{t}$ be a fBm. The covariance of $U_H(t)$ and $U_H(s)$ is $ \frac{1}{2}(t^{2H} + s^{2H} - |t-s|^{2H})$ for $t, s \in \mathbb{R}$.
-  \end{theorem}
+	\begin{theorem}
+	  Let  $(U_H(t))_{t}$ be a fBm. The covariance of $U_H(t)$ and $U_H(s)$ is $ \frac{1}{2}(t^{2H} + s^{2H} - |t-s|^{2H})$ for $t, s \in \mathbb{R}$.
+	\end{theorem}
 
-  \begin{proof}
-	Cf.\cite{mandelbrot}, Theorem 5.3 .
-	\begin{eqnarray}
-	  \mathrm{Cov}[U_H(t), U_H(s)] &=& \mathrm{E}[U_H(t)U_H(s)] \nonumber\\
-	  &=& \frac{1}{2}\brkt{\mathrm{E}[U_H(t)^2] + \mathrm{E}[U_H(s)^2] - \mathrm{E}[(U_H(t) - U_H(s))^2]} \nonumber\\
-	  &\overset{(\ref{sec:eqn2})}{=}& \frac{1}{2}(t^{2H} + s^{2H} - |t-s|^{2H})
-	  \label{sec:eqn4}
-	\end{eqnarray}
-  \end{proof}
+	\begin{proof}
+	  Cf.\cite{mandelbrot}, Theorem 5.3 .
+	  \begin{eqnarray}
+		\mathrm{Cov}[U_H(t), U_H(s)] &=& \mathrm{E}[U_H(t)U_H(s)] \nonumber\\
+		&=& \frac{1}{2}\brkt{\mathrm{E}[U_H(t)^2] + \mathrm{E}[U_H(s)^2] - \mathrm{E}[(U_H(t) - U_H(s))^2]} \nonumber\\
+		&\overset{(\ref{sec:eqn2})}{=}& \frac{1}{2}(t^{2H} + s^{2H} - |t-s|^{2H})
+		\label{sec:eqn4}
+	  \end{eqnarray}
+	\end{proof}
 
-  \begin{theorem}
-	$(U_H(t))_{t}$ is Gaussian process.
-  \end{theorem}
+	\begin{theorem}
+	  $(U_H(t))_{t}$ is Gaussian process.
+	\end{theorem}
 
-  \begin{proof}
-	We just need to prove that for any finite linear combination of $(U_H(t))_t$ is Gaussian. We take $t_1, \dots, t_k \in \mathbb{R}, c_1, \dots, c_k \in \mathbb{R}$ and the stable integral $J(f) $ is a linear functional with $\gamma=2, \kappa=0, \theta=0, \delta= (\frac{1}{2}\int_{-\infty}^{\infty}f^2(u)\,\mathop{du})^{\frac{1}{2}}$ due to Corollary \ref{sec:stblin}. Suppose $f_1,\dots, f_k$ are integrands of stable integration of $U_H(t_1), \dots, U_H(t_k)$ respectively. \\
-	Consider now, according to the Minkowski inequality,
-	\begin{eqnarray*}
-	  \int_{-\infty}^{\infty}(\sum_{j=1}^k c_jf_j)^2\,\mathop{du} &\le& \sum_{j=1}^k \underbrace{\int_{-\infty}^{\infty}(c_jf_j)^2\,\mathop{du}}_{<\infty}\\
-	  &<& \infty.
-	\end{eqnarray*}
-  Moreover,
-	\begin{eqnarray*}
-	  \sum_{j=1}^k c_jU_H(t_j) &=& \sum_{j=1}^k c_jJ(f_j)\\
-	  &=& J(\sum_{j=1}^k c_jf_j)\\
-	  &\sim& \Lambda(2, 0, 0, (\frac{1}{2}\int_{-\infty}^{\infty}(\sum_{j=1}^k c_jf_j)^2\,\mathop{du})^{\frac{1}{2}})
-	\end{eqnarray*}
-	is Gaussian and the rest follows from Corollary \ref{sec:gauss}.
-  \end{proof}
-
-  \begin{corollary}
-	Let $(U_H(t))_{t}$ be a fBm, then $(U_H(t))_{t}$ has stationary and H-self similar increments . 
-  \end{corollary}
-  \begin{proof}
-	Assume that $s \ge u $. Because the joint distribution of $(U_H(s), U_H(u))^T$ is Gaussian, $(1, -1) \cdot (U_H(s), U_H(u))^T $ is also Gaussian. From (\ref{sec:eqn1}),  $U_H(t_k+\tau) - U_H(s_k+\tau) \sim U_H(t_k) - U_H(s_k) \sim \mathcal{N}(0, (t_k - s_k)^{2H})$ for $k \in \{1\dots d\}$. Corresponding to  (\ref{sec:mcf}), 
+	\begin{proof}
+	  We just need to prove that for any finite linear combination of $(U_H(t))_t$ is Gaussian. We take $t_1, \dots, t_k \in \mathbb{R}, c_1, \dots, c_k \in \mathbb{R}$ and the stable integral $J(f) $ is a linear functional with $\gamma=2, \kappa=0, \theta=0, \delta= (\frac{1}{2}\int_{-\infty}^{\infty}f^2(u)\,\mathop{du})^{\frac{1}{2}}$ due to Corollary \ref{sec:stblin}. Suppose $f_1,\dots, f_k$ are integrands of stable integration of $U_H(t_1), \dots, U_H(t_k)$ respectively. \\
+	  Consider now, according to the Minkowski inequality,
 	  \begin{eqnarray*}
-	  \mathrm{E}[i\sum_{k=1}^{d}\xi_k (U_H(t_k + \tau) - U_H(s_k + \tau))] = \mathrm{E} [i\sum_{k=1}^{d}\xi_k (U_H(t_k) - U_H(s_k))]
-	\end{eqnarray*}
-	due to $(U_H(t_{k+\tau} - s_{k+\tau}))_{k=1}^{d}$ and $(U_H(t_k - s_k))_{k=1}^{d}$ have the same expected vector and covariance matrix in their characteristic function, i.e., $(U_H(t))$ has stationary increments.\\
-	\\
-	% $(U_H(t))$ has zero mean and $\mathrm{Var[U_H(s)]} = s^{2H}\mathrm{Var}[U_H(1)]$ we get $U_H(s) \sim s^HU_H(1)$ due to it is Gaussian.
-	 In order to show fBm has H-self similar increments, we have to prove\\ 
-	 $((U_H(t_1+z\tau_1) - U_H(t_1)), (U_H(t_2+z\tau_2) - U_H(t_2)),\dots, (U_H(t_n+z\tau_2) - U_H(t_n))) \sim \\
-	 (z^HU_H(\tau_1), z^HU_H(\tau_2),\dots, z^HU_H(\tau_n))$ , that would have to prove that,\\
-	 $(U_H(z\tau_1), U_H(z\tau_2),\dots, U_H(z\tau_n))) \sim (z^HU_H(\tau_1), z^HU_H(\tau_2),\dots, z^HU_H(\tau_n))$ for any $z > 0$. Obviously, the former and the latter of the term is Gaussian and $\mathrm{Var}[U_H(z\tau_i), U_H(z\tau_j)] = \mathrm{Var}[z^HU_H(\tau_i), z^HU_H(\tau_j)] = \frac{1}{2}z^{2H}(\tau_i^{2H} + \tau_j^{2H} - |\tau_i-\tau_j|^{2H})$. Thus they have the same expected vector and covariance matrix in their characteristic function. In the same way as mentioned above, we get our claim.
-  \end{proof}
+		\int_{-\infty}^{\infty}(\sum_{j=1}^k c_jf_j)^2\,\mathop{du} &\le& \sum_{j=1}^k \underbrace{\int_{-\infty}^{\infty}(c_jf_j)^2\,\mathop{du}}_{<\infty}\\
+		&<& \infty.
+	  \end{eqnarray*}
+	Moreover,
+	  \begin{eqnarray*}
+		\sum_{j=1}^k c_jU_H(t_j) &=& \sum_{j=1}^k c_jJ(f_j)\\
+		&=& J(\sum_{j=1}^k c_jf_j)\\
+		&\sim& \Lambda(2, 0, 0, (\frac{1}{2}\int_{-\infty}^{\infty}(\sum_{j=1}^k c_jf_j)^2\,\mathop{du})^{\frac{1}{2}})
+	  \end{eqnarray*}
+	  is Gaussian and the rest follows from Corollary \ref{sec:gauss}.
+	\end{proof}
 
-  \subsection{Regularity}
-  \begin{theorem}[Kolmogorov Chentsov]
-	fBm has almost surely continuous sample path.  
-  \end{theorem}
+	\begin{corollary}
+	  Let $(U_H(t))_{t}$ be a fBm, then $(U_H(t))_{t}$ has stationary and H-self similar increments . 
+	\end{corollary}
+	\begin{proof}
+	  Assume that $s \ge u $. Because the joint distribution of $(U_H(s), U_H(u))^T$ is Gaussian, $(1, -1) \cdot (U_H(s), U_H(u))^T $ is also Gaussian. From (\ref{sec:eqn1}),  $U_H(t_k+\tau) - U_H(s_k+\tau) \sim U_H(t_k) - U_H(s_k) \sim \mathcal{N}(0, (t_k - s_k)^{2H})$ for $k \in \{1\dots d\}$. Corresponding to  (\ref{sec:mcf}), 
+		\begin{eqnarray*}
+		\mathrm{E}[i\sum_{k=1}^{d}\xi_k (U_H(t_k + \tau) - U_H(s_k + \tau))] = \mathrm{E} [i\sum_{k=1}^{d}\xi_k (U_H(t_k) - U_H(s_k))]
+	  \end{eqnarray*}
+	  due to $(U_H(t_{k+\tau} - s_{k+\tau}))_{k=1}^{d}$ and $(U_H(t_k - s_k))_{k=1}^{d}$ have the same expected vector and covariance matrix in their characteristic function, i.e., $(U_H(t))$ has stationary increments.\\
+	  \\
+	  % $(U_H(t))$ has zero mean and $\mathrm{Var[U_H(s)]} = s^{2H}\mathrm{Var}[U_H(1)]$ we get $U_H(s) \sim s^HU_H(1)$ due to it is Gaussian.
+	   In order to show fBm has H-self similar increments, we have to prove\\ 
+	   $((U_H(t_1+z\tau_1) - U_H(t_1)), (U_H(t_2+z\tau_2) - U_H(t_2)),\dots, (U_H(t_n+z\tau_2) - U_H(t_n))) \sim \\
+	   (z^HU_H(\tau_1), z^HU_H(\tau_2),\dots, z^HU_H(\tau_n))$ , that would have to prove that,\\
+	   $(U_H(z\tau_1), U_H(z\tau_2),\dots, U_H(z\tau_n))) \sim (z^HU_H(\tau_1), z^HU_H(\tau_2),\dots, z^HU_H(\tau_n))$ for any $z > 0$. Obviously, the former and the latter of the term is Gaussian and $\mathrm{Var}[U_H(z\tau_i), U_H(z\tau_j)] = \mathrm{Var}[z^HU_H(\tau_i), z^HU_H(\tau_j)] = \frac{1}{2}z^{2H}(\tau_i^{2H} + \tau_j^{2H} - |\tau_i-\tau_j|^{2H})$. Thus they have the same expected vector and covariance matrix in their characteristic function. In the same way as mentioned above, we get our claim.
+	\end{proof}
 
-  \begin{proof}
-	Cf.\cite{mandelbrot}, Proposition 4.1 . Let $(U_H(t))_{t}$ be a fBm with Hurst index $H$. Fix $\alpha$ such that $1 < \alpha H$. Let us have a look at the expectation of $(U_H(t) - U_H(s))^\alpha$ with respact to the calculation in (\ref{sec:eqn1})
+	\subsection{Regularity}
+	\begin{theorem}[Kolmogorov Chentsov]
+	  fBm has almost surely continuous sample path.  
+	\end{theorem}
+
+	\begin{proof}
+	  Cf.\cite{mandelbrot}, Proposition 4.1 . Let $(U_H(t))_{t}$ be a fBm with Hurst index $H$. Fix $\alpha$ such that $1 < \alpha H$. Let us have a look at the expectation of $(U_H(t) - U_H(s))^\alpha$ with respact to the calculation in (\ref{sec:eqn1})
+	  \begin{eqnarray}
+		\mathrm{E} [(U_H(t) - U_H(s))^\alpha] &=& |t-s|^{\alpha H} \cdot \underbrace{\mathrm{E}\brkt{\int_{\mathbb{R}} \mathbbm{1}_{\{1 > u\}}\cdot (1-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u < 0\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}}^\alpha}_{c(\alpha,H)}\nonumber\\
+		&=& c(\alpha,H) \cdot |t-s|^{\alpha H}.
+		\label{sec:eqn5}
+	  \end{eqnarray}
+	  We choose $\beta = \alpha H -1$ and $\gamma \in (0, H-\frac{1}{\alpha})$ then the rest follows from Theorem \ref{sec:kolch} .
+	\end{proof}
+
+	Remark, $(U_H(t))_t$ is, in fact, $\gamma$-H\"older continuous with $\gamma < H$ almost surely.
+
+	\begin{theorem}
+	  The sample path of fBm is almost surely not differentiable.
+	\end{theorem}
+
+	\begin{proof}
+	  Cf. \cite{mandelbrot} Proposition 4.2 . Fix $\omega \in \Omega$, we assume $c > 0, t_j \rightarrow s$.
 	\begin{eqnarray}
-	  \mathrm{E} [(U_H(t) - U_H(s))^\alpha] &=& |t-s|^{\alpha H} \cdot \underbrace{\mathrm{E}\brkt{\int_{\mathbb{R}} \mathbbm{1}_{\{1 > u\}}\cdot (1-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u < 0\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}}^\alpha}_{c(\alpha,H)}\nonumber\\
-	  &=& c(\alpha,H) \cdot |t-s|^{\alpha H}.
-	  \label{sec:eqn5}
-	\end{eqnarray}
-	We choose $\beta = \alpha H -1$ and $\gamma \in (0, H-\frac{1}{\alpha})$ then the rest follows from Theorem \ref{sec:kolch} .
-  \end{proof}
+	 && \mathcal{P}[\limsup\limits_{t\rightarrow s} |\frac{U_H(t) - U_H(s)}{t-s}| > c]\nonumber\\
+	 &=& \mathcal{P}[\lim\limits_{j\rightarrow\infty}\sup\limits_{t_j\neq s} |\frac{U_H(t_j) - U_H(s)}{t_j-s}| > c]\nonumber\\
+	 \label{sec:mass}
+	 \end{eqnarray}
+	 Since continuity of measures from above, then
+	 \begin{eqnarray*}
+	 \text{(\ref{sec:mass})} &=& \lim\limits_{j\rightarrow\infty} \mathcal{P}[\sup\limits_{t_j\neq s} |\frac{U_H(t_j) - U_H(s)}{t_j-s}| > c]\\
+	 &\ge& \lim\limits_{j\rightarrow\infty} \mathcal{P}[|\frac{U_H(t_j) - U_H(s)}{t_j-s}| > c]\\
+	 &=& \lim\limits_{j\rightarrow\infty} \mathcal{P}[\frac{|(t_j-s)^{H}U_H(1)}{t_j - s}| > c]\\
+	 &=& \lim\limits_{j\rightarrow\infty} \mathcal{P}[|(t_j-s)^{H-1}U_H(1)| > c]\\
+	 &=& \lim\limits_{j\rightarrow\infty} \mathcal{P}[|U_H(1)| > \underbrace{|t_j - s|^{1-H}}_{\overset{j\rightarrow\infty}{\longrightarrow}\, 0}c]\\
+	 &\overset{j\rightarrow \infty}{\longrightarrow}& 1 .
+	\end{eqnarray*}
+	\end{proof}
 
-  Remark, $(U_H(t))_t$ is, in fact, $\gamma$-H\"older continuous with $\gamma < H$ almost surely.
+	\begin{theorem}
+	  Let $(U_H(k))_{k}$ be a fBm. The conditional expectation of $U_H(s)$  given $U_H(t)=x$ is
+	\begin{equation*}
+	  \frac{|\frac{s}{t}|^{2H} + 1 - |\frac{s}{t} - 1|^{2H}}{2} \cdot x
+	\end{equation*}
+	for all $ s \ge t$ and $t \neq 0$.
+	\end{theorem}
+	\begin{proof}
+	  Cf. \cite{mandelbrot}, Theorem 5.3. Let $\mu_s$ be Expectation of $\mathrm{E}[U_H(s)]$ and $\rho_{s,t}$ Covariance of $\mathrm{Cov}[U_H(s), U_H(t)]$. Taking conditional expectation of $U_H(s)$ given $U_H(t)$,
+	  \begin{eqnarray*}
+	  &&\mathrm{E}[U_H(s)|U_H(t)]\\
+	  &\overset{\text{Corollary \ref{sec:condi}}}{=}& \mu_s + \rho_{s,t} (\frac{\sigma_s}{\sigma_t}U_H(t) - \mu_t)\\
+	  &=& \rho_{s,t}\frac{\sigma_s}{\sigma_t}U_H(t)\\
+	  &=& \frac{\rho_{s,t}\cdot\sigma_s\sigma_t\cdot U_H(t)}{\sigma_t^2}\\
+	  &=& \frac{\mathrm{E}[U_H(s)U_H(t)]}{\mathrm{E}[U_H^2(t)]} \cdot U_H(t)\\
+	  &\overset{\text{(\ref{sec:eqn4})}}{=}& \frac{s^{2H} + t^{2H} - |s-t|^{2H}}{2\mathrm{E}[U_H^2(t)]}\cdot U_H(t)\\
+	  &=&  \frac{s^{2H} + t^{2H} - |s-t|^{2H}}{2t^{2H}}\cdot U_H(t)\\
+	  &=& \frac{|\frac{s}{t}|^{2H} + 1 - |\frac{s}{t} - 1|^{2H}}{2} \cdot U_H(t)
+	  \end{eqnarray*}
+	\end{proof}
 
-  \begin{theorem}
-	The sample path of fBm is almost surely not differentiable.
-  \end{theorem}
-
-  \begin{proof}
-	Cf. \cite{mandelbrot} Proposition 4.2 . Fix $\omega \in \Omega$, we assume $c > 0, t_j \rightarrow s$.
-  \begin{eqnarray}
-   && \mathcal{P}[\limsup\limits_{t\rightarrow s} |\frac{U_H(t) - U_H(s)}{t-s}| > c]\nonumber\\
-   &=& \mathcal{P}[\lim\limits_{j\rightarrow\infty}\sup\limits_{t_j\neq s} |\frac{U_H(t_j) - U_H(s)}{t_j-s}| > c]\nonumber\\
-   \label{sec:mass}
-   \end{eqnarray}
-   Since continuity of measures from above, then
-   \begin{eqnarray*}
-   \text{(\ref{sec:mass})} &=& \lim\limits_{j\rightarrow\infty} \mathcal{P}[\sup\limits_{t_j\neq s} |\frac{U_H(t_j) - U_H(s)}{t_j-s}| > c]\\
-   &\ge& \lim\limits_{j\rightarrow\infty} \mathcal{P}[|\frac{U_H(t_j) - U_H(s)}{t_j-s}| > c]\\
-   &=& \lim\limits_{j\rightarrow\infty} \mathcal{P}[\frac{|(t_j-s)^{H}U_H(1)}{t_j - s}| > c]\\
-   &=& \lim\limits_{j\rightarrow\infty} \mathcal{P}[|(t_j-s)^{H-1}U_H(1)| > c]\\
-   &=& \lim\limits_{j\rightarrow\infty} \mathcal{P}[|U_H(1)| > \underbrace{|t_j - s|^{1-H}}_{\overset{j\rightarrow\infty}{\longrightarrow}\, 0}c]\\
-   &\overset{j\rightarrow \infty}{\longrightarrow}& 1 
-  \end{eqnarray*}
-  \end{proof}
-
-  \begin{theorem}
-	Let $(U_H(k))_{k}$ be a fBm. The conditional expectation of $U_H(s)$  given $U_H(t)=x$ is
-  \begin{equation*}
-	\frac{|\frac{s}{t}|^{2H} + 1 - |\frac{s}{t} - 1|^{2H}}{2} \cdot x
-  \end{equation*}
-  for all $ s \ge t$ and $t \neq 0$.
-  \end{theorem}
-  \begin{proof}
-	Cf. \cite{mandelbrot} Theorem 5.3. Taking conditional expectation of $U_H(s)$ given $U_H(t)$,
+	\subsection{Fractional Brownian Noise}
+	\begin{definition}
+	  Let $(U_H(t))_{t\in \mathbb{R}}$ be a fBm. The \emph{fractional Brownian noise} is a sequence $(S_k)_{k\in \mathbb{R}}$ defined as follows:
 	\begin{eqnarray*}
-	&&\mathrm{E}[U_H(s)|U_H(t)]\\
-	&\overset{\text{Corollary \ref{sec:condi}}}{=}& \mu_s + \rho_{s,t} (\frac{\sigma_s}{\sigma_t}U_H(t) - \mu_t)\\
-	&=& \rho_{s,t}\frac{\sigma_s}{\sigma_t}U_H(t)\\
-	&=& \frac{\rho_{s,t}\cdot\sigma_s\sigma_t\cdot U_H(t)}{\sigma_t^2}\\
-	&=& \frac{\mathrm{E}[U_H(s)U_H(t)]}{\mathrm{E}[U_H^2(t)]} \cdot U_H(t)\\
-	&\overset{\text{(\ref{sec:eqn4})}}{=}& \frac{s^{2H} + t^{2H} - |s-t|^{2H}}{2\mathrm{E}[U_H^2(t)]}\cdot U_H(t)\\
-	&=&  \frac{s^{2H} + t^{2H} - |s-t|^{2H}}{2t^{2H}}\cdot U_H(t)\\
-	&=& \frac{|\frac{s}{t}|^{2H} + 1 - |\frac{s}{t} - 1|^{2H}}{2} \cdot U_H(t)
+	  S_H(k) &=& U_H(k+1) - U_H(k)
 	\end{eqnarray*}
-  \end{proof}
+	for $k \in \mathbb{R}$.
+	\end{definition}
+	\begin{proposition}
+	  Fractional Brownian noise is stationary and its autocovariance is 
+	  \begin{eqnarray}
+		\varsigma_{S_H}(\tau) &=&  \frac{1}{2} (|\tau + 1|^{2H} - 2|\tau|^{2H} + |\tau-1|^{2H})
+	  \label{sec:auto}
+	  \end{eqnarray}
+	  for $\tau \in \mathbb{R}$.
+	\end{proposition}
 
-  \subsection{Fractional Brownian Noise}
-  \begin{definition}
-	Let $(U_H(t))_{t\in \mathbb{R}}$ be a fBm. The \emph{fractional Brownian noise} is a sequence $(S_k)_{k\in \mathbb{R}}$ defined as follows:
-  \begin{eqnarray*}
-	S_H(k) &=& U_H(k+1) - U_H(k)
-  \end{eqnarray*}
-  for $k \in \mathbb{R}$.
-  \end{definition}
-  \begin{proposition}
-	Fractional Brownian noise is stationary and its autocovariance is 
-	\begin{eqnarray}
-	  \varsigma_{S_H}(\tau) &=&  \frac{1}{2} (|\tau + 1|^{2H} - 2|\tau|^{2H} + |\tau-1|^{2H})
-	\label{sec:auto}
-	\end{eqnarray}
-	for $\tau \in \mathbb{R}$.
-  \end{proposition}
+	\begin{proof}
+	  Cf. \cite{nourdin}, p.333, Proposition 7.2.9 .\\
+	  The first part of the claim is clear due to fBm has stationary increments.\\
+	  In terms of definition of fractional Brownian noise, for a $k \in \mathbb{R}$, we have
+	  \begin{eqnarray*}
+		&&\varsigma_{S_H}(\tau)\\
+		&=& \mathrm{E}[S_H(k+\tau)S_H(k)] \\
+		&=& \mathrm{E}[(U_H(\tau+k+1) - U_H(\tau+k))(U_H(k+1)-U_H(k))]\\
+		&=& \mathrm{E}[U_H(\tau+k+1)U_H(k+1)] - \mathrm{E}[U_H(\tau+k+1)U_H(k)] \\
+		&-& \mathrm{E}[U_H(\tau+k)U_H(k+1)] + \mathrm{E}[U_H(\tau+k)U_H(k)]\\
+		&\overset{\text{(\ref{sec:eqn4})}}{=}& \frac{1}{2} ( |\tau+k+1|^{2H} + |k+1|^{2H} - |\tau|^{2H} - |\tau+k+1|^{2H} - |k|^{2H} + |\tau+1|^{2H}\\
+		&-& |\tau+k|^{2H} - |k+1|^{2H} + |\tau-1|^{2H} + |\tau+k|^{2H} + |k|^{2H} - |\tau|^{2H})\\
+		&=& \frac{1}{2}(|1+\tau|^{2H} - 2|\tau|^{2H} + |1-\tau|^{2H})
+	  \end{eqnarray*}
+	  for $\tau \in \mathbb{R}$.
+	\end{proof}
 
-  \begin{proof}
-	Cf. \cite{nourdin}, p.333, Proposition 7.2.9 .\\
-	The first part of the claim is clear due to fBm has stationary increments.\\
-	In terms of definition of fractional Brownian noise, for a $k \in \mathbb{R}$, we have
+	\begin{definition}
+	  A stationary stochastic process $(X_t)_t$ is said to have \emph{long memory} if its autocovariance $\varsigma_X(\tau)$ tends to $0$ so slowly such that
+	  $ \sum_{\tau = 0} ^{\infty} \varsigma_X(\tau)$ diverges.
+	\end{definition}
+
+	\begin{lemma}[Cauchy Condensation test]
+	  Let $(a_n)$ be a $\mathbb{R}$-valued positive non-increasing sequence. Then $\sum_{n=1}^{\infty} a_n$ converges if and only if $\sum_{n=0}^{\infty} 2^n a_{2^n}$ converges.
+	  \label{sec:cauchy}
+	\end{lemma}
+	\begin{proof}
+	  See \cite{michael}, p.391, Theorem 13.13 .
+	\end{proof}
+
+	\begin{lemma}[Limit comparison test]
+	  Let $\sum_{k=0}^{\infty} a_k$ and $\sum_{k=0}^{\infty} b_k$ be two series with $a_k \ge 0, b_k \ge 0$ for all $k$. If $0 <\lim\limits_{k\rightarrow \infty}\frac{a_k}{b_k} < \infty$, then either both series converge or both series diverge.
+	\end{lemma}
+
+	\begin{proof}
+	  Suppose $\lim\limits_{k\rightarrow \infty}\frac{a_k}{b_k}=c$ with $c<\infty$. Then there exists a $N$ such that if $k > N, |\frac{a_k}{b_k} - c| < \frac{c}{2}$. In other words, 
+	  \begin{eqnarray*}
+		\frac{c}{2}|b_k| < |a_k| < \frac{3c}{2}|b_k|.
+	  \end{eqnarray*}
+	  Hence, if $\sum_{k=0}^{\infty} a_k$ converges, then $\sum_{k=0}^{\infty} b_k$ converges due to the first '$<$'. Also, if $\sum_{k=0}^{\infty} b_k$ converges then $\sum_{k=0}^{\infty} a_k$ converges due to the last '$<$'. One can verify the claim of the divergence in the same way.
+	\end{proof}
+	\begin{theorem}
+	  The fractional Brownian noise with $S_H$ with $H \in (\frac{1}{2}, 1)$ has long memory.
+	  \label{sec:lmemory}
+	\end{theorem}
+	\begin{proof}
+	 % Cf. \cite{chriel}, p.2, (1.2).\\
+	 % Using the Newton's generalised binomial formula, 
+	 % \begin{eqnarray*}
+	%	&&\varsigma_{S_H}(\tau) \\
+	%	&=& \frac{1}{2}((1+\tau)^{2H} - 2\tau^{2H} + (1-\tau)^{2H})\\
+	%	&=& \sum\limits_{k=0}^{\infty} {2H \choose k} \tau^{2H-k} 1^k + \sum\limits_{k=0}^{\infty} {2H \choose k} \tau^{2H-k} (-1)^k - 2\tau^{2H}\\
+	%	&=& \brkt{\tau^{2H} + 2H \tau^{2H-1} + \frac{2H(2H-1)}{2!}\tau^{2H-1}+\dots)} \\
+	%	&+&  \brkt{\tau^{2H} - 2H \tau^{2H-1} + \frac{2H(2H-1)}{2!}\tau^{2H-1}+\dots)} - 2\tau^{2H}\\
+	%	&=&  \sum\limits_{k=1}^{\infty} \frac{1}{(2k)!}\brkt{\prod_{j=0}^{2n-1}(2H-j)}\tau^{2H-2k}
+	%  \end{eqnarray*}
+	%  Since $2H < 2k$ for $k\in \mathbb{N}_0$, 
+	%  \begin{eqnarray*}
+	%	&&\varsigma_{S_H}(\tau) \\
+	%	&=& \sum\limits_{k=1}^{N} \frac{1}{(2k)!}\brkt{\prod_{j=0}^{2n-1}(2H-j)}\tau^{2H-2k} + \mathrm{o}(\tau)
+	%  \end{eqnarray*}
+	%  for $N\in \mathbb{N}_0$.
+	  Cf. \cite{nourdin}, p.335, Proposition 7.2.10 .\\
+	  Without loss of generality, we suppose $\tau \in \mathbb{N}$ because $\varsigma_{S_H}(0)=1$. We have
+	  \begin{eqnarray*}
+		&&\varsigma_{S_H}(\tau) \\
+	  &=& \frac{1}{2} \tau^{2H-2}\{ \tau^2[(1+\frac{1}{\tau})^{2H} - 2 + (1-\frac{1}{\tau})^{2H}] \} \\
+	  &=& \frac{1}{2} \tau^{2H-2}\{ \frac{(1+\frac{1}{\tau})^{2H} - 1 } {\frac{1}{\tau^2}} -  \frac{1 - (1-\frac{1}{\tau})^{2H}} {\frac{1}{\tau^2}} \}.
+	\end{eqnarray*}
+
+	We deal with the former of the content in $\{\,\}$ with L'H\^opital's rule as $\tau$ tends to infinity
+	\begin{eqnarray*}
+	  &&\frac{(1+\frac{1}{\tau})^{2H} - 1 } {\frac{1}{\tau^2}} \\
+	&=& \frac{2H(1+\frac{1}{\tau})^{2H-1}(-\frac{1}{\tau^2})}{-\frac{2}{\tau^3}} + \mathrm{o}(1)\\
+	&=& \frac{H(1+\frac{1}{\tau})^{2H-1}}{\frac{1}{\tau}} + \mathrm{o}(1).
+	\end{eqnarray*}
+
+	We calculate the Latter of the content in $\{\,\}$ in a similar way. Then
 	\begin{eqnarray*}
 	  &&\varsigma_{S_H}(\tau)\\
-	  &=& \mathrm{E}[S_H(k+\tau)S_H(k)] \\
-	  &=& \mathrm{E}[(U_H(\tau+k+1) - U_H(\tau+k))(U_H(k+1)-U_H(k))]\\
-	  &=& \mathrm{E}[U_H(\tau+k+1)U_H(k+1)] - \mathrm{E}[U_H(\tau+k+1)U_H(k)] \\
-	  &-& \mathrm{E}[U_H(\tau+k)U_H(k+1)] + \mathrm{E}[U_H(\tau+k)U_H(k)]\\
-	  &\overset{\text{(\ref{sec:eqn4})}}{=}& \frac{1}{2} ( |\tau+k+1|^{2H} + |k+1|^{2H} - |\tau|^{2H} - |\tau+k+1|^{2H} - |k|^{2H} + |\tau+1|^{2H}\\
-	  &-& |\tau+k|^{2H} - |k+1|^{2H} + |\tau-1|^{2H} + |\tau+k|^{2H} + |k|^{2H} - |\tau|^{2H})\\
-	  &=& \frac{1}{2}(|1+\tau|^{2H} - 2|\tau|^{2H} + |1-\tau|^{2H})
+	&=& \tau^{2H-2} \frac{1}{2}\{ \frac{H(1 +\frac{1}{\tau})^{2H-1}}{\frac{1}{\tau}} - \frac{H(1-\frac{1}{\tau})^{2H-1}}{\frac{1}{\tau}}\}+ \mathrm{o}(1)\\
+	&=& \tau^{2H-2} \frac{1}{2}\{ \frac{H(1 +\frac{1}{\tau})^{2H-1}- H}{\frac{1}{\tau}} - \frac{H(1-\frac{1}{\tau})^{2H-1} - H}{\frac{1}{\tau}}\}+ \mathrm{o}(1)\\
+	&\overset{\text{L'H\^opital}}{=}& \frac{1}{2} \tau^{2H-2}\{\frac{H(2H-1)(1+\frac{1}{\tau})^{2H-2}(-\frac{1}{\tau^2})}{-\frac{1}{\tau^2}} - \frac{H(2H-1)(1-\frac{1}{\tau})^{2H-2}\frac{1}{\tau^2}}{-\frac{1}{\tau^2}}\}+ \mathrm{o}(1)\\
+	&=& \frac{1}{2} \tau^{2H-2}\{H(2H-1)(1+\frac{1}{\tau})^{2H-2} + H(2H-1)(1-\frac{1}{\tau})^{2H-2}\}+ \mathrm{o}(1)\\
+	&=& \frac{1}{2} \tau^{2H-2} 2H(2H-1)+ \mathrm{o}(1)\\
+	&=& H(2H-1) \tau^{2H-2}+ \mathrm{o}(1).
 	\end{eqnarray*}
-	for $\tau \in \mathbb{R}$.
-  \end{proof}
 
-  \begin{definition}
-	A stationary stochastic process $(X_t)_t$ is said to have \emph{long memory} if its autocovariance $\varsigma_X(\tau)$ tends to $0$ so slowly such that
-	$ \sum_{\tau = 0} ^{\infty} \varsigma_X(\tau)$ diverges.
-  \end{definition}
 
-  \begin{lemma}[Cauchy Condensation test]
-	Let $(a_n)$ be a $\mathbb{R}$-valued positive non-increasing sequence. Then $\sum_{n=1}^{\infty} a_n$ converges if and only if $\sum_{n=0}^{\infty} 2^n a_{2^n}$ converges.
-	\label{sec:cauchy}
-  \end{lemma}
-  \begin{proof}
-	See \cite{michael}, p.391, Theorem 13.13 .
-  \end{proof}
+	%In fact, for $\tau$ is large,
+	%\begin{eqnarray*}
+	%  \frac{\varsigma(\tau+1)}{\varsigma(\tau)} &=& (\frac{\tau+1}{\tau})^{2H-2}
+	%\end{eqnarray*}
 
-  \begin{lemma}[Limit comparison test]
-	Let $\sum_{k=0}^{\infty} a_k$ and $\sum_{k=0}^{\infty} b_k$ be two series with $a_k \ge 0, b_k \ge 0$ for all $k$. If $0 <\lim\limits_{k\rightarrow \infty}\frac{a_k}{b_k} < \infty$, then either both series converge or both series diverge.
-  \end{lemma}
-
-  \begin{proof}
-	Suppose $\lim\limits_{k\rightarrow \infty}\frac{a_k}{b_k}=c$ with $c<\infty$. Then there exists a $N$ such that if $k > N, |\frac{a_k}{b_k} - c| < \frac{c}{2}$. In other words, 
-	\begin{eqnarray*}
-	  \frac{c}{2}|b_k| < |a_k| < \frac{3c}{2}|b_k|
+	If $H \in (0, \frac{1}{2})$, $\sum\limits_{\tau=1}^{\infty} \tau^{2H-2}$ converges. We use the Cauchy condensation test to verify it
+	 \begin{eqnarray*}
+	&& \sum_{\tau=0}^{\infty} 2^{\tau} (2^\tau)^{2H-2} \\
+	&=& \sum_{\tau=0}^{\infty} 2^{\tau(2H-1)}\\
+	&=& \sum_{\tau=0}^{\infty} (2^{(2H-1)})^\tau.
 	\end{eqnarray*}
-	Hence, if $\sum_{k=0}^{\infty} a_k$ converges, then $\sum_{k=0}^{\infty} b_k$ converges due to the first '$<$'. Also, if $\sum_{k=0}^{\infty} b_k$ converges then $\sum_{k=0}^{\infty} a_k$ converges due to the last '$<$'. One can verify the claim of the divergence in the same way.
-  \end{proof}
-  \begin{theorem}
-	The fractional Brownian noise with $H \in (\frac{1}{2}, 1)$ has long memory.
-	\label{sec:lmemory}
-  \end{theorem}
-  \begin{proof}
-   % Cf. \cite{chriel}, p.2, (1.2).\\
-   % Using the Newton's generalised binomial formula, 
-   % \begin{eqnarray*}
-  %	&&\varsigma_{S_H}(\tau) \\
-  %	&=& \frac{1}{2}((1+\tau)^{2H} - 2\tau^{2H} + (1-\tau)^{2H})\\
-  %	&=& \sum\limits_{k=0}^{\infty} {2H \choose k} \tau^{2H-k} 1^k + \sum\limits_{k=0}^{\infty} {2H \choose k} \tau^{2H-k} (-1)^k - 2\tau^{2H}\\
-  %	&=& \brkt{\tau^{2H} + 2H \tau^{2H-1} + \frac{2H(2H-1)}{2!}\tau^{2H-1}+\dots)} \\
-  %	&+&  \brkt{\tau^{2H} - 2H \tau^{2H-1} + \frac{2H(2H-1)}{2!}\tau^{2H-1}+\dots)} - 2\tau^{2H}\\
-  %	&=&  \sum\limits_{k=1}^{\infty} \frac{1}{(2k)!}\brkt{\prod_{j=0}^{2n-1}(2H-j)}\tau^{2H-2k}
-  %  \end{eqnarray*}
-  %  Since $2H < 2k$ for $k\in \mathbb{N}_0$, 
-  %  \begin{eqnarray*}
-  %	&&\varsigma_{S_H}(\tau) \\
-  %	&=& \sum\limits_{k=1}^{N} \frac{1}{(2k)!}\brkt{\prod_{j=0}^{2n-1}(2H-j)}\tau^{2H-2k} + \mathrm{o}(\tau)
-  %  \end{eqnarray*}
-  %  for $N\in \mathbb{N}_0$.
-	Cf. \cite{nourdin}, p.335, Proposition 7.2.10 .\\
-	Without loss of generality, we suppose $\tau \in \mathbb{N}$ because $\varsigma_{S_H}(0)=1$. 
-	\begin{eqnarray*}
-	  &&\varsigma_{S_H}(\tau) \\
-	&=& \frac{1}{2} \tau^{2H-2}\{ \tau^2[(1+\frac{1}{\tau})^{2H} - 2 + (1-\frac{1}{\tau})^{2H}] \} \\
-	&=& \frac{1}{2} \tau^{2H-2}\{ \frac{(1+\frac{1}{\tau})^{2H} - 1 } {\frac{1}{\tau^2}} -  \frac{1 - (1-\frac{1}{\tau})^{2H}} {\frac{1}{\tau^2}} \}.
-  \end{eqnarray*}
+	This is geometric series if $2H-1<0$, namely, $H\in(0,\frac{1}{2})$.  \\
+	Otherwise, if $\frac{1}{2} < H < 1$, namely, $-1<2H-2<0, \sum\limits_{\tau=1}^{\infty} \tau^{2H-2} $ diverges because it is greater than the harmolic series.\\
+	$H(2H-1) > 0$ when $H\in (\frac{1}{2}, 1)$. $\sum\limits_{\tau=1}^{\infty} \varsigma(\tau)$ diverges because $\sum\limits_{\tau=1}^{\infty} \tau^{2H-2} $ diverges (limit comparison test). It is clear that $\lim\limits_{\tau\rightarrow \infty}\varsigma_{S_H}(\tau)=0$, then claim is proved. 
+	\end{proof}
 
-  We deal with the former of the content in $\{\,\}$ with L'H\^opital's rule as $\tau$ tends to infinity
-  \begin{eqnarray*}
-	&&\frac{(1+\frac{1}{\tau})^{2H} - 1 } {\frac{1}{\tau^2}} \\
-  &=& \frac{2H(1+\frac{1}{\tau})^{2H-1}(-\frac{1}{\tau^2})}{-\frac{2}{\tau^3}} + \mathrm{o}(1)\\
-  &=& \frac{H(1+\frac{1}{\tau})^{2H-1}}{\frac{1}{\tau}} + \mathrm{o}(1).
-  \end{eqnarray*}
-
-  We calculate the Latter of the content in $\{\,\}$ in a similar way. Then
-  \begin{eqnarray*}
-	&&\varsigma_{S_H}(\tau)\\
-  &=& \tau^{2H-2} \frac{1}{2}\{ \frac{H(1 +\frac{1}{\tau})^{2H-1}}{\frac{1}{\tau}} - \frac{H(1-\frac{1}{\tau})^{2H-1}}{\frac{1}{\tau}}\}+ \mathrm{o}(1)\\
-  &=& \tau^{2H-2} \frac{1}{2}\{ \frac{H(1 +\frac{1}{\tau})^{2H-1}- H}{\frac{1}{\tau}} - \frac{H(1-\frac{1}{\tau})^{2H-1} - H}{\frac{1}{\tau}}\}+ \mathrm{o}(1)\\
-  &\overset{\text{L'H\^opital}}{=}& \frac{1}{2} \tau^{2H-2}\{\frac{H(2H-1)(1+\frac{1}{\tau})^{2H-2}(-\frac{1}{\tau^2})}{-\frac{1}{\tau^2}} - \frac{H(2H-1)(1-\frac{1}{\tau})^{2H-2}\frac{1}{\tau^2}}{-\frac{1}{\tau^2}}\}+ \mathrm{o}(1)\\
-  &=& \frac{1}{2} \tau^{2H-2}\{H(2H-1)(1+\frac{1}{\tau})^{2H-2} + H(2H-1)(1-\frac{1}{\tau})^{2H-2}\}+ \mathrm{o}(1)\\
-  &=& \frac{1}{2} \tau^{2H-2} 2H(2H-1)+ \mathrm{o}(1)\\
-  &=& H(2H-1) \tau^{2H-2}+ \mathrm{o}(1).
-  \end{eqnarray*}
-
-
-  %In fact, for $\tau$ is large,
-  %\begin{eqnarray*}
-  %  \frac{\varsigma(\tau+1)}{\varsigma(\tau)} &=& (\frac{\tau+1}{\tau})^{2H-2}
-  %\end{eqnarray*}
-
-  If $H \in (0, \frac{1}{2})$, $\sum\limits_{\tau=1}^{\infty} \tau^{2H-2}$ converges. We use the Cauchy condensation test to verify it
-   \begin{eqnarray*}
-  && \sum_{\tau=0}^{\infty} 2^{\tau} (2^\tau)^{2H-2} \\
-  &=& \sum_{\tau=0}^{\infty} 2^{\tau(2H-1)}\\
-  &=& \sum_{\tau=0}^{\infty} (2^(2H-1))^\tau.
-  \end{eqnarray*}
-  This is geometric series if $2H-1<0$, namely, $H\in(0,\frac{1}{2})$.  \\
-  Otherwise, if $\frac{1}{2} < H < 1$, namely, $-1<2H-2<0, \sum\limits_{\tau=1}^{\infty} \tau^{2H-2} $ diverges because it is greater than the harmolic series.\\
-  $H(2H-1) > 0$ when $H\in (\frac{1}{2}, 1)$. $\sum\limits_{\tau=1}^{\infty} \varsigma(\tau)$ diverges because $\sum\limits_{\tau=1}^{\infty} \tau^{2H-2} $ diverges (limit comparison test). It is clear that $\lim\limits_{\tau\rightarrow \infty}\varsigma_{S_H}(\tau)=0$, then claim is proved. 
-  \end{proof}
-
-  \begin{corollary}
-	Let $S_H$ be fractional Brownian noise and $\varsigma_{S_H}(\cdot)$ be its autocovariance. Then $\sum_{\tau=0}^{\infty}\varsigma^2_{S_H}(\tau)<\infty$ if and only if $H < \frac{3}{4}$.
-  \end{corollary}
-  \begin{proof}
-	  Cf. \cite{nourdin}, p.72, Lemma 6.3. As by Theorem \ref{sec:lmemory}, we have $\varsigma_{S_H}^2(\tau) = H^2(2H-1)^2\tau^{4H-4} + \mathrm{o}(1) $. The summation over the range of $\tau$ is finite if and only if, according to the same reason as in Theorem \ref{sec:lmemory}, $4H<3$. That means $H < \frac{3}{4}$.
-  \end{proof}
-  \subsection{fBm is not Semi-martingale for $H\neq \frac{1}{2}$}
-  Let us have a look at our integration representation for fBm. In the case of fBm with Hurst index $\frac{1}{2}$, it must be an ordinary Brownian motion. Otherwise, we'll show fBm is not a semi-martingale.
+	\begin{corollary}
+	  Let $S_H$ be fractional Brownian noise and $\varsigma_{S_H}(\cdot)$ be its autocovariance. Then $\sum_{\tau=0}^{\infty}\varsigma^2_{S_H}(\tau)<\infty$ if and only if $H < \frac{3}{4}$.
+	\end{corollary}
+	\begin{proof}
+		Cf. \cite{nourdin}, p.72, Lemma 6.3. As by Theorem \ref{sec:lmemory}, we have $\varsigma_{S_H}^2(\tau) = H^2(2H-1)^2\tau^{4H-4} + \mathrm{o}(1) $. The summation over the range of $\tau$ is finite if and only if, according to the same reason as in Theorem \ref{sec:lmemory}, $4H<3$. That means $H < \frac{3}{4}$.
+	\end{proof}
+  \subsection{fBm is not Semimartingale for $H\neq \frac{1}{2}$}
+  Let us have a look at our integration representation for fBm. In the case of fBm with Hurst index $\frac{1}{2}$, it must be an ordinary Brownian motion. Otherwise, we'll show fBm is not a semimartingale.
 
   \begin{definition}
 	The \emph{Hermite polynomials} forms as following:
@@ -1290,7 +1291,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   \end{proof}
 
   \begin{lemma}
-	Let $(U_H(t))_{t}$ be a fBm, $W$ standard Gaussian variable, and $f: \mathbb{R}\rightarrow \mathbb{R}$, Borel-measurable function such that $\mathrm{E}[f^2(W)] < \infty$. Then, 
+	Let $(U_H(t))_{t}$ be a fBm, $W$ standard Gaussian variable, $f: \mathbb{R}\rightarrow \mathbb{R}$, Borel-measurable function such that $\mathrm{E}[f^2(W)] < \infty$. Then, 
 	\begin{equation*}
 	  \frac{1}{n}\sum\limits_{j=1}^n f(U_H(j)-U_H(j-1)) \overset{\text{in }\mathcal{L}^2(\mathcal{P})}{\rightarrow} \mathrm{E}[f(W)],
 	\end{equation*}
@@ -1320,10 +1321,11 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 	  &=& \mathrm{E}[\{\frac{1}{n}\sum\limits_{j=1}^n (\sum\limits_{k=1}^\infty \frac{a_k}{\sqrt{k!}} H_k(U_H(j) - U_H(j-1)))\}^2].
 	\end{eqnarray*}
 	Consider now 
-	\begin{equation*}
-	  \mathrm{E}[f^2(W)] < \infty,
-	\end{equation*}
-	which requires $\sum\limits_{k=1}^\infty (a_k)^2 < \infty$. Then
+	\begin{eqnarray*}
+	  \infty &>& \mathrm{E}[f^2(W)]\\ 
+	  &=& \sum_{k = 0} ^ \infty a_k^2 \mathrm{E}[\frac{H_k(W)^2}{k!}],
+	\end{eqnarray*}
+	which requires $\sum\limits_{k=1}^\infty (a_k)^2 < \infty$ (Proposition \ref{sec:herpro} (iii)). Then
 	\begin{eqnarray*}
 	  && \mathrm{E}[\{\frac{1}{n}\sum\limits_{j=1}^n f(U_H(j) - U_H(j-1)) - \mathrm{E}[f(W)]\}^2]\\
 	  &=& \frac{1}{n^2} \mathrm{E}[\sum\limits_{k=1}^\infty \frac{a_k^2}{k!}(\sum\limits_{j=1}^n H_k(U_H(j) - U_H(j-1)))^2] \\
@@ -1359,7 +1361,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 	  \begin{eqnarray*}
 		\frac{2\alpha}{n} \sum\limits_{k=1}^{n-1} |\varsigma_{S_H}(k)| \propto n^{2H-2}
 	  \end{eqnarray*}
-	  as n goes to infinity. This leads to,  for $0<H<1$, as $n \rightarrow \infty$,  $\mathrm{E}[\{\frac{1}{n}\sum\limits_{j=1}^n f(U_H(j) - U_H(j-1)) - \mathrm{E}[f(W)]\}^2]\rightarrow 0$ due to $n^{2H-2}\rightarrow 0$ that is $\frac{1}{n}\sum\limits_{j=1}^n f(U_H(j) - U_H(j-1)) \overset{\text{in} \mathcal{L}^2}{\rightarrow} \mathrm{E}[f(W)]$.\\
+	  as n goes to infinity. This leads to,  for $0<H<1$, as $n \rightarrow \infty$,  $\mathrm{E}[\{\frac{1}{n}\sum\limits_{j=1}^n f(U_H(j) - U_H(j-1)) - \mathrm{E}[f(W)]\}^2]\rightarrow 0$ due to $n^{2H-2}\rightarrow 0$. That is $\frac{1}{n}\sum\limits_{j=1}^n f(U_H(j) - U_H(j-1)) \overset{\text{in} \mathcal{L}^2}{\rightarrow} \mathrm{E}[f(W)]$.\\
 
 	  Secondly, we apply previous result for (\ref{sec:semilemma}), in fact,
 	  \begin{eqnarray*}
@@ -1381,11 +1383,11 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   %\end{proof}
   We denote by $[X, X]_t$ the quadratic variation of $X$.
   \begin{theorem}
-	fBm is not a semi-martingale for $H\neq \frac{1}{2}$.
+	fBm is not a semimartingale for $H\neq \frac{1}{2}$.
   \end{theorem}
   \begin{proof}
-	Without loss of generality, we set the time scale $T=[0, 1]$. fixed $\beta=2$ in (\ref{sec:semilemma}), we suppose $U_H(t)$ is a semi-martingale.\\
-	Case $H < \frac{1}{2}$. Then $\sum_{j=1}^n |U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|^2\rightarrow\infty$ contradicts that semi-martingale has finite quadratic variation.\\
+	Without loss of generality, we set the time scale $T=[0, 1]$. fixed $\beta=2$ in (\ref{sec:semilemma}), we suppose $U_H(t)$ is a semimartingale.\\
+	Case $H < \frac{1}{2}$. Then $\sum_{j=1}^n |U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|^2\rightarrow\infty$ contradicts that semimartingale has finite quadratic variation.\\
 	Case $H > \frac{1}{2}$. $\sum_{j=1}^n |U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|^2\rightarrow 0$. On the one hand, according to Doob-Meyer decomposition, $U_H(t) = M(t) + A(t)$, where $M(t)$ is a local martingale and $A(t)$ local finite variation process. 	
 	 $0=[U_H, U_H]_t = [M, M]_t $  (\cite{revuz}, Chapter IV., Proposition 1.18 ). Consequently, $M(t)$ is zero process due to a continuous local martingale with quadratic variation zero is constant (\cite{revuz}, Chapter IV., Proposition 1.12).
   In other words, $U_H(t)=A(t)$ and $U_H(t)$ has therefore finite variation. On the other Hand, there exists a $\gamma$ such that $1<\gamma<\frac{1}{H}$,  then $\sum_{j=1}^n |U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|^\gamma \rightarrow \infty$. Precisely, 
@@ -1394,7 +1396,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 	   &\hspace{2em}&\le \underbrace{\sup\limits_{1\le j\le n}|U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|^{\gamma-1}}_{\overset{(\gamma-1)-\text{H\"older}}{\rightarrow}0} \cdot \sum_{j=1}^n|U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|,
 	\end{eqnarray*}
 	this leads to $\sum_{j=1}^n|U_H(\frac{j}{n}) - U_H(\frac{j-1}{n})|\rightarrow \infty$, which contradicts we mentioned above that $U_H(t)$ has finite variation.\\
-	Given all that, fBm is not a semi-martingale for $H\neq \frac{1}{2}$.
+	Given all that, fBm is not a semimartingale for $H\neq \frac{1}{2}$.
   \end{proof}
 
   %\subsection{Integration with respect to FBM}
@@ -1453,18 +1455,18 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 	See. \cite{chriel}, p.11, Proposition A.1 .
   \end{proof}
 
-  \begin{lemma}
-	Let $H \in (0, \frac{1}{2}) \cup (\frac{1}{2}, 1), a >0$ and $-\infty\le m < n \le j < k < \infty.$ Then 
-	\begin{eqnarray*}
-	  &&\mathrm{E}[\int_m^n e^{au}\mathop{dU_H(u)}\int_j^k e^{as}\mathop{dU_H(s)}]\\
-	  &=& H(2H-1)\int_m^n e^{au} \brkt{\int_j^k e^{as}(s-u)^{2H-2}\mathop{ds}}\mathop{du}.
-  \end{eqnarray*}
-	\label{sec:lemma2}
-  \end{lemma}
+%   \begin{lemma}
+%	Let $H \in (0, \frac{1}{2}) \cup (\frac{1}{2}, 1), a >0$ and $-\infty\le m < n \le j < k < \infty.$ Then 
+%	\begin{eqnarray*}
+%	  &&\mathrm{E}[\int_m^n e^{au}\mathop{dU_H(u)}\int_j^k e^{as}\mathop{dU_H(s)}]\\
+%	  &=& H(2H-1)\int_m^n e^{au} \brkt{\int_j^k e^{as}(s-u)^{2H-2}\mathop{ds}}\mathop{du}.
+%  \end{eqnarray*}
+%	\label{sec:lemma2}
+%  \end{lemma}
 
-  \begin{proof}
-	See. \cite{chriel}, p.5, Lemma 2.1 .
-  \end{proof}
+%  \begin{proof}
+%	See. \cite{chriel}, p.5, Lemma 2.1 .
+%  \end{proof}
 
   \begin{theorem}
 	$\hat{X}^{b,H}_t := e^{-at} \brkt{b + \gamma\int_0^t e^{au}\mathop{dU_H(u)}}$ is the solution that solves (\ref{sec:oup}) for $t\ge 0$.
@@ -1571,8 +1573,9 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
   where  $r\in\mathbb{R}, \sigma\in\mathbb{R}_+, \sup\limits_{t\in[0, T]}\mu(t) < \infty$.
    Through out this section we denote by $(\mathcal{F}^X_t)_t$ the filtration of a stochastic process $(X_t)_t$. %Our finance market consist of $\hat{X}:=(X_t^0,\dots, X_t^n)$.
 
+   We assume there exists a partition that $\tilde{s} = \{0=s_0\le s_1\le \dots\le s_m=T\}$.
   \begin{definition}
-	A $\mathbb{R}^{2}$-valued stochastic process $(\xi_t^0, \xi_t^1)_{t\in [0, T]}$ is said to be a \emph{strategy} to (\ref{sec:fbs2}) , if $\xi_t^0 \in \mathcal{F}^A_{j}$ and $\xi_t^1 \in \mathcal{F}^S_j$, for $0\le j \le t$.
+	A $\mathbb{R}^{2}$-valued stochastic process $(\xi_t^0, \xi_t^1)_{t\in [0, T]}$ is said to be a \emph{strategy} to (\ref{sec:fbs2}) , if $\xi_{s_j}^0 \in \mathcal{F}^A_{s_{j-1}}$ and $\xi_{s_j}^1 \in \mathcal{F}^S_{s_{j-1}}$, for $j \in \{1,\dots,m\}$.
   \end{definition}
 
   \begin{definition}
@@ -1580,7 +1583,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 	\begin{eqnarray*}
 	  V_t =  \xi^0_t A_t + \xi^1_t S_t %=: \hat{\xi}_t\cdot\hat{X}_t.
 	\end{eqnarray*}
-	for $t \in [0, T]$.
+	for $t \in \tilde{s}$.
   \end{definition}
 
   %\begin{definition}
@@ -1596,7 +1599,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 	\begin{eqnarray*}
 	  \tilde{V}_t = \frac{V_t}{A_t}
 	\end{eqnarray*}
-	for $t \in [0, T]$.
+	for $t \in \tilde{s}$.
   \end{definition}
   Obviously, $\tilde{V}_t = \xi^0_t + \xi^1_t \tilde{S}_t$ with $\tilde{S}_t=\exp(\mu(t) + \sigma U_H(t))$.
   \begin{definition}
@@ -1606,14 +1609,13 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 	  \label{sec:123}
 	\end{eqnarray}
 	\label{sec:def}
-	for $0=s_0\le s_1\le \dots\le s_m=T$.
   \end{definition}
 
   \begin{definition}
 	A self-financing strategy $(\xi^0_t, \xi^1_t)_{t\in T}$ is said to be have \emph{arbitrage}, if its discounted process satisfies following conditions:
 	\begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]
-	  \item $\mathcal{P}[\tilde{V}_T - \tilde{V}_0]=1$.
-	  \item $\mathcal{P}[\tilde{V}_T > 0] > 0$.
+	  \item $\mathcal{P}[\tilde{V}_T - \tilde{V}_0 \ge 0] = 1$.
+	  \item $\mathcal{P}[\tilde{V}_T - \tilde{V}_0 > 0] > 0$.
 	  \end{enumerate}
 	\end{definition}
   %To be specific, our finance market is modeled with two stochastic processes that a process of a riskless asset $(A_t)_t$ and a process of price of a stock $(S_t)_t$.  The stock is assumed that it pays no dividends. Setting initial values $A_0=1, S_0=1$, we give our fractional Black-Scholes model as follows
@@ -1657,7 +1659,7 @@ is well-defined. In addition, if $H\in(\frac{1}{2}, 1)$, fOU exhibits long memor
 	  \tilde{S}_t = \exp\brkt{\mu(t) + \sigma U_H(t)},
 	  \label{sec:fbs}
 	\end{eqnarray}
-	where $\mu, \sigma$ are as in (\ref{sec:fbs2}), $U_H(t)$ is a fBm with $H\in (0, \frac{1}{2})\cup(\frac{1}{2}, 1)$. If there exist
+	where $\mu, \sigma$ are as in (\ref{sec:fbs2}), $U_H(t)$ is a fBm with $H\in (0, \frac{1}{2})\cup(\frac{1}{2}, 1)$. If there exists
 	\begin{eqnarray*}
 	\xi^1_t = f_0\mathbbm{1}_{\{0\}}(t)+\sum_{k=1}^{n-1} f_k \mathbbm{1}_{(\tau_k, \tau_{k+1}]}(t)
 	\end{eqnarray*}
@@ -2134,7 +2136,7 @@ in distribution.
  as $a$ goes to zero for $T > 0$.
 \end{theorem}
 \begin{proof}
-  Cf. \cite{gradin}, p.15, Proposition 3.1 .
+  See \cite{gradin}, p.15, Proposition 3.1 .
 \end{proof}
 
 The theorem shows if $a$ is small enough, $(\hat{X}_{H, t})_t$ behaves essentially as fBm at a compact time scale.
@@ -2148,7 +2150,7 @@ The theorem shows if $a$ is small enough, $(\hat{X}_{H, t})_t$ behaves essential
  as $a$ goes to zero, for $t>0, \tau>0$.
 \end{theorem}
 \begin{proof}
-  Cf. \cite{gradin}, p.16, Corollary 3.2 .
+  See \cite{gradin}, p.16, Corollary 3.2 .
 \end{proof}
 
 (\ref{sec:rfsv}) shows the choice of $H\in(0,\frac{1}{2})$ enables us to model the log-volatility process with a form of (\ref{sec:smth}). It may turn out to be RFSV is more reasonable than FSV for this empirical result.
@@ -2211,7 +2213,7 @@ for $t\ge 0$ and where $a, \gamma \in \mathbb{R}_+$.
   For an appropriate initial condition of (\ref{sec:wfsv}), there exists a solution $\hat{X_t}$ satisfying following properties:
 \begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]
   \item $(\hat{X}_{\alpha,\beta,H_1,H_2}(t))_{t\ge 0}$ is a centered Gaussian stationary process.
-  \item $ \hat{X}_{\alpha,\beta,H_1,H_2}(t)$ has long memory.
+  \item $(\hat{X}_{\alpha,\beta,H_1,H_2}(t))_{t \ge 0}$ has long memory.
   \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -2277,7 +2279,7 @@ are centered Gaussian.\\
 \begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]	
   \item $\mathrm{E}[\sup\limits_{t\in[0,T]}|\hat{X}_{\alpha,\beta,H_1,H_2}(t) - U_{H_1}(t)|] \rightarrow 0$
 	as $a\rightarrow 0, \alpha\rightarrow 1$.
-  \item $\mathrm{E}[|\hat{X}_{\alpha,\beta,H_1,H_2}(t+\tau) - \hat{X}_{\alpha,\beta,H_1,H_2}(t)|^2] \rightarrow  \gamma^2 \tau^{2H}$
+  \item $\mathrm{E}[|\hat{X}_{\alpha,\beta,H_1,H_2}(t+\tau) - \hat{X}_{\alpha,\beta,H_1,H_2}(t)|^2] \rightarrow  \gamma^2 \tau^{2H_1}$
 	as $a\rightarrow 0, \alpha\rightarrow 1$.
   \item Let $n\in \mathbb{N}$, define
 	\begin{eqnarray*}

@@ -1,0 +1,516 @@
+\documentclass[]{beamer}
+% Class options include: notes, notesonly, handout, trans,
+%                        hidesubsections, shadesubsections,
+%                        inrow, blue, red, grey, brown
+
+% Theme for beamer presentation.
+\usepackage{beamerthemesplit} 
+% Other themes include: beamerthemebars, beamerthemelined, 
+%                       beamerthemetree, beamerthemetreebars  
+
+\title[Diploma Thesis]{Fractional Brownian Motion and ist Application in financial mathematics}    % Enter your title between curly braces
+\author{Ke Zhu}                 % Enter your name between curly braces
+\institute[TU Dresden]{Supervisor: Prof.~Dr.~rer.~nat.~M.~Keller-Ressel}      % Enter your institute name between curly braces
+\date{\today}                    % Enter the date or \today between curly braces
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{bbm}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\def\F{\mathcal{F}}
+\def\B{\mathcal{B}}
+\def\RR{\mathbb{R}}
+\def\NN{\mathbb{N}}
+\def\i{\mathrm{i}}
+\def\e{\mathrm{e}}
+\def\d{\mathrm{d}}
+\def\k{\mathrm{k}}
+\def\Var{\mathrm{Var}}
+\def\ind{\mathbf{1}}
+\def\la{\langle}
+\def\ra{\rangle}
+\newcommand{\compl}[1]{{#1}^{c}}
+% sigma algebra
+\def\sa{$\sigma$- Algebra\ } 
+% prob. space
+\def\bs{$(\Omega, \mathscr{A}, \mathcal{P})$\ } 
+\def\bsigma{\mathscr{B}\brkt{\mathbb{R}^{n}}}
+\newcommand{\sqbr}[1]{\left[ {#1} \right]}
+\newcommand{\brkt}[1]{\left({#1} \right)}
+\newtheorem{proposition}{Proposition}
+
+\usetheme{Warsaw}
+\setbeamertemplate{theorem}[ams style]
+%\setbeamertemplate{theorems}[numbered]
+\newcounter{extemp}
+\newcounter{restoretemp}
+
+
+
+\newenvironment{smyex}{\setcounter{extemp}{\theexample}\begin{example}}%
+{ \end{example}}
+%
+\newenvironment{emyex}{%
+\setcounter{restoretemp}{\thetheorem}
+\setcounter{theorem}{\theextemp}  
+\begin{example}%
+}{\end{example}\setcounter{theorem}{\therestoretemp}
+}
+
+\begin{document}
+
+% Creates title page of slide show using above information
+\begin{frame}
+  \titlepage
+\end{frame}
+\note{Talk for 30 minutes} % Add notes to yourself that will be displayed when
+                           % typeset with the notes or notesonly class options
+
+%\section[Outline]{}
+
+% Creates table of contents slide incorporating
+% all \section and \subsection commands
+%\begin{frame}
+%  \tableofcontents
+%\end{frame}
+
+
+\section{Contents}
+\begin{frame}
+  \frametitle{Contents}   % Insert frame title between curly braces
+
+  \begin{itemize}
+  \item Introduction of fBm
+	\vspace{2ex}
+	\pause
+  \item Definition and Properties of fBm
+	\vspace{2ex}
+	\pause
+  \item Applications
+	\vspace{2ex}
+	\pause
+	\begin{itemize}
+				\item fOU-Process 
+					\vspace{1.5ex}
+					\pause
+				\item Fractional Black-Scholes Model
+					\vspace{1.5ex}
+					\pause
+				\item Fractional Stochastic Volatility Model
+			\end{itemize}
+  \end{itemize}
+\end{frame}
+\note[enumerate]       % Add notes to yourself that will be displayed when
+{                      % typeset with the notes or notesonly class options
+\item Note for Point 1   
+\item Note for Point 2   
+}
+
+\section{Introduction of fBm}
+\begin{frame}
+\frametitle{Introduction of fBm}
+  What is a fBm ?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classical Definition}
+  A centered Gaussian process $(U_H(t))_{t\in \mathbb{R}}$ with real number $0<H<1$ such that
+  $\mathrm{E}[U_H(t)U_H(s)] = \frac{1}{2}(s^{2H} + t^{2H} - |t-s|^{2H})$
+\end{frame}
+
+\begin{frame}
+  \frametitle{Motivation}
+  \begin{itemize}
+	\item
+	Problem: Is there a Representation of fBM ?
+	\vspace{1.5ex}
+	\pause
+  \item  Yes, Integral Representation.
+	\end{itemize}
+\end{frame}
+\begin{frame}
+  Mandelbrot and Van Ness\cite{mandelbrot}
+	\frametitle{Integral Representation}
+	\begin{definition}
+	 $(U_H(t))$ is said to be \emph{fractional Brownian motion} if 
+  \begin{eqnarray*}
+		&&U_H(t) - U_H(s)\nonumber\\
+		&=& \frac{1}{\Gamma(H+\frac{1}{2})}\brkt{\int_{\mathbb{R}} \mathbbm{1}_{\{t > u\}}\cdot (t-u)^{H-\frac{1}{2}}
+		- \mathbbm{1}_{\{s > u\}} (-u)^{H-\frac{1}{2}} \, \mathop{dB_u}}
+	\label{sec:frtbm}
+  \end{eqnarray*}
+  for $t\ge s, t, s \in \mathbb{R}$, where $(B_u)$ is defined as two-sides Brownian motion and the integral is defined in the sense of stable integral.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}
+	$U_H(0) = 0$, then
+	\begin{eqnarray*}
+	&&U_H(t) \nonumber\\
+	&=& \frac{1}{\Gamma(H+\frac{1}{2})}\brkt{\int_{\mathbb{R}} \underbrace{\mathbbm{1}_{\{t > u\}}\cdot (t-u)^{H-\frac{1}{2}} - \mathbbm{1}_{\{u < 0\}} (-u)^{H-\frac{1}{2}}}_{f_t(u)} \, \mathop{dB_u}}.
+	\label{sec:fbm}
+  \end{eqnarray*}
+\end{theorem}
+\begin{eqnarray*}
+  J(f_t) : f_t \rightarrow \int_{\mathbb{R}} f_t \mathop{dB_u}
+\end{eqnarray*}
+  If the integrand $f_t$ is quadratic integrable then integral is well-defined in the sense of stable integral.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introduction of fBm}
+  \begin{itemize}
+  \item
+  \begin{proposition}
+	The stable integral is linear\cite{samorodnitsky} :
+\begin{equation*}
+  J(af_t + bf_s) \overset{a.s.}{=}aJ(f_t) + bJ(f_s)
+\end{equation*}
+  \end{proposition}
+
+  \item
+  \begin{theorem}
+	 $U_H(t) \sim \mathcal{N}(0, \frac{1}{\Gamma(H+\frac{1}{2})^2}(\int_{\mathbb{R}} |f_t(u)^2|\, \mathop{du}))$
+  \end{theorem}
+\vspace{1.5ex}
+\pause
+
+\item
+   \begin{theorem}
+	$U_H(t)-U_H(s) \sim \mathcal{N}(0, \frac{1}{\Gamma(H+\frac{1}{2})^2}(\int_{\mathbb{R}} |f_t(u)-f_s(u)|^2\, \mathop{du})$
+  \end{theorem}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Standardization}
+  \begin{corollary}
+   The variance of $U_H(t)$ is $\frac{1}{(\Gamma(H+\frac{1}{2}))^2}\, \mathrm{E} U^2_H(1)t^{2H}$ for any $t \in \mathbb{R}$.
+  \label{sec:fbmp1}
+\end{corollary}
+  Divide with $\frac{1}{(\Gamma(H+\frac{1}{2}))^2}\mathrm{E} U^2_H(1)$ then, \\
+\vspace{2ex}
+\hspace{8em}$\mathrm{Var}[U_H(t)]=t^{2H}$.
+\end{frame}
+
+\section{fBm Properties}
+\begin{frame}
+  \frametitle{fBm properties}
+  \begin{theorem}
+  Let  $(U_H(t))_{t}$ be a fBm. The covariance of $U_H(t)$ and $U_H(s)$ is $ \frac{1}{2}(t^{2H} + s^{2H} - |t-s|^{2H})$ for $t, s \in \mathbb{R}$.
+\end{theorem}
+
+\vspace{1ex}
+\pause
+
+\begin{proof}
+  \begin{eqnarray*}
+	\mathrm{Cov}[U_H(t), U_H(s)] &=& \mathrm{E}[U_H(t)U_H(s)] \nonumber\\
+	&=& \frac{1}{2}(\mathrm{E}[U_H(t)^2] + \mathrm{E}[U_H(s)^2] \nonumber\\
+	&-& \mathrm{E}[(U_H(t) - U_H(s))^2]) \nonumber\\
+	&=& \frac{1}{2}(t^{2H} + s^{2H} - |t-s|^{2H})
+  \end{eqnarray*}
+\end{proof}
+\end{frame}
+
+\begin{frame}
+  \frametitle{fBm properties}
+ \begin{theorem}
+  $(U_H(t))_{t}$ is Gaussian process.
+\end{theorem}
+\begin{theorem}
+   $(U_H(t))_{t}$ has stationary and H-self similar increments .
+\end{theorem} 
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{fBm properties}
+  %\framebox{$S_H(k) = U_H(k+1) - U_H(k)$ for $k\in \mathbb{R}$}
+  \begin{theorem}
+	\begin{eqnarray*}
+	  &&((U_H(t_1 + \tau) - U_H(t_0 + \tau)),\dots, (U_H(t_n + \tau) - U_H(t_{n-1} + \tau))) \\
+	  &\sim&  (U_H(t_1 - t_0),\dots,U_H(t_n-t_{n-1}))
+	\end{eqnarray*}
+  \end{theorem}
+  \begin{theorem}
+\begin{eqnarray*}
+  &&(U_H(c(t_1 - t_0)),\dots, U_H(c(t_n-t_{n-1}))) \\
+  &\sim& (c^H U_H(t_1 - t_0),\dots, c^H U_H(t_n - t_{n-1}))
+\end{eqnarray*}
+for $c>0$.
+  \end{theorem}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Hurst exponent}
+$H$ plays role.  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Hurst exponent}
+  \framebox{Case $H=\frac{1}{2}$}\\
+  \vspace{2em}
+  fBM is BM.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Hurst exponent}
+  %\framebox{Case $H > \frac{1}{2}$}\\
+  \begin{definition}
+  A stationary stochastic process $(X_t)_t$ is said to have \emph{long memory} if its autocovariance $\varsigma_X(\tau)$ tends to $0$ so slowly such that
+  $ \sum_{\tau = 0} ^{\infty} \varsigma_X(\tau)$ diverges.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Hurst exponent}
+  \framebox{Case $H > \frac{1}{2}$}\\
+  \framebox{$S_H(k) = U_H(k+1) - U_H(k)$ for $k\in \mathbb{R}$}
+  \begin{theorem}
+	The fractional Brownian noise $S_H(k)$ with $H \in (\frac{1}{2}, 1)$ has long memory.
+  \end{theorem}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Hurst exponent}
+  \framebox{Case $H \neq \frac{1}{2}$}\\
+  \begin{theorem}
+  fBm is not semimartingale for $H \neq\frac{1}{2}$.
+\end{theorem}
+\end{frame}
+
+\section{Applications}
+\subsection{fOU}
+\begin{frame}
+  \frametitle{fOU}
+  \begin{eqnarray*}
+ \mathop{dX_t} = -aX_t\mathop{dt} + \gamma \mathop{dU_H(t)},
+ \label{sec:ou1}
+\end{eqnarray*}
+where $(X_t)_{t\ge 0}$ is a stochastic process, $a, \gamma\in\mathbb{R}_{+}$ and $(U_H(t))_{t\ge 0} $ fBm with Hurst exponent $H$.
+\begin{eqnarray*}
+  X_t(\omega) = X_0(\omega) - a\int_0^t X_u(\omega) \mathop{du} + \gamma U_H(t)(\omega)
+  \label{sec:oup}
+\end{eqnarray*}
+for $t \ge 0$.
+
+Stationary solution:  $\hat{X}_{H,t}:= e^{-at}\brkt{\gamma\int_{-\infty}^t e^{au}\mathop{dU_H(u)}}$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{fOU}
+  \begin{theorem}
+	$(\hat{X}_{H,t})_{t\ge 0}$ is centered Gaussian process.
+  \end{theorem}
+  \begin{theorem}
+	 $(\hat{X}_{H,t})_{t\ge 0}$ has long memory for $H\in (\frac{1}{2}, 1)$.
+  \end{theorem}
+\end{frame}
+
+\subsection{Fractional Black-Scholes model}
+\begin{frame}
+  \frametitle{Fractional Black-Scholes}
+  \begin{eqnarray*}
+  A_t &=& \exp(rt)\nonumber\\
+  S_t &=& \exp(rt + \mu(t) +\sigma U_H(t)), t\in [0, T],
+  \label{sec:fbs2}
+\end{eqnarray*}
+\hspace{5em} where  $r\in\mathbb{R}, \sigma\in\mathbb{R}_+, \sup\limits_{t\in[0, T]}\mu(t) < \infty$.
+\end{frame}
+
+\begin{frame}
+  \begin{theorem}
+  \begin{eqnarray*}
+	\tilde{S}_t = \exp\brkt{\mu(t) + \sigma U_H(t)},
+	\label{sec:fbs}
+  \end{eqnarray*}
+  %where $\mu, \sigma$ are as in (\ref{sec:fbs2}), $U_H(t)$ is a fBm.
+  if there exists
+  \begin{eqnarray*}
+  \xi^1_t = f_0\mathbbm{1}_{\{0\}}(t)+\sum_{k=1}^{n-1} f_k \mathbbm{1}_{(\tau_k, \tau_{k+1}]}(t),
+  \end{eqnarray*}
+  where $t\in[0, T], f_k$ is family of  $\mathcal{F}^{U_H}_k $-measurable function for $k \in \{1,\dots,n-1\}$. $0 = \tau_1 < \cdots <\tau_n = T$ are stopping times with respect to $\mathcal{F}^{U_H}_{\tau_k} $ respectively,  with $\tau_{k+1} - \tau_k\ge m$ for some $m>0$. If there exists a $k \in \{0,\dots,n-1\}$ such that $\mathcal{P}[f_k\neq 0]>0$ , then
+  \begin{eqnarray*}
+	\mathcal{P}[(\xi^1 \cdot \tilde{S})_T < 0] > 0.
+  \end{eqnarray*}
+%	\label{sec:claim}
+%	where $(\xi^1 \cdot \tilde{S})_T := \sum_{k=1}^{n} \xi^1_{\tau_k} (\tilde{S}_{k} - \tilde{S}_{k-1})$.
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fractional Black Scholes}
+   The fractional Black-Scholes market is arbitrage-free, if there exists a minimal amount of time between two successive transactions,.
+\end{frame}
+
+\subsection{Fractional stochastic volatility model}
+\frametitle{Fractional stochastic volatility model}
+\begin{frame}
+  \frametitle{FSV}
+  \framebox{$H>\frac{1}{2}$}
+\begin{eqnarray*}
+  \mathop{dS_t} &=& r_tS_t\mathop{dt} + \sigma_t S_t \mathop{dB_t},\\
+  \sigma_t &=& \exp\{X_t\} \nonumber\\
+  \mathop{dX_t} &=&  -a X_t \mathop{dt} + \gamma \mathop{dU_H(t)},
+  \label{sec:fv}
+\end{eqnarray*}
+\hspace{7em}where $a, \gamma \in \mathbb{R}_{+}$. \\
+Stationary solution :
+\begin{eqnarray*}
+\hat{X}_{H,t}= e^{-at}\gamma\int_{-\infty}^t e^{au}\mathop{dU_H(u)}
+\label{sec:fv2}
+\end{eqnarray*} 
+\end{frame}
+
+\begin{frame}
+  \frametitle{FSV}
+  $\hat{\sigma}_{H,t} = \exp\{\hat{X}_{H,t}\}$
+  \begin{theorem}
+  $(\hat{\sigma}_{H,t})$ has long memory for $H\in(\frac{1}{2}, 1)$. 
+  \end{theorem}
+\end{frame}
+
+\subsection{Rough Fractional stochastic volatility model}
+\frametitle{Rough Fractional stochastic volatility model}
+\begin{frame}
+  \frametitle{RFSV}
+  \framebox{$H<\frac{1}{2}$}
+\begin{eqnarray*}
+  \mathop{dS_t} &=& r_tS_t\mathop{dt} + \sigma_t S_t \mathop{dB_t},\\
+  \sigma_t &=& \exp\{X_t\} \nonumber\\
+  \mathop{dX_t} &=&  -a X_t \mathop{dt} + \gamma \mathop{dU_H(t)},
+\end{eqnarray*}
+\end{frame}
+\begin{frame}
+  \frametitle{RFSV}
+  Smoothness of $\sigma_t$.
+  \begin{eqnarray*}
+  s(\tau, \sigma) = \frac{1}{N}\sum\limits_{k=1}^N|\log(\sigma_{k\tau}) - \log(\sigma_{(k-1)\tau})|^2,
+  \label{sec:smo}
+\end{eqnarray*}
+Empirical result:
+\begin{eqnarray*}
+  s(\tau, \sigma) =  k\tau^z.
+  \label{sec:smth}
+\end{eqnarray*}
+
+%\begin{eqnarray*}
+%  s(\tau, \hat{X}_{H}) &\overset{\tau\downarrow0}{\rightarrow}& \mathrm{E}[|\hat{X}_{H,t+\tau}-\hat{X}_{H,t}|^2]\nonumber\\
+%  &=& 2 \mathrm{Var}[\hat{X}_{H,t}] - 2 \mathrm{Cov}[\hat{X}_{H,t}, \hat{X}_{H,t+\tau}]\nonumber
+%  \label{sec:smtsv}
+%\end{eqnarray*}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{RFSV}
+  Gatheral et la.\cite{Gatheral}
+\begin{theorem}
+  \begin{eqnarray*}
+	s(\tau, \hat{X}_{H}) \rightarrow \gamma^2\tau^{2H}
+	\label{sec:rfsv}
+  \end{eqnarray*}
+ as $a$ goes to zero, for $t>0, \tau>0$.
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivation}
+  Find a model which combine advatages on both FSV and RFSV.
+\end{frame}
+
+\subsection{Weighted fractional Brownian motion}
+\begin{frame}
+\frametitle{Weighted fractional Brownian motion}
+  \begin{definition}
+  A \emph{weighted fractional Brownian motion} is defined as follows
+\begin{eqnarray*}
+  M_{\alpha,\beta,H_1,H_2}(t) = \alpha U_{H_1}(t) + \beta U_{H_2}(t)
+  \label{sec:mfsv}
+\end{eqnarray*}
+for $t\in \mathbb{R}$, where $\alpha, \beta \in \mathbb{R}_+$ such that $\alpha^2 + \beta^2 =1$ and $U_{H_1}, U_{H_2}$ are two independent fBm's with Hurst exponents $H_1 \in (0, \frac{1}{2}), H_2 \in (\frac{1}{2}, 1)$ respectively.
+\end{definition}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Weighted fractional Brownian motion}
+% \begin{eqnarray*}
+%	X_{\alpha,\beta,H_1,H_2}(t) = X_{\alpha,\beta,H_1,H_2}(0) - a\int_0^t X_u \mathop{du} + \gamma M_{\alpha,\beta,H_1,H_2}(t).
+%\end{eqnarray*}
+  \framebox{$H_1<\frac{1}{2}, H_2>\frac{1}{2}$}
+\begin{eqnarray*}
+  \hat{X}_{\alpha,\beta,H_1,H_2}(t) &=&  \alpha \gamma e^{-at}\int_{-\infty}^t e^{au} \mathop{d U_{H_1}} + \beta \gamma e^{-at}\int_{-\infty}^t e^{au} \mathop{d U_{H_2}}.
+  \label{sec:jjj}
+\end{eqnarray*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Weighted fractional Brownian motion}
+  \begin{proposition}
+  $\hat{X_t}$ satisfies following properties:
+\begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]
+  \item $(\hat{X_t})_{t\ge 0}$ is a centered Gaussian stationary process.
+  \item $(\hat{X_t})_{t\ge 0}$ has long memory.
+  \end{enumerate}
+\end{proposition}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Weighted fractional Brownian motion}
+  \begin{proposition}
+ % Let $M_{\alpha,\beta,H_1,H_2}$ be a weighted fractional brownian motion with respect to $U_{H_1}$ and $U_{H_2}$. Then, for $t\in [0, T]$,
+	$\hat{X_t}$ satisfies following properties:
+\begin{enumerate}[topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex, label=(\roman*)]	
+  \item $\mathrm{E}[\sup\limits_{t\in[0,T]}|\hat{X}_{\alpha,\beta,H_1,H_2}(t) - U_{H_1}(t)|] \rightarrow 0$
+	as $a\rightarrow 0, \alpha\rightarrow 1$.
+  \item $\mathrm{E}[|\hat{X}_{\alpha,\beta,H_1,H_2}(t+\tau) - \hat{X}_{\alpha,\beta,H_1,H_2}(t)|^2] \rightarrow  \gamma^2 \tau^{2H_1}$
+	as $a\rightarrow 0, \alpha\rightarrow 1$.
+  %\item Let $n\in \mathbb{N}$, define
+%	\begin{eqnarray*}
+%	  &&\tilde{X}_{\alpha,\beta,H_1,H_2}(t) \\
+%	  &:=&  \alpha\sum_{k=1}^{\floor{nt}} \frac{(t - \frac{k-1}{n})^\phi}{\Gamma(1+\phi)} \brkt{J_{H_1}^{(\phi)}(\frac{k}{n}) - J_{H_1}^{(\phi)}(\frac{k-1}{n})} \\
+%	  &+& \beta\sum_{k=1}^{\floor{nt}} \frac{(t - \frac{k-1}{n})^\psi}{\Gamma(1+\psi)} \brkt{J_{H_2}^{(\psi)}(\frac{k}{n}) - J_{H_2}^{(\psi)}(\frac{k-1}{n})}
+%	  \label{sec:disc}
+%	\end{eqnarray*}
+%	then, as $n$ goes to infinity,
+%	\begin{eqnarray*}
+%	  \tilde{X}_{\alpha,\beta,H_1,H_2}(t) \rightarrow \hat{X}_{\alpha,\beta,H_1,H_2}(t)
+%	\end{eqnarray*}
+%	in distribution.
+  \end{enumerate}
+  \end{proposition}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Summary}
+  FSV ensures the volatility process has long memory.\\
+  \bigskip
+  RFSV demonstrates a reasonable smoothness of volatility.\\
+  \bigskip
+  Weighted-FSV inherits long memory of FSV and 'good' smoothness of RFSV.
+\end{frame}
+
+\section{Thank you}
+\begin{frame}
+  \begin{center}
+	\bf{Thank you for your Attention !} \\
+	\bf{Vielen Dank für Ihre Aufmerksamekeit !}
+  \end{center}
+  \end{frame}
+
+
+\note{The end}       % Add notes to yourself that will be displayed when
+		     % typeset with the notes or notesonly class options
+\begin{thebibliography}{99}
+\bibitem{mandelbrot} \textsc{Mandelbrot, ~B.B., \& Van Ness, ~J.W.} (1968). Fractional Brownian Motions, Fractional Noises and Applications. SIAM Review 10(4):422–437.
+  \bibitem{samorodnitsky} \textsc{Samorodnitsky,~G., \& Taqqu, ~M.} (1994). Stable Non-Gaussian Random Processes: Stochastic Models with Infinite Variance. New York: Chapman \& Hall.
+	\bibitem{Gatheral} \textsc{Gatheral,~J. \& Jaisson,~T. \& Rosenbaum,~M} (2014). Volatility is Rough.
+  \end{thebibliography}
+\end{document}
